@@ -18,6 +18,8 @@
 
 	<context:component-scan base-package="com.team_stupid.mapper" />
 	<context:component-scan base-package="com.team_stupid.security" />
+	<context:component-scan base-package="com.team_stupid.service" />
+	<context:component-scan base-package="com.team_stupid.dao" />
 
 	
    	<bean id="basePackage" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
