@@ -16,34 +16,29 @@
         https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
         http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
+	<context:component-scan base-package="com.team_stupid.mapper" />
+	<context:component-scan base-package="com.team_stupid.security" />
+	<context:component-scan base-package="com.team_stupid.service" />
+	<context:component-scan base-package="com.team_stupid.dao" />
 
 	
-  	<bean id="basePackage" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.jgy.webapp.mapper" />
+   	<bean id="basePackage" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.team_stupid.mapper" />
 	</bean>
 	
-	<context:component-scan base-package="com.jgy.webapp.security" />
-	<context:component-scan base-package="com.jgy.webapp.service" />
+<!-- 	<context:component-scan base-package="com.jgy.webapp.service" />
 	<context:component-scan base-package="com.jgy.webapp.mapper" />
 	<context:component-scan base-package="com.jgy.webapp.dao" />
-	<context:component-scan base-package="com.jgy.webapp.domain" />
+	<context:component-scan base-package="com.jgy.webapp.domain" />  -->
 		<!-- <jpa:repositories base-package="com.jgy.webapp.jpa" /> -->
-	<bean id="dataSource"
+	 <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://term-db.ckzrmntvkc2x.ap-northeast-2.rds.amazonaws.com:3306/term" />
-		<property name="username" value="bunriDdokDdok" />
-		<property name="password" value="bunri1234" />
-	</bean>
-<!-- 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@218.235.103.110:1521:xe" />
-		<property name="username" value="bunriDdokDdok" />
-		<property name="password" value="bunri1234" />
-	</bean> -->
-		
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://ddoshop.cim8ja8aluy7.ap-northeast-2.rds.amazonaws.com:3306/ddoShop" />
+		<property name="username" value="team_stupid" />
+		<property name="password" value="ahwlfdlemf!" />
+	</bean> 
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
 		<property name="mapperLocations" value ="classpath*:mapper/**/*.xml" />
@@ -55,13 +50,13 @@
 			ref="sqlSessionFactory" />
 	</bean>
 
-	<bean id="mailSender2"
+<!-- 	<bean id="mailSender2"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" /> 
-		<property name="username" value="noreply.Bunri@gmail.com" /> <!-- 자신의 이메일 아이디 -->
-		<property name="password" value="bunriddokddok12!@" /> <!-- 자신의 비밀번호 -->
-		<!-- 보안연결 TLS과 관련된 설정 -->
+		<property name="username" value="noreply.Bunri@gmail.com" /> 자신의 이메일 아이디
+		<property name="password" value="bunriddokddok12!@" /> 자신의 비밀번호
+		보안연결 TLS과 관련된 설정
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
@@ -73,6 +68,6 @@
 				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> -->
 	
 </beans>
