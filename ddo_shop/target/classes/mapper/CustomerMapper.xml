@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team_stupid.mapper.CustomerMapper">
+ 	 <select id="loadUserByUsername" resultType="CustomUserDetails">
+		SELECT ACC_USERID, ACC_USERPW FROM ACCOUNT 
+		WHERE ACC_USERID = #{id}
+	</select>
+	
+	<select id="selectUserIdDistinct" resultType="int">
+		SELECT count(*) 
+		FROM ACCOUNT
+		where ACC_USERID = #{id}
+	</select>
+	
+	<insert id="register" parameterType="map">
+		INSERT INTO ACCOUNT
+		VALUES (
+		(SELECT COUNT(ACC_NUM) from ACCOUNT A),
+		 #{userid}, #{username}, #{password}, #{address}, #{phone}, #{email}, #{nickname}, #{category})
+	</insert>
+	
+	<select id="selectUserIdForFoundid" resultType="String">
+ 		SELECT userid
+		FROM member
+		where username = #{username} and email = #{email}
+	</select>
+	
+	<select id="selectUserPw" resultType="int">
+ 		SELECT count(*)
+		FROM member
+		where username = #{username} and userid = #{userid} and email = #{email}
+	</select>
+	
+	<update id="updateTempUserPw">
+		UPDATE member
+		SET password = #{tempPw}
+		WHERE userid = #{userid}
+	</update>
+	
+	<!-- <select id="list" resultType="com.jgy.webapp.domain.BoardVO">
+		SELECT board_num, board_userid, board_category, board_title, board_contents, board_date FROM board order by board_num desc
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT MAX(board_num) FROM board
+	</select>
+    
+    <select id="searchItem" resultType="com.jgy.webapp.domain.BoardVO">
+    	SELECT board_num, board_userid, board_category, board_title, board_contents, board_date FROM board WHERE board_num = #{num}
+    </select>
+    
+    <select id="listCate" resultType="com.jgy.webapp.domain.BoardVO">
+        SELECT board_num, board_userid, board_category, board_title, board_contents, board_date FROM board where board_category = #{cate} order by board_num desc
+    </select>
+    
+    <insert id="write" parameterType="hashMap">
+    	INSERT INTO
+    	board(board_num,board_userid,board_category,board_title,board_contents)
+    	values(#{board_num},#{userid},#{category},#{title},#{contents})
+    </insert>
+    
+    <select id="listEco" resultType="com.jgy.webapp.domain.EcoVO">
+        SELECT eco_num, eco_name, eco_category, eco_url, eco_contents FROM eco_promote
+    </select> -->
+    
+    
+<!--     
+    <select id="search_image" resultType="string">
+    	select recycle_contents
+		from RECYCLE_INFO
+		where recycle_title = #{recycle_title}
+    </select>
+    
+    <select id="deleteboard" >
+    	delete from board
+		where board_num = #{board_num}
+    </select> -->
+</mapper>
