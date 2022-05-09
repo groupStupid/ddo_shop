@@ -18,7 +18,7 @@ import com.team_stupid.mapper.CustomerMapper;
 import com.team_stupid.security.CustomUserDetails;
 
 @Controller
-public class SignupController {
+public class JoinController {
 
 	
 	@Autowired
@@ -28,13 +28,13 @@ public class SignupController {
 	private String idChecked = "";
 	
 	@RequestMapping("/join")
-	public String signup() {
+	public String join() {
 		return "join/join";
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/signup/signup.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
-	public String signup_do(@RequestBody Map<String, String> map,
+	@RequestMapping(value = "/join/join.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
+	public String join_do(@RequestBody Map<String, String> map,
 							HttpServletResponse response) throws SQLException, IOException {
 		String username = map.get("name");
 		String userid = map.get("id");
@@ -83,7 +83,7 @@ public class SignupController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/signup/IdChecking.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
+	@RequestMapping(value = "/join/IdChecking.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
 	public String idChecking(String id) {
 		System.out.println("SignupController idChecking() : " + id);
 		if (customerMapper.selectUserIdDistinct(id) == 0) {
