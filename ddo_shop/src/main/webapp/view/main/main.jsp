@@ -116,6 +116,11 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img class="w-100 d-block"
+						src="https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/ykm.png"
+						alt="Slide Image" style="margin-bottom: 30px;">
+				</div>
+				<div class="carousel-item">
+					<img class="w-100 d-block"
 						src="../../resource/term/main_page/assets/img/KakaoTalk_20211213_123802810.png"
 						alt="Slide Image" style="margin-bottom: 30px;">
 				</div>
