@@ -114,12 +114,12 @@
 		</nav>
 	</header>
 	<div></div>
-
+	
 	<div>
-		<textarea name="title"
-			style="width: 60%; height: 30px; text-align: left; margin-left: 20%; margin-top: 1%; margin-bottom: 1%; resize: none;"></textarea>
-		<textarea name="contents"
-			style="width: 60%; height: 320px; text-align: left; margin-left: 20%; margin-top: 1%; resize: none;"></textarea>
+		<h3>타이틀</h3>
+		<textarea name="title" style="width: 60%; height: 30px; text-align: left; margin-left: 20%; margin-top: 1%; margin-bottom: 1%; resize: none;">title1</textarea>
+		<h3>내용</h3>
+		<textarea name="contents" style="width: 60%; height: 320px; text-align: left; margin-left: 20%; margin-top: 1%; resize: none;">contents1</textarea>
 	</div>
 	
 	<button class="btn btn-success" id="write"
@@ -127,29 +127,16 @@
 	<button class="btn btn-secondary" style="width: 9%; margin-left: 1%"
 		type="submit">취소</button>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script
-		src="../../resource/term/write/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../resource/term/write/assets/bootstrap/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
-		$("#write").on(
-				"click",
+		$("#write").on( "click",
 				function() {
-					var tmp = $("#select_category button.dropdown-toggle")
-							.text().substr(0, 2);
-					if (tmp == "정보")
-						var category = 1;
-					else if (tmp == "나눔")
-						var category = 2;
-					else
-						var category = 0; // 0은 미선택
-					var test = $("#select_category button.dropdown-toggle")
-							.text();
 					var title = $("textarea[name=title]").val();
 					var contents = $("textarea[name=contents]").val();
 					var data = {
-						"category" : category,
-						"title" : title,
-						"contents" : contents
+						"EVENT_TITLE" : title,
+						"EVENT_CONTENTS" : contents
 					}
 					$.ajax({
 						url : "/board_write.do",
@@ -158,8 +145,7 @@
 						contentType : "application/json; charset=UTF-8",
 						dataType : "text",
 						success : function(val) {
-							alert(val);
-							location.href = "/board_main";
+							location.href = "/board";
 						},
 						error : function() {
 							alert("fail");
