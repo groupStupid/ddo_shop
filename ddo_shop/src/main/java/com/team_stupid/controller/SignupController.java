@@ -20,8 +20,6 @@ import com.team_stupid.security.CustomUserDetails;
 @Controller
 public class SignupController {
 
-	//@Autowired
-	//private MemberService jcon;
 	
 	@Autowired
 	private CustomerMapper customerMapper;
@@ -29,13 +27,11 @@ public class SignupController {
 	private boolean idDuplication = false;
 	private String idChecked = "";
 	
-	@RequestMapping("/signup")
+	@RequestMapping("/join")
 	public String signup() {
-		return "term/signup/signup";
+		return "join/join";
 	}
 
-//	String name, String id, String pw, String pw_check, 
-//		String email, String nickname, String area,
 	@ResponseBody
 	@RequestMapping(value = "/signup/signup.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
 	public String signup_do(@RequestBody Map<String, String> map,
@@ -62,28 +58,28 @@ public class SignupController {
 		if (!idChecked.equals(userid) || !idDuplication) {
 			return "id";
 		}
+		if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")) {
+			return "pw";
+		} 
+		if (!password.equals(pw_check)) {
+			return "pw_check";
+		} else {
+			password = bCryptPasswordEncoder.encode(password);
+		}
+
+		if (!map.get("email").matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
+			return "email";
+		}
 		if (customerMapper.register( userid, username, password, email, nickname, address, phone, '1') == 1) {
 			return "success";	
 		} else {
 			return "register error";
 		}
-//		if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")) {
-//			return "pw";
-//		} 
-//		if (!password.equals(pw_check)) {
-//			return "pw_check";
-//		} else {
-//			password = bCryptPasswordEncoder.encode(password);
-//		}
-//
-//		if (!map.get("email").matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
-//			return "email";
-//		}
 //		if (customerMapper.register( userid, username, password, email, nickname, address, phone, '1') == 1) {
-//			return "success";	
-//		} else {
-//			return "register error";
-//		}
+//		return "success";	
+//	} else {
+//		return "register error";
+//	}
 	}
 	
 	@ResponseBody

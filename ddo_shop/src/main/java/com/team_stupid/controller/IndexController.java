@@ -9,12 +9,12 @@ public class IndexController {
 	public String main() {
 		return "main/main";
 	}
-	@RequestMapping("/login")
-	public String login() {
-		return "login/login";
-	}
-	@RequestMapping("/join")
-	public String join() {
-		return "join/join";
-	}
+//	@RequestMapping("/login")
+//	public String login() {
+//		return "login/login";
+//	}
+//	@RequestMapping("/join")
+//	public String join() {
+//		return "join/join";
+//	}
 }
