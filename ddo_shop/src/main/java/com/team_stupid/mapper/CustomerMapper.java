@@ -34,7 +34,7 @@ public interface CustomerMapper {
 	
 //	String search_image(@Param("recycle_title") String recycle_title);
 	
-	void deleteboard(@Param("event_num") int board_num);
+	void deleteboard(@Param("event_num") int event_num);
 	List<BoardVO> list();
 
 	BoardVO searchItem(@Param("num") String num);
