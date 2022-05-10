@@ -1,7 +1,7 @@
 package com.team_stupid.service;
 
-import com.team_stupid.security.UserDetailsDTO;
+import com.team_stupid.domain.AccountVO;
 
 public interface MemberService {	
-	public void sendMail(UserDetailsDTO userDetailsDTO) throws Exception;
+	public void sendMail(AccountVO accountVO) throws Exception;
 }

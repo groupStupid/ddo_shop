@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.team_stupid.mapper.CustomerMapper;
+import com.team_stupid.mapper.AccountMapper;
 import com.team_stupid.security.CustomUserDetails;
 
 @Controller
@@ -22,7 +22,7 @@ public class JoinController {
 
 	
 	@Autowired
-	private CustomerMapper customerMapper;
+	private AccountMapper accountMapper;
 	
 	private boolean idDuplication = false;
 	private String idChecked = "";
@@ -70,7 +70,7 @@ public class JoinController {
 		if (!map.get("email").matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
 			return "email";
 		}
-		if (customerMapper.register( userid, username, password, email, nickname, address, phone, '1') == 1) {
+		if (accountMapper.register( userid, username, password, email, nickname, address, phone, '1') == 1) {
 			return "success";	
 		} else {
 			return "register error";
@@ -86,7 +86,7 @@ public class JoinController {
 	@RequestMapping(value = "/join/IdChecking.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
 	public String idChecking(String id) {
 		System.out.println("SignupController idChecking() : " + id);
-		if (customerMapper.selectUserIdDistinct(id) == 0) {
+		if (accountMapper.selectUserIdDistinct(id) == 0) {
 			idDuplication = true;
 			idChecked = id;
 			return "사용 가능한 아이디입니다.";

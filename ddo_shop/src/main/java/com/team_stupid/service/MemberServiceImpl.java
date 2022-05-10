@@ -4,7 +4,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.team_stupid.security.UserDetailsDTO;
+import com.team_stupid.domain.AccountVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,16 +15,16 @@ public class MemberServiceImpl implements MemberService{
 	private JavaMailSender mailSender;
 	
 	@Override
-	public void sendMail(UserDetailsDTO userDetailsDTO) throws Exception {
-		String subject = "분리똑똑 임시 비밀번호 입니다.";
+	public void sendMail(AccountVO accountVO) throws Exception {
+		String subject = "또샵 임시 비밀번호 입니다.";
 		String content = "";
 		content += "<div align='center' style='border:1px solid black; font-family:verdana'>"
 				+ "<h3 style='color: blue;'>"
-				+ userDetailsDTO.getUserId() + "님의 임시 비밀번호 입니다.</h3>"
+				+ accountVO.getUserId() + "님의 임시 비밀번호 입니다.</h3>"
 				+ "<p>임시 비밀번호 : "
-				+ userDetailsDTO.getUserPw() + "</p></div>";
-		String from = "분리똑똑 <noreply.Bunri@gmail.com>";
-		String to = userDetailsDTO.getEmail();
+				+ accountVO.getUserPw() + "</p></div>";
+		String from = "또샵 <noreply.Bunri@gmail.com>"; // 메일에서 오류 생기면 여기서 또샵 앞에 분리똑똑으로 바꾸기
+		String to = accountVO.getEmail();
 		
 		try {
 			MimeMessage mail = mailSender.createMimeMessage();

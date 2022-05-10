@@ -1,4 +1,4 @@
-package com.team_stupid.security;
+package com.team_stupid.domain;
 
 import org.springframework.stereotype.Service;
 
@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Service
-public class UserDetailsDTO {
+public class AccountVO {
 	private String userId;
 	private String userName;
 	private String userPw;

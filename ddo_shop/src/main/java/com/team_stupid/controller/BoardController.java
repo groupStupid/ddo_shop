@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_stupid.domain.BoardVO;
-import com.team_stupid.mapper.CustomerMapper;
+import com.team_stupid.mapper.AccountMapper;
+import com.team_stupid.mapper.BoardMapper;
 import com.team_stupid.service.BoardService;
 
 @Controller
@@ -28,7 +29,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@Autowired
-	private CustomerMapper customerMapper;
+	private BoardMapper boardMapper;
 	@RequestMapping("/board/**")
 	public String getList(Model model, HttpServletRequest request) throws Exception{
 		String url = request.getRequestURI();
@@ -42,7 +43,7 @@ public class BoardController {
 			list = service.list();
 			model.addAttribute("lists", list);
 			System.out.println("board_main»£√‚");
-			System.out.println(customerMapper.getCount());
+			System.out.println(boardMapper.getCount());
 		}
 		return "board/board_main";
 	}
@@ -64,11 +65,11 @@ public class BoardController {
 		list = service.list();
 		session.setAttribute("lists", list);
 
-		if(!detailNum.equals("scrollTop.js") && (num < 1 || num > customerMapper.getCount()))
+		if(!detailNum.equals("scrollTop.js") && (num < 1 || num > boardMapper.getCount()))
 			return "board/board_detail_failed";
 		if(!detailNum.equals("scrollTop.js")) {
 			session.setAttribute("showNum", num);
-			session.setAttribute("MAX", customerMapper.getCount());
+			session.setAttribute("MAX", boardMapper.getCount());
 			return "board/board_detail";
 		}
 		return "board/board_detail";
@@ -78,7 +79,7 @@ public class BoardController {
 	@RequestMapping(value = "/board_write.do", produces ="application/json; charset=UTF-8", method = RequestMethod.POST)
 	public String writeItem(@RequestBody Map<String,String> map, HttpServletResponse response, HttpServletRequest req) throws Exception {
 		StringBuilder boardNum = new StringBuilder();
-		boardNum.append((customerMapper.getCount()+1));
+		boardNum.append((boardMapper.getCount()+1));
 		map.put("EVENT_NUM",boardNum.toString());
 		System.out.println("EVENT_NUM : " + map.get("EVENT_NUM"));
 		System.out.println("EVENT_TITLE : " + map.get("EVENT_TITLE"));
@@ -91,7 +92,7 @@ public class BoardController {
 	@RequestMapping(value = "/board_main/board_delete.do", produces ="application/text; charset=UTF-8", method = RequestMethod.POST)
 	public String board_delete(String board_num) {
 		int tmp = Integer.parseInt(board_num);
-		customerMapper.deleteboard(tmp);
+		boardMapper.deleteboard(tmp);
 		
 		return "success";
 	}
