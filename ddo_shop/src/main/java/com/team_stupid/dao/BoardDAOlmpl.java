@@ -14,7 +14,7 @@ public class BoardDAOlmpl implements BoardDAO {
 
 	@Autowired
 	private SqlSession sql;
-	private static String namespace = "com.team_stupid.mapper.CustomerMapper";
+	private static String namespace = "com.team_stupid.mapper.BoardMapper";
 	
 	@Override
 	public List<BoardVO> list() throws Exception {

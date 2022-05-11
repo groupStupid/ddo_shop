@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_stupid.domain.BoardVO;
-import com.team_stupid.mapper.CustomerMapper;
+import com.team_stupid.mapper.AccountMapper;
+import com.team_stupid.mapper.BoardMapper;
 import com.team_stupid.service.BoardService;
 
 @Controller
@@ -28,7 +29,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@Autowired
-	private CustomerMapper customerMapper;
+	private BoardMapper boardMapper;
 	@RequestMapping("/board/**")
 	public String getList(Model model, HttpServletRequest request) throws Exception{
 		String url = request.getRequestURI();
@@ -39,12 +40,10 @@ public class BoardController {
 //			System.out.println("찾는링크 : " + tmp);
 			
 			List<BoardVO> list = null;
-			//list = boardDAO.list();
 			list = service.list();
-			
 			model.addAttribute("lists", list);
 			System.out.println("board_main호출");
-			System.out.println(customerMapper.getCount());
+			System.out.println(boardMapper.getCount());
 		}
 		return "board/board_main";
 	}
@@ -58,19 +57,19 @@ public class BoardController {
 	public String board_detail(HttpServletResponse response, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		System.out.println(request.getRequestURI());
-		String[] tmpArray = request.getRequestURI().split("/");
-		String tmp = tmpArray[tmpArray.length - 1];
-		int num = Integer.parseInt(tmp);
+		String[] urlArray = request.getRequestURI().split("/");
+		String detailNum = urlArray[urlArray.length - 1];
+		int num = Integer.parseInt(detailNum);
 		
 		List<BoardVO> list = null;
 		list = service.list();
 		session.setAttribute("lists", list);
 
-		if(!tmp.equals("scrollTop.js") && (num < 1 || num > customerMapper.getCount()))
+		if(!detailNum.equals("scrollTop.js") && (num < 1 || num > boardMapper.getCount()))
 			return "board/board_detail_failed";
-		if(!tmp.equals("scrollTop.js")) {
+		if(!detailNum.equals("scrollTop.js")) {
 			session.setAttribute("showNum", num);
-			session.setAttribute("MAX", customerMapper.getCount());
+			session.setAttribute("MAX", boardMapper.getCount());
 			return "board/board_detail";
 		}
 		return "board/board_detail";
@@ -79,17 +78,12 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value = "/board_write.do", produces ="application/json; charset=UTF-8", method = RequestMethod.POST)
 	public String writeItem(@RequestBody Map<String,String> map, HttpServletResponse response, HttpServletRequest req) throws Exception {
-		StringBuilder sb = new StringBuilder();
-		HttpSession session = req.getSession();
-		String userid = (String) session.getAttribute("userID");
-		sb.append((customerMapper.getCount()+1));
-		map.put("userid", userid);
-		map.put("board_num",sb.toString());
-		System.out.println("board_num : " + map.get("board_num"));
-		System.out.println("userid : " + map.get("userid"));
-		System.out.println("category : " + map.get("category"));
-		System.out.println("title : " + map.get("title"));
-		System.out.println("contents : " + map.get("contents"));
+		StringBuilder boardNum = new StringBuilder();
+		boardNum.append((boardMapper.getCount()+1));
+		map.put("EVENT_NUM",boardNum.toString());
+		System.out.println("EVENT_NUM : " + map.get("EVENT_NUM"));
+		System.out.println("EVENT_TITLE : " + map.get("EVENT_TITLE"));
+		System.out.println("EVENT_CONTENTS : " + map.get("EVENT_CONTENTS"));
 		service.write(map);
 		return "success";
 	}
@@ -98,7 +92,7 @@ public class BoardController {
 	@RequestMapping(value = "/board_main/board_delete.do", produces ="application/text; charset=UTF-8", method = RequestMethod.POST)
 	public String board_delete(String board_num) {
 		int tmp = Integer.parseInt(board_num);
-		customerMapper.deleteboard(tmp);
+		boardMapper.deleteboard(tmp);
 		
 		return "success";
 	}

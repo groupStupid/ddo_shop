@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team_stupid.mapper.BoardMapper">
+	 <select id="list" resultType="BoardVO">
+<!-- 		SELECT EVENT_NUM,
+		 EVENT_TITLE,
+		  EVENT_CONTENTS,
+		   EVENT_GOODS,
+		    EVENT_START,
+		     EVENT_END,
+		      EVENT_ONGOING,
+		       EVENT_IMAGEURL,
+		        EVENT_EMOTIONS
+		         FROM EVENT_BOARD order by EVENT_NUM DESC; -->
+		SELECT * FROM EVENT_BOARD order by EVENT_NUM DESC
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(EVENT_NUM) FROM EVENT_BOARD
+	</select>
+    
+    <select id="searchItem" resultType="BoardVO">
+    	SELECT * FROM EVENT_BOARD WHERE EVENT_NUM = #{num}
+    </select>
+    
+    <insert id="write" parameterType="hashMap">
+    	INSERT INTO
+    	EVENT_BOARD(EVENT_NUM, EVENT_TITLE, EVENT_CONTENTS)
+    	values(#{EVENT_NUM}, #{EVENT_TITLE}, #{EVENT_CONTENTS})
+    </insert>
+    
+    <select id="deleteboard" >
+    	delete from EVENT_BOARD
+		where EVENT_NUM = #{event_num}
+    </select>
+</mapper>

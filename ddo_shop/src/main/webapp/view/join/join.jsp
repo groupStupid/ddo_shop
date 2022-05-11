@@ -100,7 +100,7 @@
 					id : $("#id_id").val()
 			}
 			$.ajax({
-				url: "/signup/IdChecking.do",
+				url: "/join/IdChecking.do",
 				type: "POST",
 				data: data,
 				success: function(val) {
@@ -136,7 +136,7 @@
 					//"category" : category
 			}
 			$.ajax({
-				url : "/signup/signup.do",
+				url : "/join/join.do",
 				type : "POST",
 				data : JSON.stringify(form),
 				contentType : "application/json; charset=UTF-8",
