@@ -1,17 +1,14 @@
 package com.team_stupid.mapper;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
-import com.team_stupid.domain.BoardVO;
 import com.team_stupid.security.CustomUserDetails;
 
 @Service
-public interface CustomerMapper {
+public interface AccountMapper {
 	Optional<CustomUserDetails> loadUserByUsername(@Param("id") String id);
 
 	int register( @Param("userid") String userid, 
@@ -34,11 +31,11 @@ public interface CustomerMapper {
 	
 //	String search_image(@Param("recycle_title") String recycle_title);
 	
-	void deleteboard(@Param("event_num") int board_num);
-	List<BoardVO> list();
-
-	BoardVO searchItem(@Param("num") String num);
-	int getCount();
-
-	void write(@Param("data") Map<String, String> data);
+//	void deleteboard(@Param("event_num") int event_num);
+//	List<BoardVO> list();
+//
+//	BoardVO searchItem(@Param("num") String num);
+//	int getCount();
+//
+//	void write(@Param("data") Map<String, String> data);
 }

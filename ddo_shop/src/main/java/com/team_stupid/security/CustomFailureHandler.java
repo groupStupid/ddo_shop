@@ -24,5 +24,6 @@ public class CustomFailureHandler implements AuthenticationFailureHandler {
 		PrintWriter out = response.getWriter();
 		out.println("<script>alert('로그인 정보가 존재하지 않습니다.'); </script>");
 		out.flush();
+		response.sendRedirect("/login");
 	}
 }

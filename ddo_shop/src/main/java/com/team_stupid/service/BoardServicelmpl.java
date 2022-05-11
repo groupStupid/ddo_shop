@@ -27,6 +27,5 @@ public class BoardServicelmpl implements BoardService {
 	@Override
 	public void write(Map<String, String> map) throws Exception {
 		dao.write(map);
-		
 	}
 }
