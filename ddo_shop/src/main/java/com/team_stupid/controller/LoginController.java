@@ -20,7 +20,7 @@ import com.team_stupid.domain.AccountVO;
 import com.team_stupid.mapper.AccountMapper;
 import com.team_stupid.security.CustomUserDetails;
 import com.team_stupid.security.CustomUserDetailsService;
-import com.team_stupid.service.MemberService;
+import com.team_stupid.service.MailService;
 
 @Controller
 public class LoginController {
@@ -28,7 +28,7 @@ public class LoginController {
 	@Autowired
 	private AccountMapper accountMapper;
 	@Autowired
-	private MemberService memberService;
+	private MailService mailService;
 	@Autowired
 	private AccountVO accountVO;
 	@Autowired
@@ -154,7 +154,7 @@ public class LoginController {
 			tempPW = bCryptPasswordEncoder.encode(tempPW);
 			accountMapper.updateTempUserPw(userid, tempPW);
 			
-			memberService.sendMail(accountVO);
+			mailService.sendMail(accountVO);
 			
 			return "success";
 		} else {
