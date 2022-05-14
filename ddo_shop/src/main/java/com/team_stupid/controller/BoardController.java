@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.team_stupid.domain.BoardVO;
 import com.team_stupid.mapper.BoardMapper;
 import com.team_stupid.service.BoardService;
@@ -23,7 +22,6 @@ import com.team_stupid.service.BoardService;
 public class BoardController {
 //	@Autowired
 //	private BoardDAO boardDAO;
-	
 	@Autowired
 	private BoardService service;
 	
