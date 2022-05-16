@@ -21,6 +21,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <link rel="stylesheet"
 	href="../../resource/term/main_page/assets/css/untitled.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 
 <body>
@@ -49,8 +50,12 @@
 								<a class="dropdown-item" href="/search_image">사물 검색</a><a
 									class="dropdown-item" href="/search_text">라벨 검색</a>
 							</div></li>
-						<li class="nav-item"><a class="nav-link" href="/map"
-							style="color: rgba(255, 255, 255, 0.55);">지도</a></li>
+						<li class="nav-item">
+							<input type="text" size="10" id="blockNum" />
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="viewGiftcard" style="color: rgba(255, 255, 255, 0.55);">상품권 검색</a>
+						</li>
 						<li class="nav-item dropdown"><a
 							class="dropdown-toggle nav-link" aria-expanded="false"
 							data-bs-toggle="dropdown" href="/board_main">친환경 서비스</a>
@@ -65,11 +70,72 @@
 							class="dropdown-toggle nav-link" aria-expanded="false"
 							data-bs-toggle="dropdown" href="/board_main">게시판</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/board_main">전체 게시판</a>
-								<a class="dropdown-item" href="/board_main/1">정보 게시판</a><a
-									class="dropdown-item" href="/board_main/2">나눔 게시판</a>
+								<a class="dropdown-item" id="information">블록 체인 출력</a>
+								<a class="dropdown-item" id="genesisblock">초기 블록 생성</a>
+								<a class="dropdown-item" id="mineblock">신규 블록 채굴</a>
 							</div></li>
 					</ul>
+					<script type="text/javascript">
+						$("#information").on("click", function(){
+							$.ajax({
+								url : "/information",
+								type : "POST",
+								success : function(){
+									alert("정보 확인 완료");
+								},
+								error : function() {
+									alert("정보 확인 실패");
+								}
+							})
+						});
+						$("#genesisblock").on("click", function(){
+							$.ajax({
+								url : "/genesisblock",
+								type : "POST",
+								success : function(){
+									alert("초기 블록 생성 완료");
+								},
+								error : function() {
+									alert("초기 블록 생성 실패");
+								}
+							})
+						});
+						$("#mineblock").on("click", function(){
+							$.ajax({
+								url : "/mineblock",
+								type : "POST",
+								success : function(){
+									alert("블록 채굴 완료");
+									location.reload();
+								},
+								error : function() {
+									alert("블록 채굴 실패");
+								}
+							})
+						});
+						$("#viewGiftcard").on("click", function(){
+							//alert(!($("#blockNum").val() == ""));
+							 if (!($("#blockNum").val() == "")){
+								var data = {
+										blockNum : $("#blockNum").val()
+								};
+								$.ajax({
+									url : "/viewGiftcard",
+									type : "POST",
+									data : data,
+									success : function(){
+										alert("상품권 검색 완료");
+										
+									},
+									error : function() {
+										alert("상품권 검색 실패");
+									}
+								});
+							} else {
+								alert("상품권 번호(블록 번호) 입력");
+							}
+						});
+					</script>
 					<form class="d-flex me-auto navbar-form" target="_self">
 						<div class="d-flex align-items-center"></div>
 					</form>
@@ -114,7 +180,12 @@
 		<div class="carousel slide" data-bs-ride="carousel" id="carousel-1"
 			style="width: 80%; z-index: 0;">
 			<div class="carousel-inner">
-				<div class="carousel-item active">
+				<div class="carousel-item active"><!-- https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/ykm.png -->
+					<img class="w-100 d-block" id="giftcard-img"
+						src="${imageUrl}"
+						alt="Slide Image" style="margin-bottom: 30px;">
+				</div>
+				<!-- <div class="carousel-item">
 					<img class="w-100 d-block"
 						src="../../resource/term/main_page/assets/img/KakaoTalk_20211213_123802810.png"
 						alt="Slide Image" style="margin-bottom: 30px;">
@@ -138,7 +209,7 @@
 					<img class="w-100 d-block"
 						src="../../resource/term/main_page/assets/img/lukasz-rawa-_4NF4Jppx-c-unsplash.jpg"
 						alt="Slide Image" style="margin-bottom: 30px;">
-				</div>
+				</div> -->
 			</div>
 			<div>
 				<a class="carousel-control-prev" href="#carousel-1" role="button"

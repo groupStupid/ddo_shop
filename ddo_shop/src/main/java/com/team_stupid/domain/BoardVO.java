@@ -14,12 +14,6 @@ public class BoardVO {
 	private String EVENT_IMAGEURL;
 	private int EVENT_EMOTIONS;
 	
-	public int getEventNum() {
-		return EVENT_NUM;
-	}
-	public void setEventNum(int EVENT_NUM) {
-		this.EVENT_NUM = EVENT_NUM;
-	}
 	public String getEventTitle() {
 		return EVENT_TITLE;
 	}
@@ -32,6 +26,14 @@ public class BoardVO {
 	public void setEventContents(String EVENT_CONTENTS) {
 		this.EVENT_CONTENTS = EVENT_CONTENTS;
 	}
+	
+	public int getEventNum() {
+		return EVENT_NUM;
+	}
+	public void setEventNum(int EVENT_NUM) {
+		this.EVENT_NUM = EVENT_NUM;
+	}
+	
 	public String getEventGoods() {
 		return EVENT_GOODS;
 	}

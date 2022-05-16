@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team_stupid.mapper.AccountMapper">
+ 	 <select id="loadUserByUsername" resultType="CustomUserDetails">
+		SELECT ACC_USERID, ACC_USERPW FROM ACCOUNT 
+		WHERE ACC_USERID = #{id}
+	</select>
+	
+	<select id="selectUserIdDistinct" resultType="int">
+		SELECT count(*) 
+		FROM ACCOUNT
+		where ACC_USERID = #{id}
+	</select>
+	
+	<insert id="register" parameterType="map">
+		INSERT INTO ACCOUNT
+		VALUES (
+		(SELECT COUNT(ACC_NUM) from ACCOUNT A),
+		 #{userid}, #{username}, #{password}, #{address}, #{phone}, #{email}, #{nickname}, #{category})
+	</insert>
+	
+	<select id="selectUserIdForFoundid" resultType="String">
+ 		SELECT ACC_USERID
+		FROM ACCOUNT
+		where ACC_USERNAME = #{username} and ACC_EMAIL = #{email}
+	</select>
+	
+	<select id="selectUserPw" resultType="int">
+ 		SELECT COUNT(*)
+		FROM ACCOUNT
+		where ACC_USERNAME = #{username} and ACC_USERID = #{userid} and ACC_EMAIL = #{email}
+	</select>
+	
+	<update id="updateTempUserPw">
+		UPDATE ACCOUNT
+		SET ACC_USERPW = #{tempPw}
+		WHERE ACC_USERID = #{userid}
+	</update>
+	
+<!-- 	 <select id="list" resultType="BoardVO">
+		SELECT EVENT_NUM,
+		 EVENT_TITLE,
+		  EVENT_CONTENTS,
+		   EVENT_GOODS,
+		    EVENT_START,
+		     EVENT_END,
+		      EVENT_ONGOING,
+		       EVENT_IMAGEURL,
+		        EVENT_EMOTIONS
+		         FROM EVENT_BOARD order by EVENT_NUM DESC;
+		SELECT * FROM EVENT_BOARD order by EVENT_NUM DESC
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(EVENT_NUM) FROM EVENT_BOARD
+	</select>
+    
+    <select id="searchItem" resultType="BoardVO">
+    	SELECT * FROM EVENT_BOARD WHERE EVENT_NUM = #{num}
+    </select>
+    
+    <insert id="write" parameterType="hashMap">
+    	INSERT INTO
+    	EVENT_BOARD(EVENT_NUM, EVENT_TITLE, EVENT_CONTENTS)
+    	values(#{EVENT_NUM}, #{EVENT_TITLE}, #{EVENT_CONTENTS})
+    </insert>
+    
+    <select id="search_image" resultType="string">
+    	select recycle_contents
+		from RECYCLE_INFO
+		where recycle_title = #{recycle_title}
+    </select>
+    
+    <select id="deleteboard" >
+    	delete from EVENT_BOARD
+		where EVENT_NUM = #{event_num}
+    </select> -->
+</mapper>

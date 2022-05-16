@@ -15,68 +15,64 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.team_stupid.mapper.CustomerMapper;
+import com.team_stupid.domain.AccountVO;
+import com.team_stupid.mapper.AccountMapper;
 import com.team_stupid.security.CustomUserDetails;
 import com.team_stupid.security.CustomUserDetailsService;
-//import com.team_stupid.service.MemberService;
-//import com.team_stupid.service.MemberVO;
+import com.team_stupid.service.MailService;
 
 @Controller
 public class LoginController {
 	
-	//@Autowired
-	//private MemberService jcon;
-	
 	@Autowired
-	private CustomerMapper customerMapper;
+	private AccountMapper accountMapper;
 	@Autowired
-	private CustomUserDetails customUserDetails;
-//	@Autowired
-//	private MemberService memberService;
+	private MailService mailService;
+	@Autowired
+	private AccountVO accountVO;
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 	
 	private String usernameForFoundid;
 	private String useridForFoundid;
 	
-	@RequestMapping("/main/login")
+	@RequestMapping("/login")
 	public String board_login() {
 		System.out.println("LoginController : called login");
-		return "term/login/login";
+		return "login/login";
 	}
 	
-	@RequestMapping("/main/login.fail")
+	@RequestMapping("/login.fail")
 	public String board_login_fail(HttpServletResponse response) throws IOException {
 		System.out.println("LoginController : called login fail");
-		return "term/login/login_fail";
+		return "login/login_fail";
 	}
 	
-	@RequestMapping("/main/login/foundid")
+	@RequestMapping("/login/foundid")
 	public String board_login_foundid() {
 		System.out.println("LoginController : called foundid");
-		return "term/foundid/foundid";	
+		return "foundid/foundid";	
 	}
 	
-	@RequestMapping("/main/login/foundid_success")
+	@RequestMapping("/login/foundid_success")
 	public String board_login_foundid_success() {
 		System.out.println("LoginController : called foundid_success");
-		return "term/foundid/foundid_success";	
+		return "foundid/foundid_success";	
 	}
 	
-	@RequestMapping("/main/login/foundpw")
+	@RequestMapping("/login/foundpw")
 	public String board_login_foundpw() {
 		System.out.println("LoginController : called foundpw");
-		return "term/foundpw/foundpw";	
+		return "foundpw/foundpw";	
 	}
 	
-	@RequestMapping("/main/login/foundpw_success")
+	@RequestMapping("/login/foundpw_success")
 	public String board_login_foundpw_success() {
 		System.out.println("LoginController : called foundpw_success");
-		return "term/foundpw/foundpw_success";	
+		return "foundpw/foundpw_success";	
 	}
 	
-	@RequestMapping("/error/accessDenied")
+	@RequestMapping("/accessDenied")
 	public String accessDenied() {
 		return "error/accessDenied";
 	}
@@ -94,7 +90,7 @@ public class LoginController {
 		}
 		
 		try {
-			String userid = customerMapper.selectUserIdForFoundid(username, email);
+			String userid = accountMapper.selectUserIdForFoundid(username, email);
 			System.out.println("foundid select userid : " + userid);
 			usernameForFoundid = username;
 			useridForFoundid = userid;
@@ -135,7 +131,7 @@ public class LoginController {
 			return "email fail";
 		}
 		
-		if (customerMapper.selectUserPw(username, userid, email) > 0) {
+		if (accountMapper.selectUserPw(username, userid, email) > 0) {
 			// 현재 비밀번호를 임시 비밀번호로 바꾸고 email로 보내주어야 함.
 			// 임시 비밀번호 영어+숫자 : 10자, 특수문자 2자
 			
@@ -149,15 +145,15 @@ public class LoginController {
 			}
 			// 임시비밀번호 생성하면 출력한번 해주기
 			System.out.println("tempPW : " + tempPW);
-//			customUserDetails.setUserId(userid);
-//			customUserDetails.setUserPw(tempPW);
-//			customUserDetails.setEmail(email);
+			accountVO.setUserId(userid);
+			accountVO.setUserPw(tempPW);
+			accountVO.setEmail(email);
 			
 			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 			tempPW = bCryptPasswordEncoder.encode(tempPW);
-			customerMapper.updateTempUserPw(userid, tempPW);
+			accountMapper.updateTempUserPw(userid, tempPW);
 			
-			//memberService.sendMail(vo);
+			mailService.sendMail(accountVO);
 			
 			return "success";
 		} else {
@@ -168,7 +164,7 @@ public class LoginController {
 	
 	@RequestMapping("/changepw")
 	public String change_pw() {
-		return "term/changepw/changepw";
+		return "changepw/changepw";
 	}
 	
 	@ResponseBody
@@ -194,7 +190,7 @@ public class LoginController {
 			return "새 비밀번호를 다시 확인해주세요.";
 		} else {
 			new_pw = bCryptPasswordEncoder.encode(new_pw);
-			customerMapper.updateTempUserPw((String)session.getAttribute("userID"), new_pw);
+			accountMapper.updateTempUserPw((String)session.getAttribute("userID"), new_pw);
 			return "success";
 		}
 	}
