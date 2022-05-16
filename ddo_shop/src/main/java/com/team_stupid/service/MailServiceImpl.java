@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MailServiceImpl implements MailService{
 	@Autowired
 	private JavaMailSender mailSender;
 	
