@@ -106,6 +106,7 @@
 								type : "POST",
 								success : function(){
 									alert("블록 채굴 완료");
+									location.reload();
 								},
 								error : function() {
 									alert("블록 채굴 실패");
@@ -121,7 +122,7 @@
 								$.ajax({
 									url : "/viewGiftcard",
 									type : "POST",
-									data : data
+									data : data,
 									success : function(){
 										alert("상품권 검색 완료");
 										
@@ -179,9 +180,9 @@
 		<div class="carousel slide" data-bs-ride="carousel" id="carousel-1"
 			style="width: 80%; z-index: 0;">
 			<div class="carousel-inner">
-				<div class="carousel-item active">
+				<div class="carousel-item active"><!-- https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/ykm.png -->
 					<img class="w-100 d-block" id="giftcard-img"
-						src="https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/ykm.png"
+						src="${imageUrl}"
 						alt="Slide Image" style="margin-bottom: 30px;">
 				</div>
 				<!-- <div class="carousel-item">
