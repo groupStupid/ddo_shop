@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.team_stupid.domain.BoardVO;
-import com.team_stupid.mapper.AccountMapper;
 import com.team_stupid.mapper.BoardMapper;
 import com.team_stupid.service.BoardService;
 
@@ -24,7 +22,6 @@ import com.team_stupid.service.BoardService;
 public class BoardController {
 //	@Autowired
 //	private BoardDAO boardDAO;
-	
 	@Autowired
 	private BoardService service;
 	
@@ -34,7 +31,7 @@ public class BoardController {
 	public String getList(Model model, HttpServletRequest request) throws Exception{
 		String url = request.getRequestURI();
 		if(!(url.equals("/board_main/scrollTop.js"))) {
-			String tmp = url.substring(url.length()-1);
+//			String tmp = url.substring(url.length()-1);
 //			System.out.println("긁어온 링크 : " + url);
 //			System.out.println("렝스 : " + url.length());
 //			System.out.println("찾는링크 : " + tmp);

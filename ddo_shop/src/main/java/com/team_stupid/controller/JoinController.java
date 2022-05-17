@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_stupid.mapper.AccountMapper;
-import com.team_stupid.security.CustomUserDetails;
 
 @Controller
 public class JoinController {
