@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>ddoShop</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo+Narrow">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&amp;subset=latin-ext">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&amp;subset=latin-ext&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Comment.css">
+    <link rel="stylesheet" href="assets/css/Features-Image.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Basic.css">
     <link rel="stylesheet" href="assets/css/MENU-1.css">
     <link rel="stylesheet" href="assets/css/MENU-2.css">
@@ -23,50 +21,37 @@
     <link rel="stylesheet" href="assets/css/Search-Input-Responsive-with-Icon.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/tc-menu-10.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
 </head>
 
 <body style="background-color: #e4eef4;">
-    <nav class="navbar navbar-light navbar-expand-md">
-        <div class="container-fluid"><a class="navbar-brand" href="#">또샵</a>
+    <nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 90%;">
+        <div class="container-fluid"><a class="navbar-brand text-center" href="#" style="font-family: 'Source Sans Pro', sans-serif;font-size: 22px;">또샵</a>
             <div class="col text-center padMar">
-                <div class="input-group"><input class="form-control autocomplete" type="text" id="search_w" placeholder="무엇을 검색해볼까요 ?"><button class="btn btn-warning" id="s_b" type="button" style="background-color: #199bdd;"><i class="fa fa-search"></i></button></div>
-            </div><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person">
+                <div class="input-group text-center"><input class="form-control autocomplete" type="text" id="search_w-1" placeholder="무엇을 검색해볼까요 ?" style="font-family: 'Source Sans Pro', sans-serif;font-size: 10px;"><button class="btn btn-warning" id="s_b-1" type="button" style="background-color: #199bdd;"><i class="fa fa-search"></i></button></div>
+            </div><button class="navbar-toggler text-center d-flex" data-bs-toggle="collapse" style="height: 38px;"><span class="visually-hidden">Toggle navigation</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person" style="font-family: 'Source Sans Pro', sans-serif;height: 25px;">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
                 </svg></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Third Item</a></li>
-                </ul>
-            </div>
         </div>
     </nav>
-    <section id="login_main" class="position-relative py-4 py-xl-5">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h1>또 샵</h1>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="card mb-5" id="login_m2">
-                    <div class="card-body d-flex flex-column align-items-center">
-                        <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" id="person" style="max-width: 400px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person">
-                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
-                            </svg></div>
-                        <form class="text-center" method="post">
-                            <div class="mb-3"><input class="form-control" type="email" name="" placeholder="ID"></div>
-                            <div class="mb-3"><input class="form-control" type="password" name="" placeholder="PW"></div>
-                            <div class="mb-3"><button class="btn btn-primary text-center d-block w-100" id="login_1" type="submit">사용자로 로그인</button></div><button class="btn btn-primary text-center d-block w-100" id="login_2" type="submit">업주로 로그인</button>
-                        </form>
-                        <p class="text-muted">회원가입을 하지 않으셨나요 ?</p><a class="card-link" id="link" href="#">회원가입 하러 가기</a>
-                    </div>
+    <h1 class="m-auto" style="font-family: 'Source Sans Pro', sans-serif;max-width: 90%;">또 샵</h1>
+    <section class="m-auto position-relative py-4 py-xl-5" id="login_main" style="margin-top: 30px;max-width: 90%;">
+        <div class="container text-center m-auto" style="max-width: 90%;">
+            <div class="card text-center m-auto mb-5" id="login_m2" style="max-width: 90%;">
+                <div class="card-body text-center d-flex flex-column align-items-center m-auto" style="font-family: 'Source Sans Pro', sans-serif;max-width: 90%;">
+                    <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" id="person" style="max-width: 400px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person" style="font-family: 'Source Sans Pro', sans-serif;">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+                        </svg></div>
+                    <form class="text-center" method="post">
+                        <div class="mb-3"><input class="form-control" type="email" name="" placeholder="ID"></div>
+                        <div class="mb-3"><input class="form-control" type="password" name="" placeholder="PW"></div>
+                        <div class="mb-3"><button class="btn btn-primary text-center d-block w-100" id="login_1" type="submit">사용자로 로그인</button></div><button class="btn btn-primary text-center d-block w-100" id="login_2" type="submit">업주로 로그인</button>
+                    </form>
+                    <p class="text-muted">회원가입을 하지 않으셨나요 ?</p><a class="card-link" id="link" href="#" style="font-size: 12px;">회원가입 하러 가기</a>
                 </div>
             </div>
         </div>
     </section>
-    <div></div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/MENU.js"></script>
     <script src="assets/js/Subscribe-window.js"></script>
