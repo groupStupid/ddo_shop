@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Comment.css">
     <link rel="stylesheet" href="assets/css/Features-Image.css">
+    <link rel="stylesheet" href="assets/css/fontset.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Basic.css">
     <link rel="stylesheet" href="assets/css/MENU-1.css">
     <link rel="stylesheet" href="assets/css/MENU-2.css">
@@ -21,12 +22,11 @@
     <link rel="stylesheet" href="assets/css/Search-Input-Responsive-with-Icon.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/tc-menu-10.css">
-    <link rel="stylesheet" href="assets/css/untitled.css">
 </head>
 
 <body style="background-color: #deeaf0;">
-    <nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 90%;">
-        <div class="container-fluid"><a class="navbar-brand text-center" href="#" style="font-family: 'Source Sans Pro', sans-serif;font-size: 22px;">또샵</a>
+    <nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 80%;">
+        <div class="container-fluid"><span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;">또샵</span>
             <div class="col text-center padMar">
                 <div class="input-group text-center"><input class="form-control autocomplete" type="text" id="search_w-1" placeholder="무엇을 검색해볼까요 ?" style="font-family: 'Source Sans Pro', sans-serif;font-size: 10px;"><button class="btn btn-warning" id="s_b-1" type="button" style="background-color: #199bdd;"><i class="fa fa-search"></i></button></div>
             </div><button class="navbar-toggler text-center d-flex" data-bs-toggle="collapse" style="height: 38px;"><span class="visually-hidden">Toggle navigation</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person" style="font-family: 'Source Sans Pro', sans-serif;height: 25px;">
@@ -34,12 +34,14 @@
                 </svg></button>
         </div>
     </nav>
-    <ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 90%;font-size: 14px;">
-        <li class="nav-item"><a class="nav-link active" href="#" style="background: rgb(222,234,240);font-size: 15px;font-family: 'Source Sans Pro', sans-serif;">음식점</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-dark);font-size: 15px;font-family: 'Source Sans Pro', sans-serif;">미용실</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-dark);font-size: 15px;font-family: 'Source Sans Pro', sans-serif;">전통시장</a></li>
+    <ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
+        <li class="nav-item d-flex justify-content-center align-items-center"><span style="font-weight: bold;">음식점</span></li>
+        <li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center" style="font-weight: bold;">헬스장</span></li>
+        <li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center" style="font-weight: bold;">전통시장</span></li>
     </ul><iframe class="m-auto" allowfullscreen="" frameborder="0" src="https://cdn.bootstrapstudio.io/placeholders/map.html" width="100%" height="400" style="max-width: 90%;"></iframe>
-    <div class="m-auto"><input type="radio" id="select_-2" class="custom-control-input" name="customRadioInline" checked="" style="margin-right: 0px;"><label class="form-label custom-control-label" id="select_-1" for="customRadioInline1" style="font-family: 'Source Sans Pro', sans-serif;max-width: 90%;">현재 위치 정보 사용 동의</label></div>
+    <div class="m-auto">
+        <p style="font-size: 12px;margin-top: 0px;margin-bottom: 0px;"><input type="radio" id="select_-2" class="custom-control-input" name="customRadioInline" checked="" style="margin-right: 5px;margin-left: 0px;">현재 위치 정보 사용 동의<br></p>
+    </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/MENU.js"></script>
     <script src="assets/js/Subscribe-window.js"></script>
