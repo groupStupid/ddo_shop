@@ -12,20 +12,19 @@ public interface AccountMapper {
 	Optional<CustomUserDetails> loadUserByUsername(@Param("id") String id);
 
 	int register( @Param("userid") String userid, 
-			@Param("username") String username, 
 			@Param("password") String password,
-			@Param("email") String email, 
-			@Param("nickname") String nickname, 
-			@Param("address") String address, 
-			@Param("phone") String phone,
+			@Param("email") String email,
+			@Param("nickname") String nickname,
 			@Param("category") char category
 			);
 
 	int selectUserIdDistinct(@Param("id") String id);
+	
+	int selectNicknameDistinct(@Param("nickname") String nickname);
 
-	String selectUserIdForFoundid(@Param("username") String username, @Param("email") String email);
+	String FoundUserId(@Param("email") String email);
 
-	int selectUserPw(@Param("username") String username, @Param("userid") String userid, @Param("email") String email);
+	int selectUserPw( @Param("userid") String userid, @Param("email") String email);
 
 	void updateTempUserPw(@Param("userid") String userid, @Param("tempPw") String tempPw);
 	
