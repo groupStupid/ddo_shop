@@ -1,6 +1,7 @@
 package com.team_stupid.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.team_stupid.domain.AccountVO;
 import com.team_stupid.mapper.AccountMapper;
 import com.team_stupid.security.CustomUserDetails;
@@ -22,7 +24,7 @@ import com.team_stupid.security.CustomUserDetailsService;
 import com.team_stupid.service.MailService;
 
 @Controller
-public class LoginController {
+public class LoginController /* implements Runnable */{
 	
 	@Autowired
 	private AccountMapper accountMapper;
@@ -39,8 +41,31 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String board_login() {
 		System.out.println("LoginController : called login");
-		return "login/login";
+		
+//		127s
+//		long start = System.currentTimeMillis();
+//		for (int i = 0; i < 1000; i++) {
+//			accountMapper.selectUserPw("name1", "id1", "jgy2808@naver.com");
+//		}
+//		long end = System.currentTimeMillis();
+//		System.out.println((end - start) / 1000);
+		
+
+//		long start = System.currentTimeMillis();
+//		Thread th;
+//		for (int i = 0; i < 1000; i++) {
+//			th = new Thread(this);
+//			th.start();
+//		}
+//		long end = System.currentTimeMillis();
+//		System.out.println((end - start) / 1000);
+		
+		return "join/login";
 	}
+//	@Override
+//	public void run() {
+//		accountMapper.selectUserPw("id1", "jgy2808@naver.com");
+//	}
 	
 	@RequestMapping("/login.fail")
 	public String board_login_fail(HttpServletResponse response) throws IOException {
@@ -90,7 +115,7 @@ public class LoginController {
 		}
 		
 		try {
-			String userid = accountMapper.selectUserIdForFoundid(username, email);
+			String userid = accountMapper.FoundUserId(email);
 			System.out.println("foundid select userid : " + userid);
 			usernameForFoundid = username;
 			useridForFoundid = userid;
@@ -119,19 +144,16 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping(value = "/main/login/foundpw/foundpw.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
 	public String foundpw_submit(@RequestBody Map<String, String> map) throws Exception {
-	
-		String username = map.get("username");
 		String userid = map.get("userid");
 		String email = map.get("email");
 		System.out.println("LoginController foundpw_submit()");
-		System.out.println("username : " + username);
 		System.out.println("userid : " + userid);
 		System.out.println("email : " + email);
 		if (!map.get("email").matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
 			return "email fail";
 		}
 		
-		if (accountMapper.selectUserPw(username, userid, email) > 0) {
+		if (accountMapper.selectUserPw(userid, email) > 0) {
 			// 현재 비밀번호를 임시 비밀번호로 바꾸고 email로 보내주어야 함.
 			// 임시 비밀번호 영어+숫자 : 10자, 특수문자 2자
 			
@@ -157,7 +179,7 @@ public class LoginController {
 			
 			return "success";
 		} else {
-			System.out.println("select userpw false");
+			System.out.println("비밀번호 조회 실패");
 			return "found userpw fail";
 		}
 	}

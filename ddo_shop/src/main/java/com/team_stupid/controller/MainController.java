@@ -1,12 +1,7 @@
 package com.team_stupid.controller;
 
-import java.awt.Image;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.ImageIcon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

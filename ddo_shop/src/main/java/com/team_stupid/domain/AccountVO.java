@@ -57,6 +57,4 @@ public class AccountVO {
 		this.nickName = nickName;
 	}
 	
-	
-	
 }

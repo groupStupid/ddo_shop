@@ -16,7 +16,7 @@ public class MailServiceImpl implements MailService{
 	
 	@Override
 	public void sendMail(AccountVO accountVO) throws Exception {
-		String subject = "또샵 임시 비밀번호 입니다.";
+		String subject = "또샵 비밀번호 찾기 인증번호 입니다.";
 		String content = "";
 		content += "<div align='center' style='border:1px solid black; font-family:verdana'>"
 				+ "<h3 style='color: blue;'>"

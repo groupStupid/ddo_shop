@@ -9,28 +9,34 @@
 	</select>
 	
 	<select id="selectUserIdDistinct" resultType="int">
-		SELECT count(*) 
+		SELECT count(*)
 		FROM ACCOUNT
 		where ACC_USERID = #{id}
+	</select>
+	
+	<select id="selectNicknameDistinct" resultType="int">
+		SELECT count(*)
+		FROM ACCOUNT
+		where ACC_NICKNAME = #{nickname}
 	</select>
 	
 	<insert id="register" parameterType="map">
 		INSERT INTO ACCOUNT
 		VALUES (
 		(SELECT COUNT(ACC_NUM) from ACCOUNT A),
-		 #{userid}, #{username}, #{password}, #{address}, #{phone}, #{email}, #{nickname}, #{category})
+		 #{userid}, #{password}, #{email}, #{nickname}, #{category})
 	</insert>
 	
-	<select id="selectUserIdForFoundid" resultType="String">
+	<select id="FoundUserId" resultType="String">
  		SELECT ACC_USERID
 		FROM ACCOUNT
-		where ACC_USERNAME = #{username} and ACC_EMAIL = #{email}
+		where ACC_EMAIL = #{email}
 	</select>
 	
 	<select id="selectUserPw" resultType="int">
  		SELECT COUNT(*)
 		FROM ACCOUNT
-		where ACC_USERNAME = #{username} and ACC_USERID = #{userid} and ACC_EMAIL = #{email}
+		where ACC_USERID = #{userid} and ACC_EMAIL = #{email}
 	</select>
 	
 	<update id="updateTempUserPw">

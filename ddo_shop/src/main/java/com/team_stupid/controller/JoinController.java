@@ -25,6 +25,8 @@ public class JoinController {
 	
 	private boolean idDuplication = false;
 	private String idChecked = "";
+	private boolean nicknameDuplication = false;
+	private String nicknameChecked = "";
 	
 	@RequestMapping("/join")
 	public String join() {
@@ -35,23 +37,14 @@ public class JoinController {
 	@RequestMapping(value = "/join/join.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
 	public String join_do(@RequestBody Map<String, String> map,
 							HttpServletResponse response) throws SQLException, IOException {
-		String username = map.get("name");
 		String userid = map.get("id");
 		String password = map.get("pw");
 		String pw_check = map.get("pw_check");
 		String email = map.get("email");
-		String nickname = map.get("nickname");
-		String address = map.get("address");
-		String phone = map.get("phone");
-		System.out.println("name : " + username);
 		System.out.println("id : " + userid);
 		System.out.println("pw : " + password);
 		System.out.println("pw_check : " + pw_check);
 		System.out.println("email : " + email);
-		System.out.println("nickname : " + nickname);
-		System.out.println("address : " + address);
-		System.out.println("phone : " + phone);
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		
 		
 		if (!idChecked.equals(userid) || !idDuplication) {
@@ -62,18 +55,13 @@ public class JoinController {
 		} 
 		if (!password.equals(pw_check)) {
 			return "pw_check";
-		} else {
-			password = bCryptPasswordEncoder.encode(password);
-		}
+		} 
 
 		if (!map.get("email").matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
 			return "email";
 		}
-		if (accountMapper.register( userid, username, password, email, nickname, address, phone, '1') == 1) {
-			return "success";	
-		} else {
-			return "register error";
-		}
+		return "success";
+		
 //		if (customerMapper.register( userid, username, password, email, nickname, address, phone, '1') == 1) {
 //		return "success";	
 //	} else {
@@ -85,7 +73,7 @@ public class JoinController {
 	@RequestMapping(value = "/join/IdChecking.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
 	public String idChecking(String id) {
 		System.out.println("SignupController idChecking() : " + id);
-		if (accountMapper.selectUserIdDistinct(id) == 0) {
+		if (!id.equals("") && accountMapper.selectUserIdDistinct(id) == 0) {
 			idDuplication = true;
 			idChecked = id;
 			return "사용 가능한 아이디입니다.";
@@ -94,4 +82,36 @@ public class JoinController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "/join/nicknameChecking.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
+	public String nicknameChecking(String nickname) {
+		if (accountMapper.selectNicknameDistinct(nickname) == 0) {
+			nicknameDuplication = true;
+			nicknameChecked = nickname;
+			return "사용 가능한 아이디입니다.";
+		}
+		return "이미 존재하는 아이디입니다.";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/join/nick_submit.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
+	public String nick_submit(@RequestBody Map<String, String> map) {
+		String userid = map.get("id");
+		String password = map.get("pw");
+		String email = map.get("email");
+		String nickname = map.get("nickname");
+		
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		password = bCryptPasswordEncoder.encode(password);
+		
+		if (!nicknameChecked.equals(nickname) || !nicknameDuplication) {
+			return "nickname";
+		}
+		if (accountMapper.register( userid, password, email, nickname, '1') == 1) {
+			return "success";	
+		} else {
+			return "register error";
+		}
+	}
 }

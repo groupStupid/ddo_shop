@@ -1,6 +1,5 @@
 package com.team_stupid.blockchain.core;
 
-import java.awt.Image;
 import java.util.Date;
 
 import com.team_stupid.blockchain.util.StringUtil;
