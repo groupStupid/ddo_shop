@@ -57,15 +57,13 @@
 	</div>
 	<script type="text/javascript">
 		$("#foundpw_submit").on("click", function(){
-			var username = $("#foundpw_username").val();
 			var userid = $("#foundpw_userid").val();
 			var email = $("#foundpw_email").val();
 			var form = {
-					"username" : username,
 					"userid" : userid,
 					"email" : email
 			};
-			alert(username + ", " + userid + ", " + email);
+			alert(userid + ", " + email);
 			$.ajax({
 				url : "/main/login/foundpw/foundpw.do",
 				type : "POST",
