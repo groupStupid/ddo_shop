@@ -42,6 +42,32 @@ public class MailServiceImpl implements MailService{
 		}
 	}
 	
+	@Override
+	public void sendMail(String verificationCode, String email) throws Exception {
+		String subject = "또샵 비밀번호 찾기 인증번호 입니다.";
+		String content = "";
+		content += "<div align='center' style='border:1px solid black; font-family:verdana'>"
+				+ "<h3 style='color: blue;'>"
+				+ verificationCode + "를 인증번호 입력칸에 입력해주세요.</h3>";
+		String from = "또샵 <noreply.ddoshop@gmail.com>"; // 메일에서 오류 생기면 여기서 또샵 앞에 분리똑똑으로 바꾸기
+		String to = email;
+		
+		try {
+			MimeMessage mail = mailSender.createMimeMessage();
+			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "utf-8");
+			
+			mailHelper.setFrom(from);
+			mailHelper.setTo(to);
+			mailHelper.setSubject(subject);
+			mailHelper.setText(content, true);
+			
+			mailSender.send(mail);
+		} catch (Exception e) {
+			System.out.println("메일 전송 오류 sendMail() : " + e);
+			e.printStackTrace();
+		}
+	}
+	
 //	@Override
 //	public String getRecycle(String object) throws SQLException {
 //		// TODO Auto-generated method stub
