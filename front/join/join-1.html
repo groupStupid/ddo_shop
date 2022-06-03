@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../assets/css/MENU-2.css">
     <link rel="stylesheet" href="../assets/css/MENU-3.css">
     <link rel="stylesheet" href="../assets/css/MENU.css">
+    <link rel="stylesheet" href="../assets/css/Navbar-Centered-1.css">
     <link rel="stylesheet" href="../assets/css/Navbar-Centered.css">
     <link rel="stylesheet" href="../assets/css/Projects-Grid.css">
     <link rel="stylesheet" href="../assets/css/Search-Input-Responsive-with-Icon.css">
@@ -34,23 +35,20 @@
                             <p class="text-center" style="font-size: 40px;font-weight: bold;">MY 페이지</p>
                             <div id="select_copy" class="custom-control custom-radio custom-control-inline" style="font-family: 'Source Sans Pro', sans-serif;margin-top: 0px;padding-top: 0px;padding-right: 0px;padding-left: 0px;"><input type="radio" id="select_-1" class="custom-control-input" name="customRadioInline" checked=""><label class="form-label custom-control-label" id="select_-2" for="customRadioInline1">사용자</label><input type="radio" id="select_-3" class="custom-control-input" name="customRadioInline"><label class="form-label custom-control-label" id="select_-4" for="customRadioInline2">업주</label></div>
                             <div>
-                                <fieldset></fieldset>
-                                <fieldset></fieldset>
-                                <fieldset></fieldset>
+                                <form method="post" style="font-family: 'Source Sans Pro', sans-serif;">
+                                    <div class="text-start mb-3"><input class="form-control" type="text" id="name-2" name="id" placeholder="아이디" style="margin-top: 0px;">
+                                        <div style="margin-top: 5px;"><button class="btn btn-primary" type="button" style="color: var(--bs-dark);font-size: 10px;background: rgba(13,110,253,0);">중복확인</button></div>
+                                    </div>
+                                    <div class="text-center mb-3">
+                                        <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 popup" id="window-1" style="border-radius: 5px;/*display: none;*/text-align: center;margin-top: 0px;background-color: #199bdd;font-family: 'Alegreya Sans SC', sans-serif;width: 100%;margin-left: 0px;"><button class="btn btn-light show_hide" id="hide-1" style="border-radius: 200px;background-color: #a2cfe6;float: right;border: none;background-image: none;margin-top: -15px;padding-right: 9px;padding-left: 11px;" type="button"><i class="fa fa-close" style="font-size: 30px;color: #199bdd;"></i></button>
+                                            <p class="text-center" style="font-size: 25px;margin-bottom: 0px;font-weight: bold;">닉네임을 정해주세요</p>
+                                            <div><input class="form-control" type="text" id="name-1" name="id" placeholder="원하시는 닉네임을 입력해주세요." style="margin-top: 0px;font-size: 11px;"></div>
+                                            <div style="background: rgb(25,155,221);"><button class="btn btn-primary" type="button" style="color: var(--bs-body-color);font-size: 10px;background: rgb(162,207,230);border-style: none;">중복확인</button></div><button class="btn btn-primary" type="button" style="background: rgb(162,207,230);color: var(--bs-body-color);margin: 10px;font-size: 15px;border-style: none;"><span>닉네임 생성</span></button>
+                                        </div><input class="form-control" type="text" id="name-3" name="id" placeholder="이메일" style="margin-top: 15px;">
+                                    </div>
+                                    <div><button class="btn btn-primary d-block w-100" id="join" type="submit" style="font-family: 'Source Sans Pro', sans-serif;font-weight: bold;font-size: 25px;"><span>회원가입</span></button></div>
+                                </form>
                             </div>
-                            <form method="post" style="font-family: 'Source Sans Pro', sans-serif;">
-                                <div class="text-start mb-3"><input class="form-control" type="text" id="name-2" name="id" placeholder="아이디">
-                                    <div style="margin-top: 5px;"><button class="btn btn-primary" type="button" style="color: var(--bs-dark);font-size: 10px;background: rgba(13,110,253,0);">중복확인</button></div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="col-auto col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 text-center popup" id="window-1" style="border-radius: 5px;/*display: none;*/text-align: center;margin-top: 0px;background-color: #199bdd;font-family: 'Alegreya Sans SC', sans-serif;"><button class="btn btn-light show_hide" id="hide-1" style="border-radius: 200px;background-color: #a2cfe6;float: right;border: none;background-image: none;margin-top: -15px;padding-right: 9px;padding-left: 11px;" type="button"><i class="fa fa-close" style="font-size: 30px;color: #199bdd;"></i></button>
-                                        <p class="text-center" style="font-size: 22px;margin-bottom: 0px;font-weight: bold;">닉네임을 정해주세요</p>
-                                        <div><input class="form-control" type="text" id="name-1" name="id" placeholder="원하시는 닉네임을 입력해주세요." style="margin-top: 0px;font-size: 11px;"></div>
-                                        <div style="background: rgb(25,155,221);"><button class="btn btn-primary" type="button" style="color: var(--bs-body-color);font-size: 10px;background: rgb(162,207,230);border-style: none;">중복확인</button></div><button class="btn btn-primary" type="button" style="background: rgb(162,207,230);color: var(--bs-body-color);margin: 10px;font-size: 15px;border-style: none;"><span>닉네임 생성</span></button>
-                                    </div><input class="form-control" type="email" id="pw-1" name="email" placeholder="이메일" style="margin-top: 15px;">
-                                </div>
-                                <div><button class="btn btn-primary d-block w-100" id="join" type="submit" style="font-family: 'Source Sans Pro', sans-serif;font-weight: bold;font-size: 25px;"><span>회원가입</span></button></div>
-                            </form>
                         </div>
                     </div>
                 </div>
