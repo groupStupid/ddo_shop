@@ -3,7 +3,7 @@
  "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team_stupid.mapper.ShopMapper">
-	 <select id="list" resultType="BoardVO">
-		SELECT * FROM EVENT_BOARD order by EVENT_NUM DESC
+	 <select id="getShopInfo" resultType="ShopInfoVO">
+		SELECT * FROM SHOP_INFO order by SHOP_SERIALNUM DESC
 	</select>
 </mapper>
