@@ -27,6 +27,7 @@ public class BoardController {
 	
 	@Autowired
 	private BoardMapper boardMapper;
+	
 	@RequestMapping("/board/**")
 	public String getList(Model model, HttpServletRequest request) throws Exception{
 		String url = request.getRequestURI();
