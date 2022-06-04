@@ -34,10 +34,13 @@
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
 							<p class="text-center" style="font-size: 40px;font-weight: bold;">비밀번호 재설정</p>
-							<form method="post" style="font-family: 'Source Sans Pro', sans-serif;"><input class="form-control" type="email" id="email-1" name="name" placeholder="새 비밀번호">
-								<p>영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p><input class="form-control" type="email" id="pw-1" name="email" placeholder="비밀번호 확인" style="margin-top: 15px;">
-								<div style="margin-top: 5px;"><button class="btn btn-primary" type="button" style="background: rgb(162,207,230);color: var(--bs-body-color);margin: 0px;font-size: 15px;border-style: none;font-weight: bold;">확인</button></div>
-							</form>
+							<input class="form-control" type="password" id="new_pw" placeholder="새 비밀번호">
+							<p>영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p>
+							<input class="form-control" type="password" id="new_pw_check" placeholder="비밀번호 확인" style="margin-top: 15px;">
+							<div style="margin-top: 5px;">
+								<button class="btn btn-primary" type="button" id="edit_pw_submit" style="background: rgb(162,207,230);color: var(--bs-body-color);
+								margin: 0px;font-size: 15px;border-style: none;font-weight: bold;">확인</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -47,6 +50,35 @@
 	<script src="../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../../resource/assets/js/MENU.js"></script>
 	<script src="../../resource/assets/js/Subscribe-window.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+		$("#edit_pw_submit").on("click", function(){
+			var new_pw = $("#new_pw").val();
+			var new_pw_check = $("#new_pw_check").val();
+			var form = {
+					"new_pw" : new_pw,
+					"new_pw_check" : new_pw_check
+			};
+			$.ajax({
+				url: "/editpw.do",
+				type: "POST",
+				data: JSON.stringify(form),
+				contentType : "application/json; charset=UTF-8",
+				dataType : "text",
+				success : function(result) {
+					if (result === "success") {
+						alert("비밀번호가 변경되었습니다.");
+						location.href = "/main";
+					}
+					else
+						alert(result);
+				},
+				error : function() {
+					alert("changepw ajax fail");
+				}
+			})
+		});
+	</script>
 </body>
 
 </html>

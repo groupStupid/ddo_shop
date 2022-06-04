@@ -35,12 +35,32 @@
 					<div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" id="person" style="max-width: 400px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person" style="font-family: 'Source Sans Pro', sans-serif;">
 							<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
 						</svg></div>
-					<form class="text-center" method="post">
-						<div class="mb-3"><input class="form-control" type="email" name="" placeholder="ID"></div>
-						<div class="mb-3"><input class="form-control" type="password" name="" placeholder="PW"></div>
-						<div class="mb-3"><button class="btn btn-primary text-center d-block w-100" id="login_1" type="submit" style="font-weight: bold;color: var(--bs-body-color);">사용자로 로그인</button></div><button class="btn btn-primary text-center d-block w-100" id="login_2" type="submit" style="font-weight: bold;color: var(--bs-body-color);">업주로 로그인</button>
+					<form  action="/login" class="text-center" method="post">
+						<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person-check align-items-center" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
+								<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+								<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+							</svg>
+							<input class="form-control" type="text" name="id" placeholder="ID" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;">
+						</div>
+						<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-lock" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
+								<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+							</svg>
+							<input class="form-control" type="password" name="pw" placeholder="PW" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;">
+						</div>
+						<!-- <div class="mb-3"><input class="form-control" name="" type="text" placeholder="ID"></div>
+						<div class="mb-3"><input class="form-control" name="" type="password" placeholder="PW"></div> -->
+						<button class="btn btn-primary text-center d-block w-100" id="login_1" type="submit" 
+						style="font-weight: bold;color: var(--bs-body-color); margin-bottom: 10px;">사용자로 로그인</button>
+						<button class="btn btn-primary text-center d-block w-100" id="login_2" type="submit" style="font-weight: bold;color: var(--bs-body-color);">업주로 로그인</button>
 					</form>
-					<p class="text-muted" style="font-size: 13px;">회원가입을 하지 않으셨나요 ?</p><a class="card-link" id="link" href="#" style="font-size: 10px;">회원가입 하러 가기</a><a class="card-link" id="link-1" href="#" style="font-size: 10px;color: rgb(0,0,255);margin-left: 0px;">아이디 / 비밀번호 찾기</a>
+					<p class="text-muted" style="font-size: 13px;">회원가입을 하지 않으셨나요 ?</p>
+					<a class="card-link" id="link" href="/join" style="font-size: 10px;">회원가입 하러 가기</a>
+					<div>
+						<a id="link-1" href="/foundid" style="font-size: 10px;color: rgb(0,0,255);margin-left: 0px; margin-right: 5px;">아이디 찾기</a>
+						<a id="link-2" href="/foundpw" style="font-size: 10px;color: rgb(0,0,255);margin-left: 5px;">비밀번호 찾기</a>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -33,13 +33,18 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4 m-auto" style="max-width: 90%;">
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">아이디 찾기</p>
-							<div class="mb-3">
-								<input class="form-control" type="email" id="foundid_email" placeholder="이메일" style="margin-top: 15px;">
-							</div>
-							<div style="margin-top: 5px;">
-								<button class="btn btn-primary" type="button" id="foundid_submit" style="background: rgb(162,207,230);color: var(--bs-body-color);
-								margin: 0px;font-size: 15px;border-style: none;font-weight: bold;">확인</button>
+							<p class="text-center" style="font-size: 40px;font-weight: bold;">아이디 찾기 성공!</p>
+							<div class="d-flex flex-column justify-content-center align-items-center">
+								<label class="form-label" style="margin-top: 15px;">
+									성공하셨습니다. 찾으시려는 아이디는 <span id="userid"></span> 입니다.
+								</label>
+								<div class="d-flex flex-row justify-content-between"
+									style="width: 80%; max-width: 300px;">
+									<button class="btn btn-primary" type="button" onclick="location.href='/foundpw'"
+										style="background: rgb(162,207,230);color: var(--bs-body-color);">비밀번호 찾기</button>
+									<button class="btn btn-primary" type="button" onclick="location.href='/login'"
+										style="background: rgb(162,207,230);color: var(--bs-body-color);">로그인하러 가기</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -51,31 +56,20 @@
 	<script src="../../resource/assets/js/MENU.js"></script>
 	<script src="../../resource/assets/js/Subscribe-window.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	 <script type="text/javascript">
-    	$("#foundid_submit").on("click", function(){
-    		var email = $("#foundid_email").val();
-    		
-    		var data = {
-    				"email" : email
-    		};
-    		$.ajax({
-    			url : "/join/foundid.do",
-    			type : "POST",
-    			data : data, 
-    			success : function(result){
-    				if (result === "found userid fail")
-    					alert("아이디 찾기 중 오류가 발생하였습니다.");
-    				else if (result.length === 0)
-    					alert("찾으시는 아이디가 존재하지 않습니다.");
-    				else
-    					location.href = "/foundid_success";
-    			},
-    			error : function(){
-    				alert("아이디 찾기 과정 중 문제가 생겼습니다.");
-    			}
-    		});
-    	});
-    </script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+				url : "/foundid_success.do",
+				type : "GET",
+				success : function(result) {
+					$("#userid").text(result);
+				},
+				error : function() {
+					alert("아이디 찾기 성공 페이지 문제 발생");
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>
