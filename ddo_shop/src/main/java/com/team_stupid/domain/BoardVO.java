@@ -1,5 +1,6 @@
 package com.team_stupid.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BoardVO {
@@ -13,6 +14,8 @@ public class BoardVO {
 	private char EVENT_ONGOING;
 	private String EVENT_IMAGEURL;
 	private int EVENT_EMOTIONS;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public String getEventTitle() {
 		return EVENT_TITLE;
@@ -40,20 +43,21 @@ public class BoardVO {
 	public void setEventGoods(String EVENT_GOODS) {
 		this.EVENT_GOODS = EVENT_GOODS;
 	}
-	public Date getEventStart() {
-		return EVENT_START;
+	public String getEventStart() {
+		return sdf.format(EVENT_START);
 	}
 	public void setEventStart(Date EVENT_START) {
 		this.EVENT_START = EVENT_START;
 	}
-	public Date getEventEnd() {
-		return EVENT_END;
+	public String getEventEnd() {
+		return sdf.format(EVENT_END);
 	}
 	public void setEventEnd(Date EVENT_END) {
 		this.EVENT_END = EVENT_END;
 	}
-	public char getEventOngoing() {
-		return EVENT_ONGOING;
+	public String getEventOngoing() {
+		if (EVENT_ONGOING == '1') return "진행중"; 
+		else return "미진행";
 	}
 	public void setEventOngoing(char EVENT_ONGOING) {
 		this.EVENT_ONGOING = EVENT_ONGOING;
