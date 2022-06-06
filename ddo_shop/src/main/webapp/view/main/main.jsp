@@ -1,396 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html class="text-center" lang="en">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>분리똑똑</title>
-<link rel="stylesheet"
-	href="../../resource/term/main_page/assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-<link rel="stylesheet"
-	href="../../resource/term/main_page/assets/fonts/font-awesome.min.css">
-<link rel="stylesheet"
-	href="../../resource/term/main_page/assets/fonts/simple-line-icons.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-<link rel="stylesheet"
-	href="../../resource/term/main_page/assets/css/untitled.css">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>ddoShop</title>
+	<link rel="stylesheet" href="../../resource/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&amp;subset=latin-ext&amp;display=swap">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&amp;display=swap">
+	<link rel="stylesheet" href="../../resource/assets/fonts/font-awesome.min.css">
+	<link rel="stylesheet" href="../../resource/assets/css/Comment.css">
+	<link rel="stylesheet" href="../../resource/assets/css/Features-Image.css">
+	<link rel="stylesheet" href="../../resource/assets/css/fontset.css">
+	<link rel="stylesheet" href="../../resource/assets/css/Login-Form-Basic.css">
+	<link rel="stylesheet" href="../../resource/assets/css/MENU-1.css">
+	<link rel="stylesheet" href="../../resource/assets/css/MENU-2.css">
+	<link rel="stylesheet" href="../../resource/assets/css/MENU-3.css">
+	<link rel="stylesheet" href="../../resource/assets/css/MENU.css">
+	<link rel="stylesheet" href="../../resource/assets/css/Navbar-Centered.css">
+	<link rel="stylesheet" href="../../resource/assets/css/Projects-Grid.css">
+	<link rel="stylesheet" href="../../resource/assets/css/Search-Input-Responsive-with-Icon.css">
+	<link rel="stylesheet" href="../../resource/assets/css/styles.css">
+	<link rel="stylesheet" href="../../resource/assets/css/tc-menu-10.css">
 </head>
 
-<body>
-	<header class="header-blue"
-		style="background: rgb(92, 198, 186); height: 60px;">
-		<nav
-			class="navbar navbar-dark navbar-expand-md navigation-clean-search"
-			style="z-index: 1;">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">
-					<img src="../../resource/logo/bunriLogo.png" 
-						style="height: 30px;"></img>
-				</a>
-				<button data-bs-toggle="collapse" class="navbar-toggler"
-					data-bs-target="#navcol-2">
-					<span class="visually-hidden">Toggle navigation</span><span
-						class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navcol-2"
-					style="background: rgb(92, 198, 186);">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="dropdown-toggle nav-link" aria-expanded="false"
-							data-bs-toggle="dropdown" href="#">친환경 검색</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/search_image">사물 검색</a><a
-									class="dropdown-item" href="/search_text">라벨 검색</a>
-							</div></li>
-						<li class="nav-item">
-							<input type="text" size="10" id="blockNum" />
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="viewGiftcard" style="color: rgba(255, 255, 255, 0.55);">상품권 검색</a>
-						</li>
-						<li class="nav-item dropdown"><a
-							class="dropdown-toggle nav-link" aria-expanded="false"
-							data-bs-toggle="dropdown" href="/board_main">친환경 서비스</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/eco_promote">친환경 홍보</a>
-								<a class="dropdown-item" href="/NewFile">알림 설정</a>
-								<a class="dropdown-item" href="/eco_calc">친환경 지수</a>
-								<a class="dropdown-item" href="/qna">친환경 Q&A</a>
-							</div>
-						</li>
-						<li class="nav-item dropdown"><a
-							class="dropdown-toggle nav-link" aria-expanded="false"
-							data-bs-toggle="dropdown" href="/board_main">게시판</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" id="information">블록 체인 출력</a>
-								<a class="dropdown-item" id="genesisblock">초기 블록 생성</a>
-								<a class="dropdown-item" id="mineblock">신규 블록 채굴</a>
-							</div></li>
-					</ul>
-					<script type="text/javascript">
-						$("#information").on("click", function(){
-							$.ajax({
-								url : "/information",
-								type : "POST",
-								success : function(){
-									alert("정보 확인 완료");
-								},
-								error : function() {
-									alert("정보 확인 실패");
-								}
-							})
-						});
-						$("#genesisblock").on("click", function(){
-							$.ajax({
-								url : "/genesisblock",
-								type : "POST",
-								success : function(){
-									alert("초기 블록 생성 완료");
-								},
-								error : function() {
-									alert("초기 블록 생성 실패");
-								}
-							})
-						});
-						$("#mineblock").on("click", function(){
-							$.ajax({
-								url : "/mineblock",
-								type : "POST",
-								success : function(){
-									alert("블록 채굴 완료");
-									location.reload();
-								},
-								error : function() {
-									alert("블록 채굴 실패");
-								}
-							})
-						});
-						$("#viewGiftcard").on("click", function(){
-							//alert(!($("#blockNum").val() == ""));
-							 if (!($("#blockNum").val() == "")){
-								var data = {
-										blockNum : $("#blockNum").val()
-								};
-								$.ajax({
-									url : "/viewGiftcard",
-									type : "POST",
-									data : data,
-									success : function(){
-										alert("상품권 검색 완료");
-										
-									},
-									error : function() {
-										alert("상품권 검색 실패");
-									}
-								});
-							} else {
-								alert("상품권 번호(블록 번호) 입력");
-							}
-						});
-					</script>
-					<form class="d-flex me-auto navbar-form" target="_self">
-						<div class="d-flex align-items-center"></div>
-					</form>
-					<c:catch>
-						<c:choose>
-							<c:when test="${empty userID }">
-								<span class="navbar-text"> <a class="login"
-									style="margin-right: 20px;" href="/login">Log In</a>
-								</span>
-								<a class="btn btn-light action-button" role="button"
-									style="background: rgba(255, 255, 255, 0); border-style: none; color: rgb(255, 255, 255);" href="/join">Sign Up</a>
-									
-							</c:when>
-							<c:otherwise>
-								<c:choose>
-									<c:when test="${userID eq '1' }">
-										<li>
-											<p>관리자 ${userID }님, 환영합니다.</p>
-										</li>
-										<a class="btn btn-light action-button" id="logout_btn"
-											style="background: rgba(255, 255, 255, 0); border-style: none; color: rgb(255, 255, 255);"
-											role="button" href="/logout.do">Log Out</a>
-									</c:when>
-									<c:otherwise>
-										<span class="navbar-text"> <a href="/changepw">${userID}</a>님,반갑습니다! </span>
-										<a class="btn btn-light action-button" id="logout_btn"
-											style="background: rgba(255, 255, 255, 0); border-style: none; color: rgb(255, 255, 255);"
-											role="button" href="/logout.do">Log Out</a>
-									</c:otherwise>
-								</c:choose>
-							</c:otherwise>
-						</c:choose>
-					</c:catch>
-
-					
-				</div>
-			</div>
-		</nav>
-	</header>
-	<section
-		class="text-center bg-light d-flex flex-column align-items-center features-icons">
-		<div class="carousel slide" data-bs-ride="carousel" id="carousel-1"
-			style="width: 80%; z-index: 0;">
-			<div class="carousel-inner">
-				<div class="carousel-item active"><!-- https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/ykm.png -->
-					<img class="w-100 d-block" id="giftcard-img"
-						src="${imageUrl}"
-						alt="Slide Image" style="margin-bottom: 30px;">
-				</div>
-				<!-- <div class="carousel-item">
-					<img class="w-100 d-block"
-						src="../../resource/term/main_page/assets/img/KakaoTalk_20211213_123802810.png"
-						alt="Slide Image" style="margin-bottom: 30px;">
-				</div>
-				<div class="carousel-item">
-					<img class="w-100 d-block"
-						src="../../resource/term/main_page/assets/img/KakaoTalk_20211212_013226490.jpg"
-						alt="Slide Image" style="margin-bottom: 30px;">
-				</div>
-				<div class="carousel-item">
-					<img class="w-100 d-block"
-						src="../../resource/term/main_page/assets/img/KakaoTalk_20211212_013222385.png"
-						alt="Slide Image" style="margin-bottom: 30px;">
-				</div>
-				<div class="carousel-item">
-					<img class="w-100 d-block"
-						src="../../resource/term/main_page/assets/img/sigmund-aI4RJ--Mw4I-unsplash.jpg"
-						alt="Slide Image" style="margin-bottom: 30px;">
-				</div>
-				<div class="carousel-item">
-					<img class="w-100 d-block"
-						src="../../resource/term/main_page/assets/img/lukasz-rawa-_4NF4Jppx-c-unsplash.jpg"
-						alt="Slide Image" style="margin-bottom: 30px;">
-				</div> -->
-			</div>
-			<div>
-				<a class="carousel-control-prev" href="#carousel-1" role="button"
-					data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span
-					class="visually-hidden">Previous</span></a><a
-					class="carousel-control-next" href="#carousel-1" role="button"
-					data-bs-slide="next"><span class="carousel-control-next-icon"></span><span
-					class="visually-hidden">Next</span></a>
-			</div>
-			<ol class="carousel-indicators">
-				<li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
-				<li data-bs-target="#carousel-1" data-bs-slide-to="1"></li>
-				<li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
-				<li data-bs-target="#carousel-1" data-bs-slide-to="3"></li>
-				<li data-bs-target="#carousel-1" data-bs-slide-to="4"></li>
-			</ol>
+<body class="text-center" style="background-color: #deeaf0;">
+	<nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 80%;">
+		<div class="container-fluid"><span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;">또샵</span>
+			<div class="col text-center padMar">
+				<div class="input-group text-center"><input class="form-control autocomplete" type="text" id="search_w-1" placeholder="무엇을 검색해볼까요 ?" style="font-family: 'Source Sans Pro', sans-serif;font-size: 10px;"><button class="btn btn-warning" id="s_b-1" type="button" style="background-color: #199bdd;"><i class="fa fa-search"></i></button></div>
+			</div><button class="navbar-toggler text-center d-flex" data-bs-toggle="collapse" style="height: 38px;"><span class="visually-hidden">Toggle navigation</span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person" style="font-family: 'Source Sans Pro', sans-serif;height: 25px;">
+					<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+				</svg></button>
 		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"
-					onclick="location.href = '/search_image'" style="cursor: pointer;">
-						<div class="d-flex features-icons-icon">
-							<i class="icon-bulb m-auto text-primary"
-								data-bss-hover-animate="pulse"></i>
-						</div>
-						<h3>분리수거 방법</h3>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"
-					onclick="location.href = '/map'" style="cursor: pointer;">
-						<div class="d-flex features-icons-icon">
-							<i class="icon-map m-auto text-primary"
-								data-bss-hover-animate="pulse"></i>
-						</div>
-						<h3>친환경 지도</h3>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"
-					onclick="location.href = '/'" style="cursor: pointer;">
-						<div class="d-flex features-icons-icon">
-							<i class="icon-bell m-auto text-primary"
-								data-bss-hover-animate="pulse"></i>
-						</div>
-						<h3>친환경 알림</h3>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"
-					onclick="location.href = '/eco_calc'" style="cursor: pointer;">
-						<div class="d-flex features-icons-icon">
-							<i class="icon-calculator m-auto text-primary"
-								data-bss-hover-animate="pulse"></i>
-						</div>
-						<h3>친환경 지수</h3>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"
-					onclick="location.href = '/board_main'" style="cursor: pointer;">
-						<div class="d-flex features-icons-icon">
-							<i class="icon-screen-tablet m-auto text-primary"
-								data-bss-hover-animate="pulse"></i>
-						</div>
-						<h3>친환경 게시판</h3>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"
-						onclick="location.href = '/eco_promote'" style="cursor: pointer;">
-						<div class="d-flex features-icons-icon">
-							<i class="icon-compass m-auto text-primary"
-								data-bss-hover-animate="pulse"></i>
-						</div>
-						<h3>친환경 홍보</h3>
-					</div>
-				</div>
+	</nav>
+	<ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
+		<li class="nav-item d-flex justify-content-center align-items-center"><span style="font-weight: bold;">음식점</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center" style="font-weight: bold;">헬스장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+	</ul>
+	<div class="container m-auto" style="max-width: 80%;min-width: 300px;width: 300px;margin-bottom: 10px;">
+		<div class="row" style="width: 300px;max-width: 90%;min-width: 300px;margin-bottom: 10px;margin-top: 10px;">
+			<div class="col-md-6" style="padding-right: 0px;padding-left: 0px;width: 150px;"><img style="height: 180px;width: 150px;" src="../assets/img/vkwjs.jpeg"></div>
+			<div class="col-md-6" style="height: 180px;width: 150px;">
+				<ul>
+					<li style="font-size: 20px;font-weight: bold;">가게 이름</li>
+					<li>이벤트 이름</li>
+					<li>이벤트 내용</li>
+					<li>이벤트 상품 내용</li>
+					<li>이벤트 기간</li>
+				</ul>
 			</div>
 		</div>
-	</section>
-	<section class="showcase">
-		<div class="container-fluid p-0">
-			<div class="row g-0">
-				<div class="col-lg-6 text-white order-lg-2 showcase-img"
-					style="background-image: url(../../resource/term/main_page/assets/img/bg-showcase-1.jpg);">
-					<span></span>
-				</div>
-				<div class="col-lg-6 my-auto order-lg-1 showcase-text">
-					<h2>손쉬운 사용</h2>
-					<p class="lead mb-0">핸드폰 카메라를 이용한 손쉬운 검색</p>
-				</div>
-			</div>
-			<div class="row g-0">
-				<div class="col-lg-6 text-white showcase-img"
-					style="background-image: url(../../resource/term/main_page/assets/img/bg-showcase-2.jpg);">
-					<span></span>
-				</div>
-				<div class="col-lg-6 my-auto order-lg-1 showcase-text">
-					<h2>유지보수</h2>
-					<p class="lead mb-0">탄소 제로 목표를 위한 끊임 없는 유지보수</p>
-				</div>
+	</div>
+	<div class="container m-auto" style="max-width: 80%;min-width: 300px;width: 300px;margin-top: 10px;">
+		<div class="row" style="width: 300px;max-width: 90%;min-width: 300px;">
+			<div class="col-md-6" style="padding-right: 0px;padding-left: 0px;width: 150px;"><img src="../assets/img/1RWXS6QQWS_1.jpg" style="width: 150px;height: 180px;"></div>
+			<div class="col-md-6" style="height: 180px;width: 150px;">
+				<ul>
+					<li style="font-size: 20px;font-weight: bold;">가게 이름</li>
+					<li>이벤트 이름</li>
+					<li>이벤트 내용</li>
+					<li>이벤트 상품 내용</li>
+					<li>이벤트 기간</li>
+				</ul>
 			</div>
 		</div>
-	</section>
-	<section class="text-center bg-light testimonials">
-		<div class="container">
-			<h2 class="mb-5">팀원 소개</h2>
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="mx-auto testimonial-item mb-5 mb-lg-0"></div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto testimonial-item mb-5 mb-lg-0">
-						<img class="rounded-circle img-fluid mb-3"
-							src="../../resource/term/main_page/assets/img/ykm.png">
-						<h5>KwonMo Y.</h5>
-						<p class="font-weight-light mb-0">Heart Monkey</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="mx-auto testimonial-item mb-5 mb-lg-0">
-						<img class="rounded-circle img-fluid mb-3"
-							src="../../resource/term/main_page/assets/img/ysb.png">
-						<h5>SungBin Y.</h5>
-						<p class="font-weight-light mb-0">Pig</p>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto testimonial-item mb-5 mb-lg-0">
-						<img class="rounded-circle img-fluid mb-3"
-							src="../../resource/term/main_page/assets/img/les.png">
-						<h5>EunSung L.</h5>
-						<p class="font-weight-light mb-0">Mouse</p>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="mx-auto testimonial-item mb-5 mb-lg-0">
-						<img class="rounded-circle img-fluid mb-3"
-							src="../../resource/term/main_page/assets/img/jgy.png">
-						<h5>GuYeon J,</h5>
-						<p class="font-weight-light mb-0">Ghaori</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<footer class="bg-light footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 text-center text-lg-start my-auto h-100">
-					<p class="text-muted small mb-4 mb-lg-0">©&nbsp;
-						BunriDdokDdok&nbsp;&nbsp;2021. All Rights Reserved.</p>
-				</div>
-				<div class="col-lg-6 text-center text-lg-end my-auto h-100">
-					<ul class="list-inline mb-0">
-						<li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100008159497146"><i
-								class="fa fa-facebook fa-2x fa-fw"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.instagram.com/kwon._.moya/?hl=ko"><i
-								class="fa fa-instagram fa-2x fa-fw"></i></a></li>
-					</ul>
-				</div>
-				
-				<div class="col-lg-6 text-center text-lg-start my-auto h-100">
-					<p class="text-muted small mb-4 mb-lg-0">
-						&nbsp;</p>
-				</div>
-				
-				<div class="col-lg-6 text-center text-lg-start my-auto h-100">
-					<p class="text-muted small mb-4 mb-lg-0" style="text-align: right;">
-						Send Direct Message to manager.</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<script
-		src="../../resource/term/main_page/assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../../resource/term/main_page/assets/js/bs-init.js"></script>
+	</div>
+	<script src="../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../resource/assets/js/MENU.js"></script>
+	<script src="../../resource/assets/js/Subscribe-window.js"></script>
 </body>
 
 </html>
