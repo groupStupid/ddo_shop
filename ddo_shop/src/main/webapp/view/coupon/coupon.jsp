@@ -35,6 +35,15 @@
 					<div class="card mb-5">
 						<div class="card-body p-sm-5">
 							<p class="text-center" style="font-size: 40px;font-weight: bold;">MY 페이지</p>
+							<div class="d-flex justify-content-between align-items-center" style="margin-top: 15px;margin-bottom: 0px;">
+								<p style="font-size: 25px;font-weight: bold;margin-top: 0px;margin-bottom: 0px;">${userNick}님 !</p>
+								<div class="d-flex justify-content-between" style="margin-top: 0px;">
+									<button class="btn btn-primary" type="button" style="background: rgb(162,207,230);border-style: none;
+									font-weight: bold;color: rgb(0,0,0);height: 35px;margin-right: 10px;" onclick="location.href='/edit'">내 정보</button>
+									<button class="btn btn-primary" type="button" style="background: rgb(162,207,230);color: rgb(0,0,0);
+									font-weight: bold;border-style: none;height: 35px;margin-left: 10px;" onclick="location.href='/logout.do'">로그아웃</button>
+								</div>
+							</div>
 							<div>
 								<p class="text-start" style="font-weight: bold;font-size: 20px;">나의 쿠폰 현황</p>
 								<div class="text-center p-4 p-lg-5" style="background: var(--bs-body-bg);border: 1px solid rgb(25,155,221);padding-top: 0px;padding-bottom: 0px;">
@@ -108,6 +117,11 @@
 					alert("fail");
 				}
 			});
+		}
+		
+		
+		function logout(){
+			${session}
 		}
 	</script>
 </body>

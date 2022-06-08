@@ -33,16 +33,45 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4 m-auto" style="max-width: 90%;">
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">정보 수정</p>
-							<form method="post" style="font-family: 'Source Sans Pro', sans-serif;">
-								<div class="text-start mb-3"><input class="form-control" type="text" id="name-2" name="id" placeholder="아이디" style="margin-top: 0px;">
-									<div style="margin-top: 5px;"><button class="btn btn-primary" type="button" style="color: var(--bs-dark);font-size: 10px;background: rgba(13,110,253,0);">중복확인</button></div>
-									<div><input class="form-control" type="text" id="name-1" name="id" placeholder="이름" style="margin-top: 0px;"><input class="form-control" type="text" id="name-3" name="id" placeholder="비밀번호" style="margin-top: 15px;">
-										<p>영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p><input class="form-control" type="text" id="name-5" name="id" placeholder="비밀번호 확인" style="margin-top: 15px;"><input class="form-control" type="text" id="name-4" name="id" placeholder="이메일" style="margin-top: 15px;">
+							<p class="text-center" style="font-size: 40px;font-weight: bold;">내 정보</p>
+								<div class="text-start mb-3">
+									<input class="form-control" type="text" id="edit_id" placeholder="아이디" style="margin-top: 0px;">
+									<div style="margin-top: 5px;">
+										<button class="btn btn-primary" type="button" style="color: var(--bs-dark);font-size: 10px;background: rgba(13,110,253,0);">중복확인</button>
+									</div>
+									<div>
+										<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);border-top-left-radius: 4px;
+										border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+											<input class="form-control" type="password" id="edit_pw" placeholder="비밀번호" style="border-top-left-radius: 4px;
+											border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
+											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-lock" 
+											style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
+												<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+											</svg>
+										</div>
+										<p>영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p>
+										<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);
+										border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+											<input class="form-control" type="password" id="edit_pw_check" placeholder="비밀번호 확인" style="border-top-left-radius: 4px;
+											border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
+											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" 
+											class="bi bi-lock-fill" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
+												<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0  0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+											</svg>
+										</div>
+											
+											
+										<!-- <input class="form-control" type="password" id="edit_pw" placeholder="비밀번호" style="margin-top: 15px;">
+										<input class="form-control" type="password" id="edit_pw_check" placeholder="비밀번호 확인" style="margin-top: 15px;"> -->
+										<input class="form-control" type="email" id="edit_email" placeholder="이메일" style="margin-top: 15px;">
 									</div>
 								</div>
-								<div><button class="btn btn-primary d-block w-100" id="join" type="submit" style="font-family: 'Source Sans Pro', sans-serif;font-weight: bold;font-size: 25px;"><span>정보수정</span></button></div>
-							</form>
+								<div>
+									<button class="btn btn-primary d-block w-100" id="join" type="submit" style="font-family: 'Source Sans Pro', sans-serif;
+									font-weight: bold;font-size: 25px;">
+										<span>내 정보 수정</span>
+									</button>
+								</div>
 						</div>
 					</div>
 				</div>

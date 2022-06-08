@@ -28,6 +28,10 @@ public interface AccountMapper {
 
 	void updateTempUserPw(@Param("userid") String userid, @Param("tempPw") String tempPw);
 	
+	String getNicknameById(@Param("userid") String userid);
+	
+	int getEmailCount(@Param("email") String email);
+	
 //	String search_image(@Param("recycle_title") String recycle_title);
 	
 //	void deleteboard(@Param("event_num") int event_num);

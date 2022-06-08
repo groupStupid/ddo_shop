@@ -1,8 +1,12 @@
 package com.team_stupid.mapper;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-@Service
-public class ShopMapper {
+import com.team_stupid.domain.ShopInfoVO;
 
+@Service
+public interface ShopMapper {
+	List<ShopInfoVO> getShopInfoList();
 }

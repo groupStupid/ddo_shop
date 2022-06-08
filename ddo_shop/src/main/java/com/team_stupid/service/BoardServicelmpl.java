@@ -15,8 +15,8 @@ public class BoardServicelmpl implements BoardService {
 	private BoardDAO dao;
 	
 	@Override
-	public List<BoardVO> list() throws Exception {
-		return dao.list();
+	public List<BoardVO> getList() throws Exception {
+		return dao.getList();
 	}
 	
 	@Override

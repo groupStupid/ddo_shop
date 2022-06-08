@@ -34,16 +34,28 @@
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
 							<p class="text-center" style="font-size: 40px;font-weight: bold;">비밀번호 찾기</p>
-							<form method="post" style="font-family: 'Source Sans Pro', sans-serif;">
-								<div class="mb-3"><input class="form-control" type="email" id="email-1" name="name" placeholder="아이디"><input class="form-control" type="email" id="email-3" name="name" placeholder="이름" style="margin-top: 15px;"></div>
-								<div class="mb-3"><input class="form-control" type="email" id="pw-1" name="email" placeholder="이메일" style="margin-top: 15px;"></div>
+								<div class="mb-3">
+									<input class="form-control" type="text" id="foundpw_id" placeholder="아이디">
+								</div>
+								<div class="mb-3">
+									<input class="form-control" type="email" id="foundpw_email" placeholder="이메일" style="margin-top: 15px;">
+								</div>
 								<div style="margin-top: 5px;">
 									<div class="d-flex justify-content-center align-items-center">
-										<div style="margin-top: 0px;width: 30%;"><button class="btn btn-primary" type="button" style="background: rgba(162,207,230,0);color: var(--bs-body-color);margin: 0px;font-size: 15px;"><span>인증번호<br>전송<br></span></button></div>
-										<div style="margin-top: 0px;width: 70%;"><span>2 : 59</span><input class="form-control" type="email" id="email-2" name="name" placeholder="인증번호"></div>
-									</div><button class="btn btn-primary" type="button" style="background: rgb(162,207,230);color: var(--bs-body-color);margin: 5px;font-size: 15px;border-style: none;font-weight: bold;">확인</button>
+										<div style="margin-top: 0px;width: 30%;">
+											<button class="btn btn-primary" type="button" id="sendVerificationCode" style="background: rgba(162,207,230,0);
+											color: var(--bs-body-color);margin: 0px;font-size: 15px;">
+												<span>인증번호<br>전송<br></span>
+											</button>
+										</div>
+										<div style="margin-top: 0px;width: 70%;">
+											<span id="verificationTimer" style="display: none; color: red;"></span>
+											<input class="form-control" type="text" id="verificationCode" name="name" placeholder="인증번호">
+										</div>
+									</div>
+									<button class="btn btn-primary" id="foundpw_submit" type="button" style="background: rgb(162,207,230);color: var(--bs-body-color);
+									margin: 5px;font-size: 15px;border-style: none;font-weight: bold;">확인</button>
 								</div>
-							</form>
 						</div>
 					</div>
 				</div>
@@ -53,6 +65,73 @@
 	<script src="../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../../resource/assets/js/MENU.js"></script>
 	<script src="../../resource/assets/js/Subscribe-window.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+		
+		$("#sendVerificationCode").on("click", function(){
+			var id = $("#foundpw_id").val();
+			var email = $("#foundpw_email").val();
+			var form = {
+					"id" : id,
+					"email" : email
+			};
+			$.ajax({
+				url : "/sendVerificationCode.do",
+				type : "POST",
+				data : JSON.stringify(form),
+				dataType : "text",
+				contentType : "application/json; charset=UTF-8",
+				success : function(result){
+					if (result === "success"){
+						document.getElementById("verificationTimer").style.display = 'block';
+						var time = 180;
+						var min = "";
+						var sec = "";
+						var timer = setInterval(function(){
+							min = parseInt(time/60);
+							sec = time%60;
+							document.getElementById("verificationTimer").innerText = min+":"+sec;
+							time--;
+							if (time < 0){
+								clearInterval(timer);
+								document.getElementById("verificationTimer").innerText = "인증번호 재전송 요청";
+							}
+						}, 1000);
+					}
+					else 
+						alert("등록되지 않은 아이디 또는 이메일이 입력되었습니다.")
+				},
+				error : function(){
+					alert("비밀번호 찾기 과정 중 문제가 생겼습니다.");
+				}
+			});
+		});
+		
+		
+		$("#foundpw_submit").on("click", function(){
+			var verificationCode = $("#verificationCode").val();
+			
+			var data = {
+					"verificationCode" : verificationCode
+			};
+			$.ajax({
+				url : "/verification.do",
+				type : "POST",
+				data : data,
+				success : function(result){
+					if (result === "success") {
+						location.href = '/editpw';
+					} else {
+						alert("인증번호가 틀렸습니다.");
+					}
+				},
+				error : function(){
+					alert("인증번호 처리 중 오류가 발생하였습니다.");
+				}
+			});
+		}); 
+	</script>
+	
 </body>
 
 </html>

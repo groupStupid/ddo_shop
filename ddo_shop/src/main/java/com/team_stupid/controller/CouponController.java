@@ -103,10 +103,9 @@ public class CouponController {
 	public String couponOwner(HttpServletRequest req) {
 		int count = 0;
 		int all = 0;
-		Map<TransactionOutput, String> giftCount = new HashMap<>();
-		Map<String, String> giftCount2 = new HashMap<>();
+		Map<String, String> giftCount = new HashMap<>();
 		for(TransactionOutput tx : Main.UTXOs.values()) {
-			if (giftCount2.containsKey(tx.value) || tx.value.equals("genesisTransaction")) continue;
+			if (giftCount.containsKey(tx.value) || tx.value.equals("genesisTransaction")) continue;
 			String value = tx.value;
 			for (TransactionOutput tx2 : Main.UTXOs.values()) {
 				if (value.equals(tx2.value)){
@@ -118,33 +117,10 @@ public class CouponController {
 			}
 			String res = Integer.toString(count) + " / " + Integer.toString(all);
 			count = 0; all = 0;
-			giftCount2.put(value, res);
+			giftCount.put(value, res);
 		}
-		
-//		for (Map.Entry<String, TransactionOutput> map : Main.UTXOs.entrySet()) {
-//			String findgift = "";
-//			TransactionOutput tx = map.getValue();
-//			for (TransactionOutput t : giftCount.keySet()) {
-//				if (tx.value.equals(t.value)) {
-//					findgift = tx.value;
-//					break;
-//				}
-//			}
-//			if (tx.value.equals(findgift) || tx.value.equals("genesisTransaction")) continue;
-//			findgift = tx.value;
-//			for (TransactionOutput t : Main.UTXOs.values()) {
-//				if (t.value.equals(findgift)) {
-//					all++;
-//					if (t.reciepient == Main.userWallets.get("admin").publicKey) {
-//						count++;
-//					}
-//				}
-//			}
-//			String res = Integer.toString(count) + " / " + Integer.toString(all);
-//			giftCount.put(tx, res);
-//		}
 		HttpSession ses = req.getSession();
-		ses.setAttribute("giftCount", giftCount2);
+		ses.setAttribute("giftCount", giftCount);
 		return "/coupon/coupon_sOwner";
 	}
 	
