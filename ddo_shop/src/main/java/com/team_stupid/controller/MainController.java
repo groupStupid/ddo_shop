@@ -22,19 +22,7 @@ public class MainController {
 	public String main(HttpServletRequest req) {
 		HttpSession ses = req.getSession();
 		
-		List<BoardVO> eventList = boardMapper.list();
-		for (BoardVO event : eventList) {
-			System.out.println(
-					event.getEventTitle() + "\n" +
-					event.getEventContents() + "\n" +
-					event.getEventGoods() + "\n" +
-					event.getEventStart() + "\n" +
-					event.getEventEnd() + "\n" +
-					event.getEventOngoing() + "\n" +
-					event.getEventImageurl()
-					);
-			System.out.println("\n-------------");
-		}
+		List<BoardVO> eventList = boardMapper.getList();
 		ses.setAttribute("eventList", eventList);
 		
 //		List<ShopInfoVO> shopInfoList = shopMapper.getShopInfo();
