@@ -1,7 +1,5 @@
 package com.team_stupid.domain;
 
-import java.util.Date;
-
 public class ShopInfoVO {
 	
 	private String SHOP_SERIALNUM;
