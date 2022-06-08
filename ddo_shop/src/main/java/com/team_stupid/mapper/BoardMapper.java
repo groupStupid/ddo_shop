@@ -10,7 +10,7 @@ import com.team_stupid.domain.BoardVO;
 
 @Service
 public interface BoardMapper {
-	List<BoardVO> list();
+	List<BoardVO> getList();
 	BoardVO searchItem(@Param("num") String num);
 	int getCount();
 	void write(@Param("data") Map<String, String> data);

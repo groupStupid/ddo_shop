@@ -8,5 +8,5 @@ import com.team_stupid.domain.ShopInfoVO;
 
 @Service
 public interface ShopMapper {
-	List<ShopInfoVO> getShopInfo();
+	List<ShopInfoVO> getShopInfoList();
 }
