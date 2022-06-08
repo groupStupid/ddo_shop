@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team_stupid.mapper.CommentMapper">
+	 <select id="getCommentList" resultType="CommentVO">
+		SELECT * FROM COMMENT WHERE COMM_EVENT_NUM = ${eventNum} order by COMM_GROUPNUM, COMM_ORDER;
+	</select>
+	
+	<select id="getNextCommNum" resultType="int">
+		SELECT NVL(MAX(COMM_NUM), 0)+1 FROM COMMENT;
+	</select>
+	
+	<select id="getNextCommOrder" resultType="int">
+		SELECT NVL(MAX(COMM_ORDER), 0)+1 FROM COMMENT WHERE COMM_GROUPNUM = #{commGroupNum};
+	</select>
+	
+	<select id="getCommClass" resultType="int">
+		SELECT COMM_CLASS FROM COMMENT WHERE COMM_NUM = #{commNum}
+	</select>
+	
+	<insert id="addComment" >
+		INSERT INTO COMMENT
+		VALUES (#{commEventNum}, #{commNum}, #{commNick}, #{commComment}, #{commClass}, #{commOrder}, #{commGroupNum}, #{commEmotions}, #{commIsClickedEmo})
+	</insert>
+	
+	<update id="updateComment">
+		UPDATE COMMENT
+		SET COMM_COMMENT = #{newComment}
+		WHERE COMM_NUM = #{commNum}
+	</update>
+	
+	<delete id="deleteComment">
+		DELETE FROM COMMENT
+		WHERE COMM_NUM = #{commNum}
+	</delete>
+	
+	<delete id="deleteCommentByGN">
+		DELETE FROM COMMENT
+		WHERE COMM_GROUPNUM = #{commGroupNum}
+	</delete>
+	
+	<select id="getMaxOrderInGroup" resultType="int">
+		SELECT NVL(MAX(COMM_ORDER), 0) FROM COMMENT WHERE COMM_GROUPNUM = #{commGroupNum}
+	</select>
+</mapper>
