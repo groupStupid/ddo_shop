@@ -56,7 +56,7 @@
 						<button class="btn btn-primary text-center d-block w-100" id="login_2" type="submit" style="font-weight: bold;color: var(--bs-body-color);">업주로 로그인</button>
 					</form>
 					<p class="text-muted" style="font-size: 13px;">회원가입을 하지 않으셨나요 ?</p>
-					<a class="card-link" id="link" href="/join" style="font-size: 10px;">회원가입 하러 가기</a>
+					<a id="link" href="/join" style="font-size: 10px;">회원가입 하러 가기</a>
 					<div>
 						<a id="link-1" href="/foundid" style="font-size: 10px;color: rgb(0,0,255);margin-left: 0px; margin-right: 5px;">아이디 찾기</a>
 						<a id="link-2" href="/foundpw" style="font-size: 10px;color: rgb(0,0,255);margin-left: 5px;">비밀번호 찾기</a>

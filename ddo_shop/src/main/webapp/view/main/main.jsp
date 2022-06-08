@@ -43,7 +43,7 @@
 					<c:set var="loginBtnUrl" value="location.href='/login'" />
 				</c:when>
 				<c:otherwise>
-					<c:set var="loginBtnUrl" value="location.href='/edit'" />
+					<c:set var="loginBtnUrl" value="location.href='/coupon'" />
 				</c:otherwise>
 			</c:choose>
 			<button class="navbar-toggler text-center d-flex" data-bs-toggle="collapse" style="height: 38px;" onclick="${loginBtnUrl}">
@@ -64,8 +64,8 @@
 	</ul>
 	<div class="container m-auto" style="max-width: 80%;min-width: 300px;width: 300px;margin-bottom: 10px;">
 		<c:if test="${!empty eventList}">
-			<c:forEach var="event" items="${eventList}" varStatus="status">
-				<div class="row" onclick="onClickEventList(${status.index})" style="width: 300px;max-width: 90%;min-width: 300px;
+			<c:forEach var="event" items="${eventList}">
+				<div class="row" onclick="onClickEventList(${event.eventNum})" style="width: 300px;max-width: 90%;min-width: 300px;
 				margin-bottom: 20px;margin-top: 10px;">
 					<div class="col-md-6" style="padding-right: 0px;padding-left: 0px;width: 150px;">
 						<img style="height: 180px;width: 150px;" src="${event.eventImageurl}">
@@ -87,7 +87,7 @@
 	<script src="../assets/js/Subscribe-window.js"></script>
 	<script type="text/javascript">
 		function onClickEventList(eventNum){
-			location.href = '/comment?list='+eventNum;
+			location.href = '/comment?event='+eventNum;
 		}
 	</script>
 </body>

@@ -33,7 +33,7 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4 m-auto" style="max-width: 90%;">
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">정보 수정</p>
+							<p class="text-center" style="font-size: 40px;font-weight: bold;">내 정보</p>
 								<div class="text-start mb-3">
 									<input class="form-control" type="text" id="edit_id" placeholder="아이디" style="margin-top: 0px;">
 									<div style="margin-top: 5px;">
@@ -69,7 +69,7 @@
 								<div>
 									<button class="btn btn-primary d-block w-100" id="join" type="submit" style="font-family: 'Source Sans Pro', sans-serif;
 									font-weight: bold;font-size: 25px;">
-										<span>정보수정</span>
+										<span>내 정보 수정</span>
 									</button>
 								</div>
 						</div>

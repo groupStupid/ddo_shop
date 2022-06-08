@@ -153,19 +153,32 @@
 				data: data,
 				success: function(val) {
 					document.getElementById("pwRegexResult").innerText = val;
+					if (val === "사용 가능한 비밀번호입니다!")
+						document.getElementById("pwRegexResult").style.color = 'green';
+						
 				},
 				error: function(){
 				}
 			});
 		});
 		
-		$("#pw_check").change( function() {
+		$("#password").change( function() {
+			if ($("#pwRegexResult").text() !== "사용 가능한 비밀번호입니다!"){
+				document.getElementById("pwRegexResult").style.color = 'red';
+			} else {
+				document.getElementById("pwRegexResult").style.color = 'green';
+			}
+		});
+		
+		$("#pw_check").keyup( function() {
 			var pw = $("#password").val();
 			var pw_check = $("#pw_check").val();
 			if (pw === pw_check){
 				document.getElementById("pwCheckResult").innerText = '입력하신 두 비밀번호가 일치합니다!';
+				document.getElementById("pwCheckResult").style.color = 'green';
 			} else {
 				document.getElementById("pwCheckResult").innerText = '입력하신 두 비밀번호가 일치하지 않습니다.';
+				document.getElementById("pwCheckResult").style.color = 'red';
 			}
 		});
 		
@@ -179,6 +192,10 @@
 				data: data,
 				success: function(val) {
 					document.getElementById("emailCheckResult").innerText = val;
+					if (val === "사용 가능한 이메일입니다!")
+						document.getElementById("emailCheckResult").style.color = "green";
+					else 
+						document.getElementById("emailCheckResult").style.color = "red";
 				},
 				error: function(){
 				}
@@ -194,16 +211,41 @@
 		}
 		
 		$("#join").on("click", function() {
-			if (document.getElementById("idCheckResult").innerText != "사용 가능한 아이디입니다!")
+			#("#pw_check").change();
+			if (document.getElementById("idCheckResult").innerText != "사용 가능한 아이디입니다!") {
 				document.getElementById("idCheckResult").innerText = "아이디를 확인해주세요.";
-			else if (document.getElementById("pwRegexResult").innerText !== '사용 가능한 비밀번호입니다!')
+				document.getElementById("idCheckResult").style.color = 'red';
+			}
+			else if (document.getElementById("pwRegexResult").innerText !== '사용 가능한 비밀번호입니다!') {
 				document.getElementById("pwRegexResult").innerText = "비밀번호를 확인해주세요.";
-			else if (document.getElementById("pwCheckResult").innerText !== '입력하신 두 비밀번호가 일치합니다!')
+				document.getElementById("pwRegexResult").style.color = 'red';
+			}
+			else if (document.getElementById("pwCheckResult").innerText !== '입력하신 두 비밀번호가 일치합니다!') {
 				document.getElementById("pwCheckResult").innerText = "비밀번호를 재확인해주세요.";
-			else if (document.getElementById("emailCheckResult").innerText !== '사용 가능한 이메일입니다!') 
+				document.getElementById("pwCheckResult").style.color = 'red';
+			}
+			else if (document.getElementById("emailCheckResult").innerText !== '사용 가능한 이메일입니다!') {
 				document.getElementById("emailCheckResult").innerText = "이메일을 확인해주세요.";
-			else 
-				document.getElementById("window-1").style.display = 'block';
+				document.getElementById("emailCheckResult").style.color = 'red';
+			} else {
+				var data = {
+					email : $("#email").val()
+				};
+				$.ajax({
+					url: "/join/emailDuplicateCheck.do",
+					type: "POST",
+					data: data,
+					success: function(val){
+						if (val === "success")
+							document.getElementById("window-1").style.display = 'block';
+						else
+							alert("해당 이메일을 가진 계정이 존재합니다.\n아이디 찾기를 이용해주세요.")
+					},
+					error: function(){
+						alert("이메일 중복 확인 중 오류 발생");
+					}
+				});
+			}
 		});
 		
 		$("#nick_check").on("click", function() {
