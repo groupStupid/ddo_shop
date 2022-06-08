@@ -17,7 +17,7 @@ public class BoardDAOlmpl implements BoardDAO {
 	private static String namespace = "com.team_stupid.mapper.BoardMapper";
 	
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> getList() throws Exception {
 		// TODO Auto-generated method stub
 		return sql.selectList(namespace + ".list");
 	}

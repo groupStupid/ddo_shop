@@ -38,7 +38,7 @@ public class BoardController {
 //			System.out.println("찾는링크 : " + tmp);
 			
 			List<BoardVO> list = null;
-			list = service.list();
+			list = service.getList();
 			model.addAttribute("lists", list);
 			System.out.println("board_main호출");
 			System.out.println(boardMapper.getCount());
@@ -60,7 +60,7 @@ public class BoardController {
 		int num = Integer.parseInt(detailNum);
 		
 		List<BoardVO> list = null;
-		list = service.list();
+		list = service.getList();
 		session.setAttribute("lists", list);
 
 		if(!detailNum.equals("scrollTop.js") && (num < 1 || num > boardMapper.getCount()))
