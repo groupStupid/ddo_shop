@@ -19,6 +19,13 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/coupon/**" />
+			<bean class="com.team_stupid.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<mvc:resources location="/resource/"
 		mapping="/resource/**"></mvc:resources>
 	<mvc:resources location="/securityJSP/"
