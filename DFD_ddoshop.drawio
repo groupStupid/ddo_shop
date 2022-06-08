@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-06-08T15:57:28.450Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36" etag="3WQV0vv84czyiUY7_O1D" version="19.0.2" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2022-06-08T16:15:47.165Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36" etag="f4Oak7lo1q-6MtlmBcQz" version="19.0.1" type="github" pages="5">
   <diagram id="LTt_de3GojwuK1OVi2xT" name="페이지-1">
-    <mxGraphModel dx="7590" dy="2855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="4995" dy="1428" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3953,10 +3953,87 @@
     </mxGraphModel>
   </diagram>
   <diagram id="IEPaV-QIfdBXNBSdkIub" name="권모">
-    <mxGraphModel dx="1038" dy="571" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="-1405" dy="-5372" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-1" value="쿠폰 발행" style="ellipse;whiteSpace=wrap;html=1;fontSize=24;aspect=fixed;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="4666.92" y="6880" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="zlFJ-dr5YlLQg7HJchkp-3" target="zlFJ-dr5YlLQg7HJchkp-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4740.92" y="7320" as="sourcePoint" />
+            <mxPoint x="4740.92" y="7410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-41" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=24;" edge="1" parent="1" source="zlFJ-dr5YlLQg7HJchkp-3" target="zlFJ-dr5YlLQg7HJchkp-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-3" value="쿠폰 관리" style="ellipse;whiteSpace=wrap;html=1;fontSize=24;aspect=fixed;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="4666.92" y="7140" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-4" value="" style="endArrow=classic;html=1;rounded=0;fontSize=24;fontStyle=0" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="4487.420000000002" y="6969.23" as="sourcePoint" />
+            <mxPoint x="4637.420000000002" y="6969.23" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-5" value="쿠폰 데이터" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="4471.42" y="6910" width="184" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-6" value="가게" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="4351.42" y="6940" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-7" value="" style="endArrow=classic;html=1;rounded=0;fontSize=24;fontStyle=0" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="4878.919999999998" y="6979.23" as="sourcePoint" />
+            <mxPoint x="5028.919999999998" y="6979.23" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-8" value="발행된 쿠폰" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="4862.92" y="6920" width="184" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-9" value="쿠폰 자료철" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=0;right=0;fillColor=none;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="5062.92" y="6950" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-10" value="" style="endArrow=classic;html=1;rounded=0;fontSize=24;fontStyle=0" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="5124.42" y="7040" as="sourcePoint" />
+            <mxPoint x="4864.42" y="7200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-11" value="수정된 보유 쿠폰 현황" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="4969.42" y="7120" width="175" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-62" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;fontSize=24;" edge="1" parent="1" source="zlFJ-dr5YlLQg7HJchkp-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4670" y="7244.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-14" value="고객" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="4351.42" y="7200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-57" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=24;" edge="1" parent="1" source="zlFJ-dr5YlLQg7HJchkp-19" target="zlFJ-dr5YlLQg7HJchkp-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-19" value="쿠폰 사용" style="ellipse;whiteSpace=wrap;html=1;fontSize=24;aspect=fixed;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="4666.92" y="7410" width="180" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-31" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;최신화된 &lt;br&gt;쿠폰현황 데이터&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="4710" y="7050" width="290" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-32" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;최신화된 &lt;br&gt;쿠폰현황 데이터&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="4760" y="7310" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-42" value="보유쿠폰 현황" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="4490" y="7180" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zlFJ-dr5YlLQg7HJchkp-66" value="변경된 쿠폰현황" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="4471.42" y="7260" width="216.58" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -3977,7 +4054,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="1fxIYUgFQaP8HwEp9cDe" name="구연">
-    <mxGraphModel dx="-2365" dy="-2039" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel grid="1" page="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="2336" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
