@@ -235,6 +235,12 @@ public class LoginController /* implements Runnable */{
 		}
 	}
 	
+	
+	@RequestMapping("/errorlogin")
+	public String errorlogin() {
+		return "join/errorlogin";
+	}
+	
 //	@PostMapping("/view/login.do")
 //	public String login_do(String id, String pw, HttpServletRequest req) throws SQLException {
 //		HttpSession session = req.getSession();
