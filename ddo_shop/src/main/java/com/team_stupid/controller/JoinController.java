@@ -29,44 +29,6 @@ public class JoinController {
 	public String join() {
 		return "join/join";
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/join/join.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
-	public String join_do(@RequestBody Map<String, String> map,
-							HttpServletRequest req) throws SQLException, IOException {
-		HttpSession ses = req.getSession();
-		String userid = map.get("id");
-		String password = map.get("pw");
-		String pw_check = map.get("pw_check");
-		String email = map.get("email");
-		System.out.println("id : " + userid);
-		System.out.println("pw : " + password);
-		System.out.println("pw_check : " + pw_check);
-		System.out.println("email : " + email);
-		
-		return "";
-		
-//		if (!idChecked.equals(userid) || !idDuplication) {
-//			return "id";
-//		}
-//		if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")) {
-//			return "pw";
-//		} 
-//		if (!password.equals(pw_check)) {
-//			return "pw_check";
-//		} 
-//
-//		if (!map.get("email").matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
-//			return "email";
-//		}
-//		return "success";
-//		
-//		if (customerMapper.register( userid, username, password, email, nickname, address, phone, '1') == 1) {
-//		return "success";	
-//	} else {
-//		return "register error";
-//	}
-	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/join/IdChecking.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
@@ -95,11 +57,21 @@ public class JoinController {
 	@ResponseBody
 	@RequestMapping(value = "/join/EmailChecking.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
 	public String emailChecking(String email) {
-		if (email.matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-z]([-_.]?[0-9a-z])*.[a-z]{2,3}$")) {
+		if (email.matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
 			return "사용 가능한 이메일입니다!";
 		} else {
 			return "이메일 형식을 갖춰주세요.";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/join/emailDuplicateCheck.do", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
+	public String emailDuplicatedChecking(String email) {
+		int emailCount = accountMapper.getEmailCount(email);
+		if (emailCount == 0) {
+			return "success";
+		}
+		return "duplication";
 	}
 	
 	@ResponseBody
