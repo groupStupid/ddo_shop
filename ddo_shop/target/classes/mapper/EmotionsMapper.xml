@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+ "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team_stupid.mapper.EmotionsMapper">
+	<select id="getListMyEmotions" resultType="EmotionsVO">
+		SELECT * FROM EMOTIONS WHERE EMO_COMM_EVENT_NUM = #{eventNum} AND EMO_USERID = #{userid} ORDER BY EMO_COMMNUM
+	</select>
+	
+	<insert id="addEmotion">
+		INSERT INTO EMOTIONS
+		VALUES (#{eventNum}, #{commNum}, (SELECT NVL(MAX(EMO_NUM), 0)+1 FROM EMOTIONS e), #{userid})
+	</insert>
+	
+	<delete id="removeEmotion">
+		DELETE FROM EMOTIONS
+		WHERE EMO_COMM_EVENT_NUM = #{eventNum} AND EMO_COMMNUM = #{commNum} AND EMO_USERID = #{userid}
+	</delete>
+</mapper>
