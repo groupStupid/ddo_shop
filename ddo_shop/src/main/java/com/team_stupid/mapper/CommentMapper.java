@@ -25,7 +25,11 @@ public interface CommentMapper {
 			@Param("commIsClickedEmo") char commIsClickedEmo
 	);
 	int updateComment(@Param("newComment") String newComment, @Param("commNum") int commNum);
+	int updateDeletedComment(@Param("newComment") String newComment, @Param("commNum") int commNum);
 	void deleteComment(@Param("commNum")int commNum);
-	void deleteCommentByGN(@Param("commGroupNum")int commGroupNum);
 	int getMaxOrderInGroup(@Param("commGroupNum")int commGroupNum);
+	int checkDeletedComment(@Param("commGroupNum")int commGroupNum);
+	
+	void plusCommEmotion(@Param("commNum") int commNum);
+	void minusCommEmotion(@Param("commNum") int commNum);
 }
