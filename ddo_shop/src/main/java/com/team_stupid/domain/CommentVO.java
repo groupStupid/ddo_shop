@@ -10,6 +10,7 @@ public class CommentVO {
 	private int COMM_ORDER;
 	private int COMM_GROUPNUM;
 	private int COMM_EMOTIONS;
+	private char COMM_ISCLICKED_EMO;
 	
 	
 	public int getCommEventNum() {
@@ -59,6 +60,12 @@ public class CommentVO {
 	}
 	public void setCOMM_EMOTIONS(int cOMM_EMOTIONS) {
 		COMM_EMOTIONS = cOMM_EMOTIONS;
+	}
+	public char getCommIsClickedEmo() {
+		return COMM_ISCLICKED_EMO;
+	}
+	public void setCommIsClickedEmo(char cOMM_ISCLICKED_EMO) {
+		COMM_ISCLICKED_EMO = cOMM_ISCLICKED_EMO;
 	}
 	
 	

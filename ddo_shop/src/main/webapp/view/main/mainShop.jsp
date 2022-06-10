@@ -29,24 +29,24 @@
 
 <body class="text-center" style="background-color: #deeaf0;">
 	<nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 80%;">
-		<div class="container-fluid"><span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;">또샵</span>
+		<div class="container-fluid">
+			<span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;" onclick="location.href='/mainRestaurant'">
+				또샵
+			</span>
 			<div class="col text-center padMar">
-				<div class="input-group text-center">
-					<input class="form-control autocomplete" type="text" id="search_w-1" placeholder="무엇을 검색해볼까요 ?" style="font-family: 'test3';font-size: 10px;">
-					<button class="btn btn-warning" id="s_b-1" type="button" style="background: rgb(162,207,230);">
-						<i class="fa fa-search"></i>
-					</button>
-				</div>
+				<form action="/mainSearch">
+					<div class="input-group text-center">
+						<input class="form-control autocomplete" type="text" name="searchKeyword" placeholder="무엇을 검색해볼까요 ?" 
+						style="font-family: 'test3';font-size: 10px;">
+						<!-- button style 바뀌었으면 type="button"  -->
+						<button class="btn btn-warning" id="s_b-1" type="submit" 
+						 style="background: rgb(162,207,230);">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				</form>
 			</div>
-			<c:choose>
-				<c:when test="${empty userID}">
-					<c:set var="loginBtnUrl" value="location.href='/login'" />
-				</c:when>
-				<c:otherwise>
-					<c:set var="loginBtnUrl" value="location.href='/coupon'" />
-				</c:otherwise>
-			</c:choose>
-			<button class="navbar-toggler text-center d-flex" data-bs-toggle="collapse" style="height: 38px;" onclick="${loginBtnUrl}">
+			<button class="navbar-toggler text-center d-flex loginAndMypageBtn" data-bs-toggle="collapse" style="height: 38px;">
 				<span class="visually-hidden">Toggle navigation</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person" 
 				style="font-family: 'Source Sans Pro', sans-serif;height: 25px;">
@@ -58,36 +58,59 @@
 	</nav>
 	
 	<ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
-		<li class="nav-item d-flex justify-content-center align-items-center"><span style="font-weight: bold;">음식점</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center" style="font-weight: bold;">헬스장</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span style="font-weight: bold;">음식점</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" ><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainEvent'"><span class="text-center" style="font-weight: bold;">이벤트</span></li>
 	</ul>
 	<div class="container m-auto" style="max-width: 80%;min-width: 300px;width: 300px;margin-bottom: 10px;">
-		<c:if test="${!empty eventList}">
-			<c:forEach var="event" items="${eventList}">
-				<div class="row" onclick="onClickEventList(${event.eventNum})" style="width: 300px;max-width: 90%;min-width: 300px;
-				margin-bottom: 20px;margin-top: 10px;">
+		<c:if test="${!empty shopList}">
+			<c:forEach var="shop" items="${shopList}">
+				<div class="row" onclick="onClickShopList(${shop.shopSerialNum})" style="width: 300px;max-width: 90%;
+				min-width: 300px;margin-bottom: 10px;margin-top: 10px;">
 					<div class="col-md-6" style="padding-right: 0px;padding-left: 0px;width: 150px;">
-						<img style="height: 180px;width: 150px;" src="${event.eventImageurl}">
+						<img style="height: 180px;width: 150px;" src="${shop.shopImage}">
 					</div>
 					<div class="col-md-6" style="height: 180px;width: 150px;">
+						<p style="font-weight: bold;font-size: 20px;margin-bottom: 10px;border-bottom-style: solid;">${shop.shopName}</p>
 						<ul>
-							<li style="font-size: 20px;font-weight: bold;">응애 치킨</li>
-							<li>${event.eventTitle}</li>
-							<li>${event.eventGoods}</li>
-							<li>${event.eventOngoing}</li>
+							<li>${shop.shopLocation}</li>
+							<li>${shop.shopOperTime}</li>
+							<li>${shop.shopCall}</li>
 						</ul>
 					</div>
 				</div>
 			</c:forEach>
 		</c:if>
 	</div>
-	<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../assets/js/MENU.js"></script>
-	<script src="../assets/js/Subscribe-window.js"></script>
+	<script src="../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../resource/assets/js/MENU.js"></script>
+	<script src="../../resource/assets/js/Subscribe-window.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
-		function onClickEventList(eventNum){
-			location.href = '/comment?event='+eventNum;
+	
+		$(".loginAndMypageBtn").on("click", function(){
+			$.ajax({
+				url: "/loginInterceptor",
+				type: "POST",
+				data: {
+					"uri" : $(document).attr("URL")
+				},
+				success: function(val){
+					if (${empty userID}){
+						location.href = '/login';
+					} else {
+						location.href = '/coupon';
+					}
+				},
+				error: function(){
+					alert("로그인 인터셉터 오류");
+				}
+			})
+		});
+
+
+		function onClickShopList(shopSerialNum){
+			location.href = '/main/shop/detail?serial='+shopSerialNum;
 		}
 	</script>
 </body>

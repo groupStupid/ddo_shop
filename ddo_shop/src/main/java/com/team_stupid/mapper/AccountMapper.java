@@ -32,6 +32,8 @@ public interface AccountMapper {
 	
 	int getEmailCount(@Param("email") String email);
 	
+	void changePw(@Param("userid") String userid, @Param("pw") String pw);
+	
 //	String search_image(@Param("recycle_title") String recycle_title);
 	
 //	void deleteboard(@Param("event_num") int event_num);

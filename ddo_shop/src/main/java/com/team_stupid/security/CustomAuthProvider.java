@@ -31,15 +31,6 @@ public class CustomAuthProvider implements AuthenticationProvider {
 		System.out.println("CustomAuthProvider : getCredentials : " + pwd);
 		CustomUserDetails user = (CustomUserDetails) customUserDetailsService.loadUserByUsername(id);
 		System.out.println("CustomAuthProvider : userPW : " + user.getPassword());
-		// pwd encoding 안하는 버전
-		// demo용으로 나중엔 이거 지우고 아래 주석된 부분 살리기
-//		if (!pwd.equals(user.getPassword())) {
-//			throw new BadCredentialsException("비밀번호가 맞지 않습니다.");
-//		} else {
-//			System.out.println("password match success");
-//		}
-		// pwd encoding 수행한 버전
-		// 나중에 이거 살리기
 		if (!passwordEncoder.matches(pwd, user.getPassword())) {
 			System.out.println("CustomAuthProvider : password match fail");
 			throw new BadCredentialsException("비밀번호가 맞지 않습니다.");

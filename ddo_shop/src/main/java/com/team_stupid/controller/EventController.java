@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team_stupid.domain.CommentVO;
+import com.team_stupid.domain.EmotionsVO;
 import com.team_stupid.mapper.CommentMapper;
+import com.team_stupid.mapper.EmotionsMapper;
 
 
 @Controller
@@ -22,6 +24,16 @@ public class EventController {
 	
 	@Autowired
 	private CommentMapper commentMapper;
+	@Autowired
+	private EmotionsMapper emotionsMapper;
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/loginInterceptor", produces = "application/text; charset=UTF-8", method = RequestMethod.POST)
+	public void loginInterceptor(String uri, HttpServletRequest req) {
+		req.getSession().setAttribute("destination", uri);
+	}
+	
 	
 	@RequestMapping("/comment**")
 	public String EventDetail(HttpServletRequest req) throws Exception{
@@ -29,11 +41,23 @@ public class EventController {
 		int eventNum = Integer.parseInt(req.getParameter("event"));
 		
 		List<CommentVO> commentList = commentMapper.getCommentList(eventNum);
-		ses.setAttribute("commentList", commentList);
 		
+		String userid = (String) ses.getAttribute("userID");
+		if (userid != null) {
+			List<EmotionsVO> myEmotionsList = emotionsMapper.getListMyEmotions(eventNum, userid);
+			for(EmotionsVO emotion : myEmotionsList) {
+				for(CommentVO comment : commentList) {
+					if(comment.getCommNum() == emotion.getEmoCommNum()) {
+						comment.setCommIsClickedEmo('1');
+						break;
+					}
+				}
+			}
+			ses.setAttribute("myEmotionsList", myEmotionsList);
+		}
+		ses.setAttribute("commentList", commentList);
 		return "comment/comment";
 	}
-
 	
 	
 	@ResponseBody
@@ -84,18 +108,16 @@ public class EventController {
 			int commNum = Integer.parseInt(paramArr[0]);
 			int commGroupNum = Integer.parseInt(paramArr[1]);
 			int commClass = commentMapper.getCommClass(commNum);
-			int flag = commentMapper.getMaxOrderInGroup(commGroupNum);
-			System.out.println(commClass + " : " + flag);
 			if (commClass == 2) {
 				commentMapper.deleteComment(commNum);
-				if (commentMapper.getMaxOrderInGroup(commGroupNum) == 1)
-					commentMapper.deleteCommentByGN(commGroupNum);
+				if (commentMapper.getMaxOrderInGroup(commGroupNum) == 1 && commentMapper.checkDeletedComment(commGroupNum) == -1)
+					commentMapper.deleteComment(commGroupNum);
 				return "success";
 			} else if (commentMapper.getMaxOrderInGroup(commGroupNum) == 1) {
 				commentMapper.deleteComment(commNum);
 				return "success";
 			} else {
-				commentMapper.updateComment("!!!삭제된 댓글입니다.!!!", commNum);
+				commentMapper.updateDeletedComment("!!!삭제된 댓글입니다.!!!", commNum);
 				return "success";
 			}
 		} catch(Exception e) {
@@ -104,4 +126,36 @@ public class EventController {
 			return "fail";
 		}
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/comment/addEmotion.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
+	public String addEmotion(@RequestBody Map<String, String> map ) {
+		int eventNum = Integer.parseInt(map.get("commEventNum"));
+		int commNum = Integer.parseInt(map.get("commentNum"));
+		String userid = map.get("userid");
+		if (emotionsMapper.addEmotion(eventNum, commNum, userid) == 1) {
+			commentMapper.plusCommEmotion(commNum);
+			return "success";
+		} 
+		return "fail";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/comment/removeEmotion.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
+	public String removeEmotion(@RequestBody Map<String, String> map ) {
+		int eventNum = Integer.parseInt(map.get("commEventNum"));
+		int commNum = Integer.parseInt(map.get("commentNum"));
+		String userid = map.get("userid");
+		try {
+			emotionsMapper.removeEmotion(eventNum, commNum, userid);
+			commentMapper.minusCommEmotion(commNum);
+			return "success";
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
 }

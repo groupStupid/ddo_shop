@@ -22,8 +22,8 @@ public class CustomFailureHandler implements AuthenticationFailureHandler {
 		System.out.println("Exception message : " + exception.getMessage());
 		response.setContentType("text/html; charset=euc-kr");
 		PrintWriter out = response.getWriter();
-		out.println("<script>alert('로그인 정보가 존재하지 않습니다.'); </script>");
+		out.println("<script>alert('로그인 정보가 존재하지 않습니다.'); location.href='/login';</script>");
 		out.flush();
-		response.sendRedirect("/login");
+		return;
 	}
 }

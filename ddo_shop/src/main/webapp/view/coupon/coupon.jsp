@@ -101,6 +101,8 @@
 	<script src="../../resource/assets/js/Subscribe-window.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
+		
+	
 		function onClickUseGift(id){
 			var img = document.getElementById("img"+id).src;
 			$.ajax({

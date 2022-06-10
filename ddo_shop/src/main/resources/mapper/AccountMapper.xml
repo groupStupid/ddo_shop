@@ -55,6 +55,12 @@
 		SELECT COUNT(*) FROM ACCOUNT WHERE ACC_EMAIL = #{email} 
 	</select>
 	
+	<update id="changePw">
+		UPDATE ACCOUNT
+		SET ACC_USERPW = #{pw}
+		WHERE ACC_USERID = #{userid}
+	</update>
+	
 <!-- 	 <select id="list" resultType="BoardVO">
 		SELECT EVENT_NUM,
 		 EVENT_TITLE,

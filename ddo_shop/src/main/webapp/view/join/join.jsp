@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -211,7 +212,6 @@
 		}
 		
 		$("#join").on("click", function() {
-			#("#pw_check").change();
 			if (document.getElementById("idCheckResult").innerText != "사용 가능한 아이디입니다!") {
 				document.getElementById("idCheckResult").innerText = "아이디를 확인해주세요.";
 				document.getElementById("idCheckResult").style.color = 'red';
@@ -306,7 +306,7 @@
 						else if (val === "register error") alert("회원가입 중 문제가 발생하였습니다.");
 						else {
 							alert("가입을 축하드립니다!");
-							location.href = "/main";
+							location.href = "/mainRestaurant";
 						}
 						
 					},
