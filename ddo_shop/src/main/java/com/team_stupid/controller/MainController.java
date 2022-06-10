@@ -10,16 +10,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team_stupid.domain.BoardVO;
+import com.team_stupid.domain.ShopInfoVO;
 import com.team_stupid.mapper.BoardMapper;
+import com.team_stupid.mapper.ShopMapper;
 
 @Controller
 public class MainController {
 	
 	@Autowired
 	private BoardMapper boardMapper;
+	@Autowired
+	private ShopMapper shopMapper;
 	
-	@RequestMapping("/main")
+	@RequestMapping("/mainRestaurant")
 	public String main(HttpServletRequest req) {
+		
+		return "main/mainRestaurant";
+	}
+	
+	
+	@RequestMapping("/mainEvent")
+	public String mainEvent(HttpServletRequest req) {
 		HttpSession ses = req.getSession();
 		
 		List<BoardVO> eventList = boardMapper.getList();
@@ -40,6 +51,17 @@ public class MainController {
 //			System.out.println("\n-------------");
 //		}
 //		ses.setAttribute("shopInfoList", shopInfoList);
-		return "main/main";
+		return "main/mainEvent";
 	}
+	
+	
+	@RequestMapping("/mainSearch")
+	public String mainSearch(HttpServletRequest req) {
+		HttpSession ses = req.getSession();
+		String keyword = req.getParameter("searchKeyword");
+		List<ShopInfoVO> searchShopList = shopMapper.getShopInfoBySearchKeyword(keyword);
+		ses.setAttribute("searchShopList", searchShopList);
+		return "main/mainSearch";
+	}
+	
 }

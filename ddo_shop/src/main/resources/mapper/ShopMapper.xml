@@ -3,7 +3,15 @@
  "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team_stupid.mapper.ShopMapper">
-	 <select id="getShopInfoList" resultType="ShopInfoVO">
-		SELECT * FROM SHOP_INFO order by SHOP_SERIALNUM DESC
+	 <select id="getShopListByCategory" resultType="ShopInfoVO">
+		SELECT * FROM SHOP_INFO WHERE SHOP_CATEGORY = #{category} ORDER BY SHOP_SERIALNUM
+	</select>
+	
+	<select id="getShopInfoDetail" resultType="ShopInfoVO">
+		SELECT * FROM SHOP_INFO WHERE SHOP_SERIALNUM = #{serialNum}
+	</select>
+	
+	<select id="getShopInfoBySearchKeyword" resultType="ShopInfoVO">
+		SELECT * FROM SHOP_INFO WHERE SHOP_NAME LIKE CONCAT('%', #{keyword}, '%')
 	</select>
 </mapper>
