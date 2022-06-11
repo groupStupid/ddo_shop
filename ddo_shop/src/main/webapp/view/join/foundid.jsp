@@ -34,7 +34,12 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4 m-auto" style="max-width: 90%;">
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">아이디 찾기</p>
+							<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+								<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+								<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+								font-weight: bold;margin-bottom: 0px;margin-top: 0px;">아이디 찾기</p>
+								<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
+							</div>
 							<div class="mb-3">
 								<input class="form-control" type="email" id="foundid_email" placeholder="이메일" style="margin-top: 15px;">
 							</div>
