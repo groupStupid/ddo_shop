@@ -34,10 +34,16 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4 m-auto" style="max-width: 90%;">
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">비밀번호 재설정</p>
+							<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+								<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+								<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+								font-weight: bold;margin-bottom: 0px;margin-top: 0px;">비밀번호 재설정</p>
+								<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
+							</div>
 							<input class="form-control" type="password" id="new_pw" placeholder="새 비밀번호">
-							<p>영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p>
-							<input class="form-control" type="password" id="new_pw_check" placeholder="비밀번호 확인" style="margin-top: 15px;">
+							<p id="pwRegexResult">영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p>
+							<input class="form-control" type="password" id="new_pw_check" placeholder="새 비밀번호 확인" style="margin-top: 15px;">
+							<p id="pwCheckResult"></p>
 							<div style="margin-top: 5px;">
 								<button class="btn btn-primary" type="button" id="edit_pw_submit" style="background: rgb(162,207,230);color: var(--bs-body-color);
 								margin: 0px;font-size: 15px;border-style: none;font-weight: bold;">확인</button>
@@ -78,6 +84,45 @@
 					alert("changepw ajax fail");
 				}
 			})
+		});
+		
+		$("#new_pw").keyup( function() {
+			var data = {
+					pw : $("#new_pw").val()
+			}
+			$.ajax({
+				url: "/join/PwChecking.do",
+				type: "POST",
+				data: data,
+				success: function(val) {
+					document.getElementById("pwRegexResult").innerText = val;
+					if (val === "사용 가능한 비밀번호입니다!")
+						document.getElementById("pwRegexResult").style.color = 'green';
+						
+				},
+				error: function(){
+				}
+			});
+		});
+		
+		$("#new_pw").change( function() {
+			if ($("#pwRegexResult").text() !== "사용 가능한 비밀번호입니다!"){
+				document.getElementById("pwRegexResult").style.color = 'red';
+			} else {
+				document.getElementById("pwRegexResult").style.color = 'green';
+			}
+		});
+		
+		$("#new_pw_check").keyup( function() {
+			var pw = $("#new_pw").val();
+			var pw_check = $("#new_pw_check").val();
+			if (pw === pw_check){
+				document.getElementById("pwCheckResult").innerText = '입력하신 두 비밀번호가 일치합니다!';
+				document.getElementById("pwCheckResult").style.color = 'green';
+			} else {
+				document.getElementById("pwCheckResult").innerText = '입력하신 두 비밀번호가 일치하지 않습니다.';
+				document.getElementById("pwCheckResult").style.color = 'red';
+			}
 		});
 	</script>
 </body>

@@ -28,7 +28,12 @@
 </head>
 
 <body>
-	<p style="font-size: 40px;font-weight: bold;">상품권 발행</p>
+	<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+		<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+		<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+		font-weight: bold;margin-bottom: 0px;margin-top: 0px;">상품권 발행</p>
+		<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
+	</div>
 	<div>
 		<div class="d-flex justify-content-center"><input type="text" id="gift" style="width: 70%;" placeholder="상품권 img" /></div>
 		<div class="d-flex justify-content-center"><input type="text" id="userid" style="width: 70%;" placeholder="유저아이디" /></div>
