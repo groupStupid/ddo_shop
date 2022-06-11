@@ -61,6 +61,11 @@
 		WHERE ACC_USERID = #{userid}
 	</update>
 	
+	<select id="getUserIds" resultType="java.lang.String">
+		SELECT ACC_USERID
+		FROM ACCOUNT;
+	</select>
+	
 <!-- 	 <select id="list" resultType="BoardVO">
 		SELECT EVENT_NUM,
 		 EVENT_TITLE,

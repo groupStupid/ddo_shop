@@ -75,7 +75,7 @@
 				success : function(result) {
 					if (result === "success") {
 						alert("비밀번호가 변경되었습니다.");
-						location.href = "/main";
+						location.href = "/login";
 					}
 					else
 						alert(result);

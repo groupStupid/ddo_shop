@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team_stupid.blockchain2.Main;
+import com.team_stupid.blockchain2.Wallet;
 import com.team_stupid.mapper.AccountMapper;
 
 @Controller
@@ -116,6 +118,10 @@ public class JoinController {
 			ses.removeAttribute("idDuplication");
 			ses.removeAttribute("nicknameChecked");
 			ses.removeAttribute("nicknameDuplication");
+			
+			Wallet userWallet = new Wallet();
+			Main.userWallets.put(id, userWallet);
+			
 			return "success";	
 		} else {
 			return "register error";

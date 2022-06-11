@@ -28,28 +28,35 @@
 </head>
 
 <body>
-	<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
-		<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
-		<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
-		font-weight: bold;margin-bottom: 0px;margin-top: 0px;">상품권 발행</p>
-		<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
-	</div>
-	<div>
-		<div class="d-flex justify-content-center"><input type="text" id="gift" style="width: 70%;" placeholder="상품권 img" /></div>
-		<div class="d-flex justify-content-center"><input type="text" id="userid" style="width: 70%;" placeholder="유저아이디" /></div>
-		<button class="btn btn-primary" id="publish" type="button" style="margin: 10px;">발행</button>
+	<div style="display: flex; direction: column; justify-content: center;">
+		<div style="max-width: 400px; width: 100%;">
+			<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+				<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+				<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+				font-weight: bold;margin-bottom: 0px;margin-top: 0px;">상품권 발행</p>
+				<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
+			</div>
+			<input type="text" id="shopSerialNum" style="width: 80%;" placeholder="가게 고유 번호" /><br/>
+			<input type="text" id="gift" style="width: 80%;" placeholder="상품권 img" /><br/>
+			<input type="text" id="userid" style="width: 80%;" placeholder="유저아이디" /><br/>
+			<button class="btn btn-primary" id="gift_create" type="button" style="background: rgb(162,207,230); color: rgb(0,0,0);
+			 border-style: none; margin: 10px;">발행</button>
+		</div>
 	</div>
 	<script src="../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../../resource/assets/js/MENU.js"></script>
 	<script src="../../resource/assets/js/Subscribe-window.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
-	$("#publish").on(
+	$("#gift_create").on(
 			"click",
 			function() {
+				var shopSerialNum = $("#shopSerialNum").val();
+				console.log(shopSerialNum);
 				var gift = $("#gift").val();
 				var userid = $("#userid").val();
 				var data = {
+					"shopSerialNum" : shopSerialNum,
 					"gift" : gift,
 					"userid" : userid
 				}
