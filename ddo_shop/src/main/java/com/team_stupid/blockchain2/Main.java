@@ -10,7 +10,7 @@ import java.util.Map;
 public class Main {
 	
 	public static ArrayList<Block> blockChain = new ArrayList<>();//[1,2,3,...]
-	public static int difficulty =2;
+	public static int difficulty = 5;
 	public static HashMap<String, TransactionOutput> UTXOs = new HashMap<>();
 	public static Map<String, Wallet> userWallets = new HashMap<String, Wallet>();
 	
@@ -43,7 +43,7 @@ public class Main {
 		
 		//5.다음 블록(Block1) 생성
 		Block block1 = new Block(genesisBlock.hash);
-		block1.addTransaction(walletA.sendGift(walletB.publicKey, "ykm.png"));
+		block1.addTransaction(walletA.sendGift(walletB.publicKey, "ykm.png", ""));
 		addBlock(block1);
 //		System.out.println("1. walletA.getBalance(): "+walletA.getBalance());
 //		System.out.println("2. block1 add 전 "+walletA.getBalance());

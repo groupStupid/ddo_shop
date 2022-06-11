@@ -1,6 +1,7 @@
 package com.team_stupid.controller;
 
 import java.security.Security;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,19 +26,27 @@ import com.team_stupid.blockchain2.Main;
 import com.team_stupid.blockchain2.Transaction;
 import com.team_stupid.blockchain2.TransactionOutput;
 import com.team_stupid.blockchain2.Wallet;
+import com.team_stupid.mapper.AccountMapper;
 
 @Controller
 public class CouponController {
+	
+	@Autowired
+	private AccountMapper accountMapper;
 	
 	@PostConstruct
 	public void init() {
 		System.out.println("시스템 호출");
 		System.out.println(new Date());
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-		Wallet myWallet = new Wallet();
 		Wallet coinbase = new Wallet();
 		Main.userWallets.put("admin", coinbase);
-		Main.userWallets.put("idid", myWallet);
+		List<String> useridList = accountMapper.getUserIds();
+		for (String userid : useridList) {
+			Wallet userWallet = new Wallet();
+			Main.userWallets.put(userid, userWallet);
+		}
+		
 		
 		Transaction genesisTransaction = new Transaction(coinbase.publicKey, coinbase.publicKey, "genesisTransaction", null);
 		genesisTransaction.generateSignature(coinbase.privateKey);
@@ -60,24 +70,24 @@ public class CouponController {
 	@RequestMapping("/coupon")
 	public String couponMain(HttpServletRequest req) {
 		HttpSession ses = req.getSession();
-		ses.setAttribute("userid", "idid");
 		//2. 제너시스 트랜잭션 생성
-		if (ses.getAttribute("userGifts") == null) {
-			Wallet coinbase = Main.userWallets.get("admin");
-			Wallet myWallet = Main.userWallets.get(ses.getAttribute("userid"));
-			
+		Wallet userWallet = Main.userWallets.get(ses.getAttribute("userID"));
+		
 //			Block myblock = new Block(Main.blockChain.get(Main.blockChain.size()-1).hash);
 //			myblock.addTransaction(coinbase.sendGift(myWallet.publicKey, "https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/ykm.png"));
 //			Main.addBlock(myblock);
-			
-			List<String> gifts = myWallet.getGifts();
-			System.out.println("---------------myWallet gifts----------------------");
-			for(String g : gifts) {
-				System.out.println(g);
-			}
-			System.out.println("---------------myWallet gifts----------------------");
-			ses.setAttribute("userGifts", gifts);
+		
+		List<String> gifts = new ArrayList<>();
+		System.out.println("---------------userWallet gifts----------------------");
+		for(String gift : userWallet.getGifts()) {
+			String giftImage = gift.split("\\^")[0];
+			String shopSerialNum = gift.split("\\^")[1];
+			System.out.println(giftImage + " / " + shopSerialNum);
+			gifts.add(giftImage);
 		}
+		System.out.println("---------------userWallet gifts----------------------");
+		ses.setAttribute("userGifts", gifts);
+		
 		System.out.println("------------Main.UTXOs------------------");
 		for(Map.Entry<String, TransactionOutput> s : Main.UTXOs.entrySet()) {
 			System.out.println("map id : " + s.getKey().substring(0, 10) + "\trecipient : " + s.getValue().reciepient + "\t value : " + s.getValue().value);
@@ -128,46 +138,66 @@ public class CouponController {
 	@ResponseBody
 	@RequestMapping(value = "/coupon_create.do", produces ="application/json; charset=UTF-8", method = RequestMethod.POST)
 	public String PublishGift(@RequestBody Map<String,String> map, HttpServletResponse response, HttpServletRequest req) throws Exception {
-		HttpSession ses = req.getSession();	
+		HttpSession ses = req.getSession();
+		String shopSerialNum = map.get("shopSerialNum");
 		String gift = map.get("gift");
 		String userid = map.get("userid");
 		Wallet coinbase = Main.userWallets.get("admin");
-		Wallet myWallet = Main.userWallets.get(ses.getAttribute("userid"));
+		Wallet userWallet = Main.userWallets.get(userid);
 		
 		Block myblock = new Block(Main.blockChain.get(Main.blockChain.size()-1).hash);
-		myblock.addTransaction(coinbase.sendGift(myWallet.publicKey, gift));
+		myblock.addTransaction(coinbase.sendGift(userWallet.publicKey, gift, shopSerialNum));
 		Main.addBlock(myblock);
 		
-		List<String> gifts = myWallet.getGifts();
-		System.out.println("--------------------------------");
-		for(String g : gifts) {
-			System.out.println(g);
+		List<String> gifts = new ArrayList<>();
+		System.out.println("---------------userWallet gifts----------------------");
+		for(String g : userWallet.getGifts()) {
+			String giftImage = g.split("\\^")[0];
+			String _shopSerialNum = g.split("\\^")[1];
+			System.out.println(giftImage + " / " + _shopSerialNum);
+			gifts.add(giftImage);
 		}
-		System.out.println("--------------------------------");
+		System.out.println("---------------userWallet gifts----------------------");
 		ses.setAttribute("userGifts", gifts);
-		return gift + "\n" + userid;
+		return "상품권 발행 완료\n"+"상품권 : "+gift + "\n유저 아이디 : " + userid + "\n상품권 블록 hash 값 : " + myblock.hash;
 	}
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/coupon_use.do", produces ="application/text; charset=UTF-8", method = RequestMethod.POST)
-	public String UseGift(@RequestBody String img, HttpServletResponse response, HttpServletRequest req) throws Exception {
+	@RequestMapping(value = "/coupon_use.do", produces ="application/json; charset=UTF-8", method = RequestMethod.POST)
+	public String UseGift(@RequestBody Map<String, String> map, HttpServletResponse response, HttpServletRequest req) throws Exception {
 		HttpSession ses = req.getSession();
-		String userid = (String) ses.getAttribute("userid");
+		String userid = (String) ses.getAttribute("userID");
 		Wallet coinbase = Main.userWallets.get("admin");
-		Wallet myWallet = Main.userWallets.get(userid);
+		Wallet userWallet = Main.userWallets.get(userid);
 		
-		Block myblock = new Block(Main.blockChain.get(Main.blockChain.size()-1).hash);
-		myblock.addTransaction(myWallet.sendUserGift(coinbase.publicKey, img));
-		Main.addBlock(myblock);
+		String img = map.get("img");
+		String shopSerialNum = map.get("shopSerialNum");
 		
-		List<String> gifts = myWallet.getGifts();
-		System.out.println("--------------------------------");
-		for(String g : gifts) {
-			System.out.println(g);
+		for (String item : userWallet.getGifts()) {
+			String gift = item.split("\\^")[0];
+			String shopNum = item.split("\\^")[1];
+			if (gift.equals(img)) {
+				if (shopNum.equals(shopSerialNum)) {
+					Block myblock = new Block(Main.blockChain.get(Main.blockChain.size()-1).hash);
+					myblock.addTransaction(userWallet.sendUserGift(coinbase.publicKey, img));
+					Main.addBlock(myblock);
+					
+					List<String> gifts = new ArrayList<>();
+					System.out.println("---------------userWallet gifts----------------------");
+					for(String g : userWallet.getGifts()) {
+						String giftImage = g.split("\\^")[0];
+						String _shopSerialNum = g.split("\\^")[1];
+						System.out.println(giftImage + " / " + _shopSerialNum);
+						gifts.add(giftImage);
+					}
+					System.out.println("---------------userWallet gifts----------------------");
+					ses.setAttribute("userGifts", gifts);
+					return "쿠폰이 정상적으로 사용되었습니다!";
+				}
+			}
 		}
-		System.out.println("--------------------------------");
-		ses.setAttribute("userGifts", gifts);
-		return "success";
+		return "가게 번호가 유효하지 않습니다.";
+		
 	}
 }

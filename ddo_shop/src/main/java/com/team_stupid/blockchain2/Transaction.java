@@ -10,6 +10,7 @@ public class Transaction {
 	public PublicKey sender;
 	public PublicKey reciepient;
 	public String value;
+	public String shopSerialNum;
 	public byte[] signature;
 	
 	public ArrayList<TransactionInput> inputs = new ArrayList<>();
@@ -21,6 +22,15 @@ public class Transaction {
 		this.sender = from;
 		this.reciepient = to;
 		this.value = value;
+		this.inputs = inputs;
+	}
+	
+	
+	public Transaction(PublicKey from, PublicKey to, String value, String shopSerialNum, ArrayList<TransactionInput> inputs) {
+		this.sender = from;
+		this.reciepient = to;
+		this.value = value;
+		this.shopSerialNum = shopSerialNum;
 		this.inputs = inputs;
 	}
 	
@@ -51,7 +61,7 @@ public class Transaction {
 		
 		transactionId = calculateHash();
 		
-		outputs.add(new TransactionOutput(this.reciepient, value, transactionId));
+		outputs.add(new TransactionOutput(this.reciepient, value, shopSerialNum, transactionId));
 		//5. output to Unspent list
 		for(TransactionOutput o : outputs) {
 			Main.UTXOs.put(o.id, o);

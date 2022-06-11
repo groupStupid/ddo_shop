@@ -19,32 +19,20 @@ public class Wallet {
 	public Wallet() {
 		generateKeyPair();
 	}
-	// 잔고 확인 기능
-//	public float getBalance() {
-//		float total = 0;
-//        for (Map.Entry<String, TransactionOutput> item: Main.UTXOs.entrySet()){
-//        	TransactionOutput UTXO = item.getValue();
-//            if(UTXO.isMine(publicKey)) { 
-//            	UTXO_Wallet.put(UTXO.id,UTXO); 
-//            	total += UTXO.value ; 
-//            }
-//        }  
-//		return total;
-//	}
 	
 	public List<String> getGifts(){
-		List<String> gifts = new ArrayList<String>(); // String : value
+		List<String> gifts = new ArrayList<String>(); // String : value, String : shopSerialNum
 		for (Map.Entry<String, TransactionOutput> item : Main.UTXOs.entrySet()) {
 			TransactionOutput UTXO = item.getValue();
 			if (UTXO.isMine(publicKey)){
 				UTXO_Wallet.put(UTXO.id, UTXO);
-				gifts.add(UTXO.value);
+				gifts.add(UTXO.value+"^"+UTXO.shopSerialNum);
 			}
 		}
 		return gifts;
 	}
 	// 송신기능
-	public Transaction sendGift(PublicKey _recipient,String value ) {
+	public Transaction sendGift(PublicKey _recipient, String value, String shopSerialNum) {
 		ArrayList<TransactionInput> inputs = new ArrayList<TransactionInput>();
 //		TransactionInput input;
 		
@@ -59,7 +47,7 @@ public class Wallet {
 //			if(total > value) break; // total이 value 보다 클 때 즉 다른 사람에게 보낼 value만큼 지갑에서 코인을 빼냄
 		}
 		
-		Transaction newTransaction = new Transaction(publicKey, _recipient , value, inputs);
+		Transaction newTransaction = new Transaction(publicKey, _recipient , value, shopSerialNum, inputs);
 		newTransaction.generateSignature(privateKey);
 		
 		for(TransactionInput input: inputs){

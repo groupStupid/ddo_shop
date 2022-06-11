@@ -7,12 +7,21 @@ public class TransactionOutput {
 	public String id;
 	public PublicKey reciepient; //받는사람
 	public String value; //금액
+	public String shopSerialNum;
 	public String parentTransactionId; 
 	
 	//생성자
 	public TransactionOutput(PublicKey reciepient, String value, String parentTransactionId) {
 		this.reciepient = reciepient;
 		this.value = value;
+		this.parentTransactionId = parentTransactionId;
+		this.id = BlockUtil.applySha256(BlockUtil.getStringFromKey(reciepient)+value+parentTransactionId);
+	}
+	
+	public TransactionOutput(PublicKey reciepient, String value, String shopSerialNum, String parentTransactionId) {
+		this.reciepient = reciepient;
+		this.value = value;
+		this.shopSerialNum = shopSerialNum;
 		this.parentTransactionId = parentTransactionId;
 		this.id = BlockUtil.applySha256(BlockUtil.getStringFromKey(reciepient)+value+parentTransactionId);
 	}

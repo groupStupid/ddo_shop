@@ -1,5 +1,6 @@
 package com.team_stupid.mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Param;
@@ -33,6 +34,10 @@ public interface AccountMapper {
 	int getEmailCount(@Param("email") String email);
 	
 	void changePw(@Param("userid") String userid, @Param("pw") String pw);
+	
+	List<String> getUserIds();
+	
+	
 	
 //	String search_image(@Param("recycle_title") String recycle_title);
 	
