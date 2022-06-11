@@ -1,15 +1,12 @@
 package com.team_stupid.controller;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.team_stupid.domain.AccountVO;
 import com.team_stupid.mapper.AccountMapper;
 import com.team_stupid.security.CustomUserDetails;
 import com.team_stupid.security.CustomUserDetailsService;
@@ -31,9 +27,9 @@ public class LoginController /* implements Runnable */{
 	@Autowired
 	private MailService mailService;
 	@Autowired
-	private AccountVO accountVO;
-	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/login")
 	public String login() {
@@ -64,12 +60,6 @@ public class LoginController /* implements Runnable */{
 //		accountMapper.selectUserPw("id1", "jgy2808@naver.com");
 //	}
 	
-	@RequestMapping("/login.fail")
-	public String login_fail(HttpServletResponse response) throws IOException {
-		System.out.println("LoginController : called login fail");
-		return "login/login_fail";
-	}
-	
 	@RequestMapping("/foundid")
 	public String foundid() {
 		System.out.println("LoginController : called foundid");
@@ -98,6 +88,29 @@ public class LoginController /* implements Runnable */{
 	public String edit() {
 		return "join/edit";
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/edit/changePw.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
+	public String changePw(@RequestBody Map<String, String> map, HttpServletRequest req) {
+		String currentPw = map.get("currentPw");
+		String newPw = map.get("newPw");
+		String newPwCheck = map.get("newPwCheck");
+		String userid = (String) req.getSession().getAttribute("userID");
+		CustomUserDetails user = (CustomUserDetails) customUserDetailsService.loadUserByUsername(userid);
+		
+		if (!passwordEncoder.matches(currentPw, user.getPassword())) {
+			return "현재 비밀번호가 올바르지 않습니다.";
+		}
+		if (!newPw.equals(newPwCheck)) {
+			return "비밀번호가 일치하지 않습니다.\n다시 확인해주세요";
+		}
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		newPw = bCryptPasswordEncoder.encode(newPw);
+		accountMapper.changePw(userid, newPw);
+		return "success";
+	}
+	
 	
 	@RequestMapping("/accessDenied")
 	public String accessDenied() {

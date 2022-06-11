@@ -30,25 +30,23 @@
 <body>
 	<nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 80%;">
 		<div class="container-fluid">
-			<span class="text-center d-flex" id="testtesttest" style="margin-right: 10px;font-size: 17.5px;font-weight: bold;">또샵</span>
+			<span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;" onclick="location.href='/mainRestaurant'">
+				또샵
+			</span>
 			<div class="col text-center padMar">
-				<div class="input-group text-center">
-					<input class="form-control autocomplete" type="text" id="search_w-1" 
-					placeholder="무엇을 검색해볼까요 ?" style="font-family: 'test3';font-size: 10px;">
-					<button class="btn btn-warning" id="s_b-1" type="button" style="background: rgb(162,207,230);">
-						<i class="fa fa-search"></i>
-					</button>
-				</div>
+				<form action="/mainSearch">
+					<div class="input-group text-center">
+						<input class="form-control autocomplete" type="text" name="searchKeyword" placeholder="무엇을 검색해볼까요 ?" 
+						style="font-family: 'test3';font-size: 10px;">
+						<!-- button style 바뀌었으면 type="button"  -->
+						<button class="btn btn-warning" id="s_b-1" type="submit" 
+						 style="background: rgb(162,207,230);">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				</form>
 			</div>
-			<c:choose>
-				<c:when test="${empty userID}">
-					<c:set var="loginBtnUrl" value="location.href='/login'" />
-				</c:when>
-				<c:otherwise>
-					<c:set var="loginBtnUrl" value="location.href='/coupon'" />
-				</c:otherwise>
-			</c:choose>
-			<button class="navbar-toggler text-center d-flex" data-bs-toggle="collapse" style="height: 38px;" onclick="${loginBtnUrl}">
+			<button class="navbar-toggler text-center d-flex loginAndMypageBtn" data-bs-toggle="collapse" style="height: 38px;" >
 				<span class="visually-hidden">Toggle navigation</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-person" 
 				style="font-family: 'Source Sans Pro', sans-serif;height: 25px;">
@@ -57,10 +55,11 @@
 			</button>
 		</div>
 	</nav>
+	
 	<ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
-		<li class="nav-item d-flex justify-content-center align-items-center"><span>음식점</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center">헬스장</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center"><span class="text-center">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span style="font-weight: bold;">음식점</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" ><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainEvent'"><span class="text-center" style="font-weight: bold;">이벤트</span></li>
 	</ul>
 	<div class="container m-auto" style="max-width: 80%;min-width: 300px;width: 300px;">
 		<div class="row" style="width: 300px;max-width: 90%;min-width: 300px;margin-bottom: 20px;margin-top: 10px;">
@@ -70,8 +69,8 @@
 						<img style="height: 180px;width: 150px;" src="${event.eventImageurl}">
 					</div>
 					<div class="col-md-6" style="width: 150px;">
+						<p style="font-weight: bold;font-size: 20px;margin-bottom: 10px;border-bottom-style: solid;">가게 이름</p>
 						<ul>
-							<li style="font-size: 20px;font-weight: bold;">응애 치킨</li>
 							<li>${event.eventTitle}</li>
 							<li>${event.eventContents}</li>
 							<li>${event.eventGoods}</li>
@@ -140,20 +139,24 @@
 										style="padding: 0px;padding-top: 0px;background: rgba(25,155,221,0);font-size: 13px;
 										color: var(--bs-body-color);border-style: none;padding-bottom: 0px;height: 100%;">대댓글</button>
 										
-										<!-- 안눌렀을 경우 빈 하트 -->
-										<button class="btn btn-primary text-center" type="button" id="offEmotion" style="padding: 0px;padding-top: 0px;
+										<button class="btn btn-primary text-center emotionBtn" type="button" name="${commentItem.commNum}" style="padding: 0px;padding-top: 0px;
 										background: rgba(25,155,221,0);color: var(--bs-red);border-style: none;">
-											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-suit-heart" style="height: 100%;margin-left: 5px;margin-right: 5px;">
-												<path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"></path>
-											</svg>
-										</button>
-										<!--  눌렀을 경우 채워진 하트 -->
-										<button class="btn btn-primary text-center" type="button" id="onEmotion" style="padding: 0px;padding-top: 0px;background: rgba(25,155,221,0);
-										color: var(--bs-red);border-style: none;">
-											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" 
-											viewBox="0 0 16 16" class="bi bi-suit-heart-fill" style="height: 100%;margin-left: 5px;margin-right: 5px;">
-												<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
-											</svg>
+											<c:choose>
+												<c:when test="${commentItem.commIsClickedEmo eq '0'.charAt(0)}">
+													<!-- 안눌렀을 경우 빈 하트 -->
+													<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" 
+													viewBox="0 0 16 16" class="bi bi-suit-heart" style="height: 100%;margin-left: 5px;margin-right: 5px;">
+														<path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"></path>
+													</svg>
+												</c:when>
+												<c:otherwise>
+													<!--  눌렀을 경우 채워진 하트 -->
+													<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" 
+													viewBox="0 0 16 16" class="bi bi-suit-heart-fill" style="height: 100%;margin-left: 5px;margin-right: 5px;">
+														<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+													</svg>
+												</c:otherwise>
+											</c:choose>
 										</button>
 										<span class="text-center" style="margin-left: 0px;height: 100%;">${commentItem.commEmotions}</span>
 									</div>
@@ -207,19 +210,25 @@
 										</ul>
 										<p style="margin-top: 0px;margin-bottom: 0px;">${commentItem.commComment}<br></p>
 										<div class="text-start d-flex flex-row align-items-center" style="background: var(--bs-white);margin-top: 0px;padding-bottom: 0px;">
-											<!-- 안눌렀을 경우 빈 하트 -->
-											<button class="btn btn-primary text-center" type="button" id="offEmotion" style="padding: 0px;padding-top: 0px;
+											
+											<button class="btn btn-primary text-center emotionBtn" type="button" name="${commentItem.commNum}" style="padding: 0px;padding-top: 0px;
 											background: rgba(25,155,221,0);color: var(--bs-red);border-style: none;">
-												<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-suit-heart" style="height: 100%;margin-left: 5px;margin-right: 5px;">
-													<path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"></path>
-												</svg>
-											</button>
-											<!--  눌렀을 경우 채워진 하트 -->
-											<button class="btn btn-primary text-center" type="button" style="padding: 0px;padding-top: 0px;background: rgba(25,155,221,0);
-											color: var(--bs-red);border-style: none;">
-												<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-suit-heart-fill" style="height: 100%;margin-left: 5px;margin-right: 5px;">
-													<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
-												</svg>
+												<c:choose>
+													<c:when test="${commentItem.commIsClickedEmo eq '0'.charAt(0)}">
+														<!-- 안눌렀을 경우 빈 하트 -->
+														<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" 
+														viewBox="0 0 16 16" class="bi bi-suit-heart" style="height: 100%;margin-left: 5px;margin-right: 5px;">
+															<path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"></path>
+														</svg>
+													</c:when>
+													<c:otherwise>
+														<!--  눌렀을 경우 채워진 하트 -->
+														<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" 
+														viewBox="0 0 16 16" class="bi bi-suit-heart-fill" style="height: 100%;margin-left: 5px;margin-right: 5px;">
+															<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+														</svg>
+													</c:otherwise>
+												</c:choose>
 											</button>
 											<span class="text-center" style="margin-left: 0px;height: 100%;">${commentItem.commEmotions}</span>
 										</div>
@@ -249,10 +258,43 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
 	
+		$(".loginAndMypageBtn").on("click", function(){
+			$.ajax({
+				url: "/loginInterceptor",
+				type: "POST",
+				data: {
+					"uri" : $(document).attr("URL")
+				},
+				success: function(val){
+					if (${empty userID}){
+						location.href = '/login';
+					} else {
+						location.href = '/coupon';
+					}
+				},
+				error: function(){
+					alert("로그인 인터셉터 오류");
+				}
+			})
+		});
+		
 		$("button[name=commentInputBtn]").on("click", function(){
 			if (${empty userID}) {
+				var data = {
+						"uri" : $(document).attr("URL")
+				};
 				alert("로그인이 필요합니다");
-				location.href = '/login';
+				$.ajax({
+					url: "/loginInterceptor",
+					type: "POST",
+					data: data,
+					success: function(val){
+						location.href = '/login';
+					},
+					error: function(){
+						
+					}
+				});
 				return;
 			}
 			var commEventNum = ${param.event};
@@ -361,6 +403,81 @@
 				$(this).closest("div").children("button").attr("disabled", true);
 			} else {
 				$(this).closest("div").children("button").attr("disabled", false);
+			}
+		});
+		
+		
+		$(".emotionBtn").on("click", function(){
+			if (${empty userID}) {
+				var data = {
+						"uri" : $(document).attr("URL")
+				};
+				alert("로그인이 필요합니다");
+				$.ajax({
+					url: "/loginInterceptor",
+					type: "POST",
+					data: data,
+					success: function(val){
+						location.href = '/login';
+					},
+					error: function(){
+						
+					}
+				});
+				return;
+			}
+			
+			var userid = "${userID}";
+			var commentNum = $(this).attr("name");
+			var commEventNum = "${param.event}";
+			if ($(this).children("svg").attr("class")=='bi bi-suit-heart'){
+				var data = {
+						"userid" : userid,
+						"commentNum" : commentNum,
+						"commEventNum" : commEventNum
+					};
+				$.ajax({
+					url: "/comment/addEmotion.do",
+					type: "POST",
+					data: JSON.stringify(data),
+					contentType: "application/json; charset=UTF-8;",
+					dataType: "text",
+					context: this,
+					success: function(val){
+						//console.log($(this).html());
+						$(this).html("<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' fill='currentColor' viewBox='0 0 16 16' class='bi bi-suit-heart-fill' style='height: 100%;margin-left: 5px;margin-right: 5px;'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z' /></svg>");
+						var hcnt = $(this).siblings("span").text();
+						$(this).siblings("span").text(parseInt(hcnt)+1);
+						return;
+					},
+					error: function(){
+						
+					}
+				});
+			} 
+			if ($(this).children("svg").attr("class")=='bi bi-suit-heart-fill'){
+				var data = {
+						"userid" : userid,
+						"commentNum" : commentNum,
+						"commEventNum" : commEventNum
+					};
+				$.ajax({
+					url: "/comment/removeEmotion.do",
+					type: "POST",
+					data: JSON.stringify(data),
+					contentType: "application/json; charset=UTF-8;",
+					dataType: "text",
+					context: this,
+					success: function(val){
+						$(this).html("<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' fill='currentColor' viewBox='0 0 16 16' class='bi bi-suit-heart' style='height: 100%;margin-left: 5px;margin-right: 5px;'> <path d='m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z'></path></svg>");
+						var hcnt = $(this).siblings("span").text();
+						$(this).siblings("span").text(parseInt(hcnt)-1);
+						return;
+					},
+					error: function(){
+						
+					}
+				});
 			}
 		});
 		

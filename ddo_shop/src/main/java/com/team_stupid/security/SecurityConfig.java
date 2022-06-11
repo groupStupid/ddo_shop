@@ -21,6 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private CustomSuccessHandler customSuccessHandler;
+	@Autowired
+	private CustomLogoutHandler customLogoutHandler;
 	
 	@Autowired
 	private CustomFailureHandler customFailureHandler;
@@ -70,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/coupon").authenticated()
 			.and()
 				.formLogin()
-					.loginPage("/login")
+					.loginPage("/login.do")
 					.usernameParameter("id")
 					.passwordParameter("pw")
 					.successHandler(customSuccessHandler)
@@ -81,8 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.logoutRequestMatcher(new AntPathRequestMatcher("/logout.do"))
 					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID")
-					.logoutSuccessUrl("/main")
-					//.addLogoutHandler(customLogoutHandler)
+					.logoutSuccessUrl("/mainRestaurant")
+					.addLogoutHandler(customLogoutHandler)
 //			.and()
 //				.rememberMe()
 //					.key("uniqueAndSecret")
