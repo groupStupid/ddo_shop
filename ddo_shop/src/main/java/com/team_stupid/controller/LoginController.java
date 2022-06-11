@@ -159,6 +159,7 @@ public class LoginController /* implements Runnable */{
 				verificationCode += Integer.toString(temp);
 			}
 			ses.setAttribute("verificationCode", verificationCode);
+			ses.setAttribute("userID", id);
 			mailService.sendMail(verificationCode, email);
 			return "success";
 		} else {
@@ -173,54 +174,12 @@ public class LoginController /* implements Runnable */{
 		HttpSession ses = req.getSession();
 		if (verificationCode.equals(ses.getAttribute("verificationCode"))) {
 			ses.removeAttribute("verificationCode");
+			
 			return "success";
 		}
 		return "fail";
 	}
 	
-	
-//	@ResponseBody
-//	@RequestMapping(value = "/foundpw.do", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
-//	public String foundpw_submit(@RequestBody Map<String, String> map) throws Exception {
-//		String id = map.get("id");
-//		String email = map.get("email");
-//		System.out.println("LoginController foundpw_submit()");
-//		System.out.println("userid : " + id);
-//		System.out.println("email : " + email);
-//		if (!map.get("email").matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")) {
-//			return "email fail";
-//		}
-//		
-//		if (accountMapper.selectUserPw(id, email) > 0) {
-//			// 현재 비밀번호를 임시 비밀번호로 바꾸고 email로 보내주어야 함.
-//			// 임시 비밀번호 영어+숫자 : 10자, 특수문자 2자
-//			
-//			String tempPW = "";
-//			for (int i = 0; i < 10; i++) {
-//				tempPW += (char) ((Math.random() * 26) + 97);
-//			}
-//			char[] tempPW_SpecialCharacter = {'@', '$', '!', '%', '*', '#', '?', '&'};
-//			for (int i = 0; i < 2; i++) {
-//				tempPW += tempPW_SpecialCharacter[(int) ((Math.random() * tempPW_SpecialCharacter.length))];
-//			}
-//			// 임시비밀번호 생성하면 출력한번 해주기
-//			System.out.println("tempPW : " + tempPW);
-//			accountVO.setUserId(id);
-//			accountVO.setUserPw(tempPW);
-//			accountVO.setEmail(email);
-//			
-//			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//			tempPW = bCryptPasswordEncoder.encode(tempPW);
-//			accountMapper.updateTempUserPw(id, tempPW);
-//			
-//			mailService.sendMail(accountVO);
-//			
-//			return "success";
-//		} else {
-//			System.out.println("비밀번호 조회 실패");
-//			return "found userpw fail";
-//		}
-//	}
 	
 	@RequestMapping("/editpw")
 	public String edit_pw() {
@@ -253,20 +212,5 @@ public class LoginController /* implements Runnable */{
 	public String errorlogin() {
 		return "join/errorlogin";
 	}
-	
-//	@PostMapping("/view/login.do")
-//	public String login_do(String id, String pw, HttpServletRequest req) throws SQLException {
-//		HttpSession session = req.getSession();
-////		Authentication auth = 
-//		if (jcon.Login(id, pw) == 1) {
-//			System.out.println("session : " + session);
-//			session.setAttribute("memId", id);
-//			session.setAttribute("memIp", req.getRemoteAddr());
-//			
-//			return "redirect:/tm";
-//		} else {
-//			return "redirect:/view/login";
-//		}
-//	}
 
 }
