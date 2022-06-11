@@ -28,6 +28,10 @@
 </head>
 
 <body>
+	<!-- <script>
+		alert("현재 해당 서비스는 이용할 수 없습니다.");
+		self.location = "/login";
+	</script> -->
 	<section class="m-auto position-relative py-4 py-xl-5" style="max-width: 90%;">
 		<div class="container position-relative">
 			<div class="row d-flex justify-content-center">
