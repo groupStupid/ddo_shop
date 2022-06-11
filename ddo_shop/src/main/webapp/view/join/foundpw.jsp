@@ -34,29 +34,34 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4 m-auto" style="max-width: 90%;">
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">비밀번호 찾기</p>
-								<div class="mb-3">
-									<input class="form-control" type="text" id="foundpw_id" placeholder="아이디">
-								</div>
-								<div class="mb-3">
-									<input class="form-control" type="email" id="foundpw_email" placeholder="이메일" style="margin-top: 15px;">
-								</div>
-								<div style="margin-top: 5px;">
-									<div class="d-flex justify-content-center align-items-center">
-										<div style="margin-top: 0px;width: 30%;">
-											<button class="btn btn-primary" type="button" id="sendVerificationCode" style="background: rgba(162,207,230,0);
-											color: var(--bs-body-color);margin: 0px;font-size: 15px;">
-												<span>인증번호<br>전송<br></span>
-											</button>
-										</div>
-										<div style="margin-top: 0px;width: 70%;">
-											<span id="verificationTimer" style="display: none; color: red;"></span>
-											<input class="form-control" type="text" id="verificationCode" name="name" placeholder="인증번호">
-										</div>
+							<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+								<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+								<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+								font-weight: bold;margin-bottom: 0px;margin-top: 0px;">비밀번호 찾기</p>
+								<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
+							</div>
+							<div class="mb-3">
+								<input class="form-control" type="text" id="foundpw_id" placeholder="아이디">
+							</div>
+							<div class="mb-3">
+								<input class="form-control" type="email" id="foundpw_email" placeholder="이메일" style="margin-top: 15px;">
+							</div>
+							<div style="margin-top: 5px;">
+								<div class="d-flex justify-content-center align-items-center">
+									<div style="margin-top: 0px;width: 30%;">
+										<button class="btn btn-primary" type="button" id="sendVerificationCode" style="background: rgba(162,207,230,0);
+										color: var(--bs-body-color);margin: 0px;font-size: 15px;">
+											<span>인증번호<br>전송<br></span>
+										</button>
 									</div>
-									<button class="btn btn-primary" id="foundpw_submit" type="button" style="background: rgb(162,207,230);color: var(--bs-body-color);
-									margin: 5px;font-size: 15px;border-style: none;font-weight: bold;">확인</button>
+									<div style="margin-top: 0px;width: 70%;">
+										<span id="verificationTimer" style="display: none; color: red;"></span>
+										<input class="form-control" type="text" id="verificationCode" name="name" placeholder="인증번호">
+									</div>
 								</div>
+								<button class="btn btn-primary" id="foundpw_submit" type="button" style="background: rgb(162,207,230);color: var(--bs-body-color);
+								margin: 5px;font-size: 15px;border-style: none;font-weight: bold;">확인</button>
+							</div>
 						</div>
 					</div>
 				</div>

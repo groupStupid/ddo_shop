@@ -32,12 +32,11 @@
 		<div class="container text-center m-auto" style="max-width: 90%;background: rgb(228,238,244);">
 			<div class="card text-center m-auto mb-5" id="login_m2" style="max-width: 90%;background: rgb(228,238,244);">
 				<div class="card-body text-center d-flex flex-column align-items-center m-auto" style="font-family: 'Source Sans Pro', sans-serif;max-width: 90%;background: rgb(228,238,244);">
-					<!--  display: flex; flex-direction:row; justify-content:space-between; -->
-					<div style="background: rgb(228,238,244); width: 100%; ">
-						<span style="margin-right: 10px;font-size: 15.5px;font-weight: bold;" onclick="location.href='/mainRestaurant'">
-							또샵
-						</span>
-						<span class="text-center" style=" font-size: 40px;font-weight: bold;">로그인</span>
+					<div class="d-flex justify-content-between align-items-center" style="background: rgb(228,238,244); width: 100%;">
+						<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+						<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+						font-weight: bold;margin-bottom: 0px;margin-top: 0px;background: #e4eef4;">로그인</p>
+						<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
 					</div>
 					<div style="background: rgb(228,238,244); max-width: 400px;">
 						<img alt="ddoshop" src="https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/ddoshopLogo.png" style="width: 200px; height: 168px;">

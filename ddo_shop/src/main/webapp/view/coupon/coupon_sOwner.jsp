@@ -34,7 +34,12 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
 					<div class="card mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">상품권 확인 페이지</p>
+							<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+								<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+								<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+								font-weight: bold;margin-bottom: 0px;margin-top: 0px;">MY 페이지</p>
+								<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
+							</div>
 							<div>
 								<p class="text-start" style="font-weight: bold;font-size: 20px;">발행된 상품권 현황</p>
 								<div class="text-center p-4 p-lg-5" style="background: var(--bs-body-bg);border: 1px solid rgb(25,155,221);padding-top: 0px;padding-bottom: 0px;">

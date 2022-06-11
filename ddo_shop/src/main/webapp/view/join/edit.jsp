@@ -34,48 +34,53 @@
 				<div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4 m-auto" style="max-width: 90%;">
 					<div class="card m-auto mb-5">
 						<div class="card-body p-sm-5">
-							<p class="text-center" style="font-size: 40px;font-weight: bold;">비밀번호 변경</p>
-								<div class="text-start mb-3">
-									<div>
-										<div class="d-flex justify-content-center align-items-center mb-3" 
-										style="background: rgb(162,207,230);border-top-left-radius: 4px;
-										border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
-											<input class="form-control" type="password" id="currentPw" placeholder="현재 비밀번호" style="border-top-left-radius: 4px;
-											border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
-											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-lock" 
-											style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
-												<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-											</svg>
-										</div>
-										<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);
-										border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
-											<input class="form-control" type="password" id="newPw" placeholder="새 비밀번호" style="border-top-left-radius: 4px;
-											border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
-											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" 
-											class="bi bi-lock-fill" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
-												<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0  0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-											</svg>
-										</div>
-										<p id="pwRegexResult">영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p>
-										<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);
-										border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
-											<input class="form-control" type="password" id="newPwCheck" placeholder="새 비밀번호 확인" style="border-top-left-radius: 4px;
-											border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
-											<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" 
-											class="bi bi-lock-fill" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
-												<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0  0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-											</svg>
-										</div>
-										<p id="pwCheckResult"></p>
-									</div>
-								</div>
+							<div class="d-flex justify-content-between align-items-center" style="width: 100%;">
+								<span style="font-weight: bold;font-size: 17.5px;" onclick="location.href='/mainRestaurant'">또샵</span>
+								<p class="text-center d-flex justify-content-center align-items-center" style="font-size: 40px;
+								font-weight: bold;margin-bottom: 0px;margin-top: 0px;">비밀번호 변경</p>
+								<span style="font-size: 17.5px;font-weight: bold;color: rgba(33,37,41,0);">또샵</span>
+							</div>
+							<div class="text-start mb-3">
 								<div>
-									<button class="btn btn-primary d-block w-100 editPw" type="button" style="background: rgb(162,207,230);
-									color: var(--bs-body-color); font-family: 'Source Sans Pro', sans-serif;
-									font-weight: bold;font-size: 25px; border: none;">
-										<span>비밀번호 변경</span>
-									</button>
+									<div class="d-flex justify-content-center align-items-center mb-3" 
+									style="background: rgb(162,207,230);border-top-left-radius: 4px;
+									border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+										<input class="form-control" type="password" id="currentPw" placeholder="현재 비밀번호" style="border-top-left-radius: 4px;
+										border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-lock" 
+										style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
+											<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+										</svg>
+									</div>
+									<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);
+									border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+										<input class="form-control" type="password" id="newPw" placeholder="새 비밀번호" style="border-top-left-radius: 4px;
+										border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" 
+										class="bi bi-lock-fill" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
+											<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0  0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+										</svg>
+									</div>
+									<p id="pwRegexResult">영문 + 숫자 + 특수문자를 포함하여 8자 이상 입력해주세요 .</p>
+									<div class="d-flex justify-content-center align-items-center mb-3" style="background: rgb(162,207,230);
+									border-top-left-radius: 4px;border-top-right-radius: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;">
+										<input class="form-control" type="password" id="newPwCheck" placeholder="새 비밀번호 확인" style="border-top-left-radius: 4px;
+										border-bottom-left-radius: 4px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">
+										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" 
+										class="bi bi-lock-fill" style="font-size: 20px;margin-right: 5px;margin-left: 5px;">
+											<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0  0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+										</svg>
+									</div>
+									<p id="pwCheckResult"></p>
 								</div>
+							</div>
+							<div>
+								<button class="btn btn-primary d-block w-100 editPw" type="button" style="background: rgb(162,207,230);
+								color: var(--bs-body-color); font-family: 'Source Sans Pro', sans-serif;
+								font-weight: bold;font-size: 25px; border: none;">
+									<span>비밀번호 변경</span>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
