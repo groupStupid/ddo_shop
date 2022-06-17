@@ -1,6 +1,5 @@
 package com.team_stupid.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team_stupid.domain.MenuInfoVO;
+import com.team_stupid.domain.ShopEventVO;
 import com.team_stupid.domain.ShopInfoVO;
 import com.team_stupid.mapper.MenuMapper;
 import com.team_stupid.mapper.ShopMapper;
@@ -40,6 +40,13 @@ public class ShopController {
 		serialNum = String.format("%05d", Integer.parseInt(serialNum));
 		ShopInfoVO shopInfo = shopMapper.getShopInfoDetail(serialNum);
 		ses.setAttribute("shopInfo", shopInfo);
+		
+		ShopEventVO shopEvent = shopMapper.getShopEvent(serialNum);
+		if (shopEvent != null) {
+			ses.setAttribute("shopEvent", shopEvent);
+		} else {
+			ses.removeAttribute("shopEvent");
+		}
 		
 		List<MenuInfoVO> menuList = menuMapper.getMenuInfo(serialNum);
 		ses.setAttribute("menuList", menuList);
