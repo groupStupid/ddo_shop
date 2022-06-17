@@ -193,7 +193,7 @@ public class CouponController {
 					}
 					System.out.println("---------------userWallet gifts----------------------");
 					ses.setAttribute("userGifts", gifts);
-					return "쿠폰이 정상적으로 사용되었습니다!";
+					return "쿠폰이 정상적으로 사용되었습니다!" + "\n상품권 사용 결과 : " + myblock.hash;
 				}
 			}
 		}
