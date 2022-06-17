@@ -27,8 +27,8 @@
 	<link rel="stylesheet" href="../../resource/assets/css/tc-menu-10.css">
 </head>
 
-<body style="background-color: #e4eef4;">
-	<section class="m-auto position-relative py-4 py-xl-5" id="login_main" style="margin-top: 0px;max-width: 90%;padding-top: 0px;padding-bottom: 0px;">
+<body>
+	<section class="m-auto position-relative py-4 py-xl-5" id="login_main" style="background: rgb(228,238,244); margin-top: 0px;max-width: 90%;padding-top: 0px;padding-bottom: 0px;">
 		<div class="container text-center m-auto" style="max-width: 90%;background: rgb(228,238,244);">
 			<div class="card text-center m-auto mb-5" id="login_m2" style="max-width: 90%;background: rgb(228,238,244);">
 				<div class="card-body text-center d-flex flex-column align-items-center m-auto" style="font-family: 'Source Sans Pro', sans-serif;max-width: 90%;background: rgb(228,238,244);">
@@ -55,15 +55,14 @@
 							</svg>
 							<input class="form-control" type="password" name="pw" placeholder="PW" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;">
 						</div>
-						<!-- <div class="mb-3"><input class="form-control" name="" type="text" placeholder="ID"></div>
-						<div class="mb-3"><input class="form-control" name="" type="password" placeholder="PW"></div> -->
 						<button class="btn btn-primary text-center d-block w-100" id="login_1" type="submit" 
 						style="font-weight: bold;color: var(--bs-body-color); margin-bottom: 10px;">사용자로 로그인</button>
-						<button class="btn btn-primary text-center d-block w-100" id="login_2" type="submit" style="font-weight: bold;color: var(--bs-body-color);">업주로 로그인</button>
+						<button class="btn btn-primary text-center d-block w-100" id="login_2" type="button" 
+						style="font-weight: bold;color: var(--bs-body-color);">업주로 로그인</button>
 					</form>
 					<p class="text-muted" style="font-size: 13px;">회원가입을 하지 않으셨나요 ?</p>
 					<a id="link" href="/join" style="font-size: 10px;">회원가입 하러 가기</a>
-					<div>
+					<div style="background: rgb(228,238,244);">
 						<a id="link-1" href="/foundid" style="font-size: 10px;color: rgb(0,0,255);margin-left: 0px; margin-right: 5px;">아이디 찾기</a>
 						<a id="link-2" href="/foundpw" style="font-size: 10px;color: rgb(0,0,255);margin-left: 5px;">비밀번호 찾기</a>
 					</div>

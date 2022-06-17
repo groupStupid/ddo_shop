@@ -8,6 +8,7 @@
 		<title>login error</title>
 	</head>
 	<body>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script>
 			alert("로그인이 필요합니다.");
 			self.location = "/login";

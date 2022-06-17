@@ -18,8 +18,6 @@ public class Block {
 	
 	public ArrayList<Transaction> transactionList = new ArrayList<>();
 	
-	
-    
 	public Block( String preHash) {
     	this.previousHash =preHash;
     	this.timeStamp = new Date().getTime();//20190210121212
@@ -38,9 +36,7 @@ public class Block {
     	while(!hash.substring(0,diff).equals(target)) {
     		nonce++;
     		hash = calculateHash();
-//    	  	System.out.println("target: "+target+" hash: "+hash+" nonce: "+nonce);
     	}
-//    	System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$Mined hash: "+hash+" nonce: "+nonce);
     	System.out.println("===Block Mined!!! : " + hash);
     	
     }

@@ -23,7 +23,7 @@
 	<insert id="register" parameterType="map">
 		INSERT INTO ACCOUNT
 		VALUES (
-		(SELECT COUNT(ACC_NUM) from ACCOUNT A),
+		(SELECT NVL(MAX(ACC_NUM),0)+1 from ACCOUNT A),
 		 #{userid}, #{password}, #{email}, #{nickname}, #{category})
 	</insert>
 	

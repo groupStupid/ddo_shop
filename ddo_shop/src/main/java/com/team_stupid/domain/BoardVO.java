@@ -6,6 +6,7 @@ import java.util.Date;
 public class BoardVO {
 	
 	private int EVENT_NUM;
+	private String EVENT_SHOP_NAME;
 	private String EVENT_TITLE;
 	private String EVENT_CONTENTS;
 	private String EVENT_GOODS;
@@ -17,6 +18,18 @@ public class BoardVO {
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
+	public int getEventNum() {
+		return EVENT_NUM;
+	}
+	public void setEventNum(int EVENT_NUM) {
+		this.EVENT_NUM = EVENT_NUM;
+	}
+	public String getEventShopName() {
+		return EVENT_SHOP_NAME;
+	}
+	public void setEventShopName(String EVENT_SHOP_NAME) {
+		this.EVENT_SHOP_NAME = EVENT_SHOP_NAME;
+	}	
 	public String getEventTitle() {
 		return EVENT_TITLE;
 	}
@@ -29,14 +42,6 @@ public class BoardVO {
 	public void setEventContents(String EVENT_CONTENTS) {
 		this.EVENT_CONTENTS = EVENT_CONTENTS;
 	}
-	
-	public int getEventNum() {
-		return EVENT_NUM;
-	}
-	public void setEventNum(int EVENT_NUM) {
-		this.EVENT_NUM = EVENT_NUM;
-	}
-	
 	public String getEventGoods() {
 		return EVENT_GOODS;
 	}

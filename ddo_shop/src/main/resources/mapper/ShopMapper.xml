@@ -14,4 +14,9 @@
 	<select id="getShopInfoBySearchKeyword" resultType="ShopInfoVO">
 		SELECT * FROM SHOP_INFO WHERE SHOP_NAME LIKE CONCAT('%', #{keyword}, '%')
 	</select>
+	
+	<select id="getShopEvent" resultType="ShopEventVO">
+		SELECT * FROM SHOP_EVENT
+		WHERE SHOP_EVENT_SHOP_SERIALNUM = #{serialNum};
+	</select>
 </mapper>
