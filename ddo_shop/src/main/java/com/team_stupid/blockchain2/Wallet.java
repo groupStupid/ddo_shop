@@ -20,7 +20,7 @@ public class Wallet {
 		generateKeyPair();
 	}
 	
-	public List<String> getGifts(){
+	public List<String> getGifts(){ 
 		List<String> gifts = new ArrayList<String>(); // String : value, String : shopSerialNum
 		for (Map.Entry<String, TransactionOutput> item : Main.UTXOs.entrySet()) {
 			TransactionOutput UTXO = item.getValue();
