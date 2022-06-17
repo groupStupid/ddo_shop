@@ -58,8 +58,8 @@
 	</nav>
 	
 	<ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
-		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span style="font-weight: bold;">음식점</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center" ><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span class="text-center" style="font-weight: bold;">음식점</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainMarket'"><span class="text-center" style="font-weight: bold;">전통시장</span></li>
 		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainEvent'"><span class="text-center" style="font-weight: bold;">이벤트</span></li>
 	</ul>
 	<div class="container m-auto" style="max-width: 80%;min-width: 300px;width: 300px;margin-bottom: 10px;">
@@ -71,7 +71,7 @@
 						<img style="height: 180px;width: 150px;" src="${event.eventImageurl}">
 					</div>
 					<div class="col-md-6" style="height: 180px;width: 150px;">
-						<p style="font-weight: bold;font-size: 20px;margin-bottom: 10px;border-bottom-style: solid;">가게 이름</p>
+						<p style="font-weight: bold;font-size: 20px;margin-bottom: 10px;border-bottom-style: solid;">${event.eventShopName}</p>
 						<ul>
 							<li>${event.eventTitle}</li>
 							<li>${event.eventGoods}</li>

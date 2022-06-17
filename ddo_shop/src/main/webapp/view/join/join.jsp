@@ -51,7 +51,7 @@
 									<label class="form-label custom-control-label" id="select_-4" for="customRadioInline2">업주</label>
 							</div>
 							<div>
-								<input class="form-control" id="shopName" type="text" placeholder="가게 이름" 
+								<input class="form-control" id="shopSerialNum" type="text" placeholder="가게 번호" 
 								style="display:none;  margin-top: 15px;">
 							</div>
 							<div class="text-start mb-3">
@@ -210,9 +210,9 @@
 		
 		function ShowOwnerInputText(){
 			if (document.getElementById("select_-1").checked){
-				document.getElementById("shopName").style.display = 'none';
+				document.getElementById("shopSerialNum").style.display = 'none';
 			} else {
-				document.getElementById("shopName").style.display = 'block';
+				document.getElementById("shopSerialNum").style.display = 'block';
 			}
 		}
 		

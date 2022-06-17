@@ -31,7 +31,7 @@
 <body class="text-center" style="background-color: #deeaf0;">
 	<nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 80%;">
 		<div class="container-fluid">
-			<span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;">
+			<span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;" onclick="location.href='/mainRestaurant'">
 				또샵
 			</span>
 			<div class="col text-center padMar">
@@ -60,8 +60,8 @@
 	
 	
 	<ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
-		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span style="font-weight: bold;">음식점</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center" ><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span class="text-center" style="font-weight: bold;">음식점</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainMarket'"><span class="text-center" style="font-weight: bold;">전통시장</span></li>
 		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainEvent'"><span class="text-center" style="font-weight: bold;">이벤트</span></li>
 	</ul>
 	

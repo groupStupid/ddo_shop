@@ -28,13 +28,16 @@
 	<link rel="stylesheet" href="../../resource/assets/css/tc-menu-10.css">
 </head>
 
-<body class="text-center" style="background-color: #deeaf0;">
+<body style="background-color: #deeaf0;">
+	<div class="backgroundShadow" style="z-index: 10; margin-top: 0px; position: fixed; left: 0; top: 0;
+	width: 100%; height: 100vh; display: none; background: rgba(0,0,0,0.4);"></div> 
+	
 	<nav class="navbar navbar-light navbar-expand-md text-center m-auto" style="max-width: 80%;">
 		<div class="container-fluid">
 			<span class="d-flex" style="margin-right: 10px;font-size: 15.5px;font-weight: bold;">
 				또샵
 			</span>
-			<div class="col text-center padMar">
+			<div class="col text-center padMar" style="margin-top: 0px;">
 				<form action="/mainSearch">
 					<div class="input-group text-center">
 						<input class="form-control autocomplete" type="text" name="searchKeyword" placeholder="무엇을 검색해볼까요 ?" 
@@ -60,8 +63,8 @@
 	
 	
 	<ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
-		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span style="font-weight: bold;">음식점</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center" ><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span class="text-center" style="font-weight: bold;">음식점</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainMarket'"><span class="text-center" style="font-weight: bold;">전통시장</span></li>
 		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainEvent'"><span class="text-center" style="font-weight: bold;">이벤트</span></li>
 	</ul>
 	<div class="container py-4 py-xl-5" style="width: 360px;">
@@ -85,11 +88,26 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="text-center popup" id="window-3" 
+		style="z-index:20; position:fixed; top:20%; left:25%; width:50%; display: none; border: 2px solid;
+		 text-align: center; margin-top: 0px; font-family: 'Alegreya Sans SC', sans-serif; height: 350px;">
+			<div style="height: 300px; margin-top: 0px;" onclick="location.href = '/comment?event=5'">
+				<img alt="진행중인 이벤트" src="https://ddoshop-bucket.s3.ap-northeast-2.amazonaws.com/eventPoster.png" style="width:100%; height: 100%;">
+			</div>
+			<div style="background: black; height: 50px; display: flex; margin-top: 0px; border-top: 2px solid; border-bottom: 2px solid;">
+				<button id="hideBtn" type="button" style="background: rgb(162,207,230); font-size: 15px;
+				border:none; margin-right:1px; width: 50%; padding: 0px;">확인</button>
+				<button id="closeBtn" type="button" style="background: rgb(162,207,230); font-size: 15px;
+				border:none; margin-left:1px; width: 50%; padding: 0px;" onclick="setCloseBtn()">오늘 하루 그만보기</button>
+			</div>
+		</div>
+		
 		<div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="width: 360px;height: 150px;">
 			<div class="col" style="width: 120px;height: 150px;margin-top: 30px;">
 				<div class="text-center d-flex flex-column align-items-center align-items-xl-center" id="4" onclick="showShopList(this.id)">
 					<div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon lg"><span>🥩</span></div>
-					<div class="px-3"><span style="font-size: 20px;font-weight: bold;">양식</span></div>
+					<div class="px-3"><span style="font-size: 20px; font-weight: bold;">양식</span></div>
 				</div>
 			</div>
 			<div class="col" style="width: 120px;height: 150px;margin-top: 30px;">
@@ -131,6 +149,35 @@
 	<script src="../../resource/assets/js/Subscribe-window.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function(){ 
+			cookiedata = document.cookie;
+			if(cookiedata.indexOf("close=Y")<0){ 
+				$(".backgroundShadow").show();
+				$("#window-3").css("display", "block");
+			}else{
+				$(".backgroundShadow").hide();
+				$("#window-3").css("display", "none");
+			} 
+		}); 
+		
+		$("#hideBtn").on("click", function(){
+			$(".backgroundShadow").hide();
+			$("#window-3").css("display", "none");
+		});
+		
+		
+		function setCloseBtn(){
+			setCookie("close", "Y", 1);
+			$(".backgroundShadow").hide();
+			document.getElementById("window-3").style.display = 'none';
+		}
+		
+		function setCookie(cname, cvalue, exdays) { 
+			var d = new Date(); 
+			d.setTime(d.getTime() + (exdays*24*60*60*1000)); //시간설정 
+			var expires = "expires="+d.toUTCString(); var temp = cname + "=" + cvalue + "; " + expires; 
+			document.cookie = temp; 
+		}
 	
 		$(".loginAndMypageBtn").on("click", function(){
 			$.ajax({
@@ -156,6 +203,8 @@
 		function showShopList(id){
 			location.href = '/main/shop?category='+id;
 		}
+		
+		
 	</script>
 </body>
 

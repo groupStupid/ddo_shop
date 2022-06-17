@@ -71,11 +71,19 @@
 						
 					</ul>
 				</div>
-				<div class="text-center">
-					<p class="text-center" style="margin-top: 0px;margin-bottom: 5px;">
-						${shopEventContent}
-					</p>
-				</div>
+				<c:if test="${!empty shopEvent}">
+					<div class="text-center">
+						<p class="text-center" style="font-size: 24px; margin-top: 0px;margin-bottom: 5px;">가게 이벤트</p>
+						<div style="background: #deeaf0;">
+							<ul class="text-center" style="margin-bottom: 0px;">
+								<li style="font-size: 15px;">이벤트 제목 : ${shopEvent.shopEventTitle}<br></li>
+								<li style="font-size: 15px;">이벤트 내용 : ${shopEvent.shopEventContents}<br></li>
+								<li style="font-size: 15px;">이벤트 시작일 : ${shopEvent.shopEventStart eq null ? '' : shopEvent.shopEventStart}<br></li>
+								<li style="font-size: 15px;">이벤트 종료일 : ${shopEvent.shopEventEnd eq null ? '' : shopEvent.shopEventEnd}<br></li>
+							</ul>
+						</div>
+					</div>
+				</c:if>
 				<div class="align-items-start">
 					<p class="text-start" style="font-weight: bold;font-size: 20px;margin-bottom: 0px;">메뉴</p>
 					<div class="col text-center" style="margin-top: 0px;">

@@ -57,8 +57,8 @@
 		</div>
 	</nav>
 	<ul class="nav nav-tabs nav-justified text-center m-auto" style="max-width: 80%;font-size: 14px;">
-		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span style="font-weight: bold;">음식점</span></li>
-		<li class="nav-item d-flex justify-content-center align-items-center" ><span class="text-center" style="font-weight: bold;">전통시장</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainRestaurant'"><span class="text-center" style="font-weight: bold;">음식점</span></li>
+		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainMarket'"><span class="text-center" style="font-weight: bold;">전통시장</span></li>
 		<li class="nav-item d-flex justify-content-center align-items-center" onclick="location.href = '/mainEvent'"><span class="text-center" style="font-weight: bold;">이벤트</span></li>
 	</ul>
 	<div class="container py-4 py-xl-5" style="width: 360px;">
@@ -100,6 +100,34 @@
 	<script src="../../resource/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../../resource/assets/js/MENU.js"></script>
 	<script src="../../resource/assets/js/Subscribe-window.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+	
+		$(".loginAndMypageBtn").on("click", function(){
+			$.ajax({
+				url: "/loginInterceptor",
+				type: "POST",
+				data: {
+					"uri" : $(document).attr("URL")
+				},
+				success: function(val){
+					if (${empty userID}){
+						location.href = '/login';
+					} else {
+						location.href = '/coupon';
+					}
+				},
+				error: function(){
+					alert("로그인 인터셉터 오류");
+				}
+			})
+		});
+		
+		
+		function onClickEventList(eventNum){
+			location.href = '/comment?event='+eventNum;
+		}
+	</script>
 </body>
 
 </html>
