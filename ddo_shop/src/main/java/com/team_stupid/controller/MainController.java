@@ -29,6 +29,12 @@ public class MainController {
 	}
 	
 	
+	@RequestMapping("/mainMarket")
+	public String mainMarket(HttpServletRequest req) {
+		
+		return "main/mainMarket";
+	}
+	
 	@RequestMapping("/mainEvent")
 	public String mainEvent(HttpServletRequest req) {
 		HttpSession ses = req.getSession();
