@@ -120,7 +120,6 @@
 		
 		$("#foundpw_submit").on("click", function(){
 			var verificationCode = $("#verificationCode").val();
-			
 			var data = {
 					"verificationCode" : verificationCode
 			};
@@ -140,6 +139,7 @@
 				}
 			});
 		}); 
+		
 	</script>
 	
 </body>

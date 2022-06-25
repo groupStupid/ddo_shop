@@ -174,7 +174,6 @@ public class LoginController /* implements Runnable */{
 		HttpSession ses = req.getSession();
 		if (verificationCode.equals(ses.getAttribute("verificationCode"))) {
 			ses.removeAttribute("verificationCode");
-			
 			return "success";
 		}
 		return "fail";

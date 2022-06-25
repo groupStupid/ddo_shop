@@ -175,7 +175,8 @@
 		function setCookie(cname, cvalue, exdays) { 
 			var d = new Date(); 
 			d.setTime(d.getTime() + (exdays*24*60*60*1000)); //시간설정 
-			var expires = "expires="+d.toUTCString(); var temp = cname + "=" + cvalue + "; " + expires; 
+			var expires = "expires="+d.toUTCString();
+			var temp = cname + "=" + cvalue + "; " + expires; 
 			document.cookie = temp; 
 		}
 	

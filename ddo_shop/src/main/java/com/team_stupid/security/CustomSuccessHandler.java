@@ -34,9 +34,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 		CustomUserDetails user = (CustomUserDetails) customUserDetailsService.loadUserByUsername(authentication.getName());
 //		user.setPassword(null);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		Object destination = session.getAttribute("destination");
-		System.out.println(destination);
 		Object URL = session.getAttribute("URL");
+		Object destination = session.getAttribute("destination");
 		response.sendRedirect((destination != null)?(String)destination : "/mainRestaurant");
 	}
 }
